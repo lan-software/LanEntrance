@@ -21,6 +21,7 @@ services:
             - '.:/var/www/html'
         networks:
             - sail
+            - infrastructure
         depends_on:
             - pgsql
             - redis
@@ -67,6 +68,8 @@ services:
 networks:
     sail:
         driver: bridge
+    infrastructure:
+        external: true
 volumes:
     sail-pgsql:
         driver: local
