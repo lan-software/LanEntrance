@@ -10,7 +10,32 @@ This document defines the API endpoints that **LanCore must provide** for LanEnt
 
 ---
 
-# 1. Transport & authentication
+# 1. QR code token format (LanCore-owned)
+
+LanEntrance treats QR code payloads as **opaque tokens**. It does not parse, decode, or validate the internal structure of the QR content. The raw string scanned from the QR code is forwarded verbatim to LanCore in the `token` field.
+
+**LanCore is responsible for defining the QR code format**, including:
+
+- Token structure and encoding (e.g., UUID, signed JWT, base64, custom format)
+- Token generation when tickets are issued
+- Token validation and lookup when received via the `/api/entrance/validate` endpoint
+- Whether the token embeds data or is a lookup key into LanCore's database
+
+**LanEntrance constraints on the token**:
+
+| Constraint       | Value                                                              |
+| ---------------- | ------------------------------------------------------------------ |
+| Max length       | 512 characters (enforced by LanEntrance request validation)        |
+| Content          | Any UTF-8 string — LanEntrance does not inspect or parse it        |
+| Sensitivity      | Must **not** contain PII (per SSS LENT-3.8-005)                   |
+| URL requirement  | Must **not** require the token to be a URL (per SSS LENT-3.12-002)|
+| Quiet zone       | QR codes should have adequate white margin for reliable scanning   |
+
+**Recommendation**: Use a short, opaque, non-guessable identifier (e.g., a UUID or HMAC-signed short token) that LanCore can resolve server-side. This keeps QR codes compact (faster scanning) and avoids exposing ticket details if a QR code is photographed.
+
+---
+
+# 2. Transport & authentication
 
 | Property       | Value                                                        |
 | -------------- | ------------------------------------------------------------ |
@@ -30,7 +55,7 @@ All monetary amounts are **decimal strings** (e.g., `"42.00"`), never floats.
 
 ---
 
-# 2. Audit metadata
+# 3. Audit metadata
 
 Every request from LanEntrance includes the following metadata fields alongside the endpoint-specific payload. LanCore should use these for audit trail correlation.
 
@@ -43,7 +68,7 @@ Every request from LanEntrance includes the following metadata fields alongside 
 
 ---
 
-# 3. Endpoints
+# 4. Endpoints
 
 ## 3.1 POST /api/entrance/validate
 
@@ -447,7 +472,7 @@ Audit metadata fields (`operator_id`, `operator_session`, `timestamp`, `client_i
 
 ---
 
-# 4. Error responses
+# 5. Error responses
 
 All endpoints should return errors in this format:
 
@@ -475,7 +500,7 @@ When LanCore is **unreachable** (timeout, connection refused), LanEntrance enter
 
 ---
 
-# 5. Existing endpoints (already implemented)
+# 6. Existing endpoints (already implemented)
 
 These endpoints are already in production and do not need changes.
 
@@ -501,7 +526,7 @@ Signature: `HMAC-SHA256(body, LANCORE_ROLES_WEBHOOK_SECRET)`
 
 ---
 
-# 6. LanCore responsibilities summary
+# 7. LanCore responsibilities summary
 
 | Responsibility                | Endpoint(s) affected            | Notes                                    |
 | ----------------------------- | ------------------------------- | ---------------------------------------- |
@@ -523,7 +548,7 @@ Signature: `HMAC-SHA256(body, LANCORE_ROLES_WEBHOOK_SECRET)`
 
 ---
 
-# 7. Testing
+# 8. Testing
 
 LanEntrance has **12 JSON fixture files** in `tests/Fixtures/LanCore/` representing the expected response shapes for each scenario. These can be used as reference implementations:
 
