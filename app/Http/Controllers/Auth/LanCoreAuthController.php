@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use RuntimeException;
+use Symfony\Component\HttpFoundation\Response;
 
 class LanCoreAuthController extends Controller
 {
@@ -21,7 +22,7 @@ class LanCoreAuthController extends Controller
         private readonly SyncUserRolesFromLanCore $syncRoles,
     ) {}
 
-    public function redirect(): \Symfony\Component\HttpFoundation\Response
+    public function redirect(): Response
     {
         try {
             return Inertia::location($this->client->ssoAuthorizeUrl());

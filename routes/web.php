@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\LanCoreAuthController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
-use App\Http\Controllers\Auth\LanCoreAuthController;
 
 Route::get('/', function () {
     if (auth()->check()) {

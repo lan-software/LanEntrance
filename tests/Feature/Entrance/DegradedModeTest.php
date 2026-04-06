@@ -54,5 +54,5 @@ it('does not create any local records during degraded operation', function () {
         'token' => 'any-token',
     ]);
 
-    expect(\DB::table('users')->count())->toBe(1);
+    expect(DB::table('users')->count())->toBe(1);
 });

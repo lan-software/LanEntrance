@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\UserRole;
 use App\Models\User;
 use Illuminate\Support\Facades\Http;
 
@@ -39,7 +40,7 @@ it('includes session id in requests', function () {
 it('includes operator identity in override requests', function () {
     Http::fake(['*/api/entrance/override' => Http::response(lancoreFixture('override-success'))]);
 
-    $user = User::factory()->lanCoreUser(55)->withRole(\App\Enums\UserRole::Moderator)->create();
+    $user = User::factory()->lanCoreUser(55)->withRole(UserRole::Moderator)->create();
 
     $this->actingAs($user)->postJson('/api/entrance/override', [
         'token' => 'test-token',

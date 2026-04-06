@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use Illuminate\Support\Facades\Http;
 
 it('requires authentication for validate endpoint', function () {
     $response = $this->postJson('/api/entrance/validate', [
@@ -26,7 +27,7 @@ it('requires authentication for lookup endpoint', function () {
 });
 
 it('allows verified users to access entrance endpoints', function () {
-    \Illuminate\Support\Facades\Http::fake(['*/api/entrance/validate' => \Illuminate\Support\Facades\Http::response(lancoreFixture('validate-valid'))]);
+    Http::fake(['*/api/entrance/validate' => Http::response(lancoreFixture('validate-valid'))]);
 
     $user = User::factory()->lanCoreUser()->create();
 
