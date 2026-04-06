@@ -25,12 +25,14 @@ it('requires authentication for lookup endpoint', function () {
     $response->assertUnauthorized();
 });
 
-it('requires email verification for entrance endpoints', function () {
-    $user = User::factory()->unverified()->lanCoreUser()->create();
+it('allows verified users to access entrance endpoints', function () {
+    \Illuminate\Support\Facades\Http::fake(['*/api/entrance/validate' => \Illuminate\Support\Facades\Http::response(lancoreFixture('validate-valid'))]);
+
+    $user = User::factory()->lanCoreUser()->create();
 
     $response = $this->actingAs($user)->postJson('/api/entrance/validate', [
         'token' => 'any-token',
     ]);
 
-    $response->assertStatus(409);
+    $response->assertOk();
 });

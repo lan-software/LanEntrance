@@ -59,16 +59,3 @@ function lancoreFixture(string $name): array
     return json_decode(file_get_contents($path), true, 512, JSON_THROW_ON_ERROR);
 }
 
-/**
- * Generate HMAC-signed webhook headers for LanCore role sync tests.
- *
- * @return array<string, string>
- */
-function lanEntranceRolesWebhookHeaders(string $body, string $secret): array
-{
-    return [
-        'X-Webhook-Signature' => 'sha256='.hash_hmac('sha256', $body, $secret),
-        'X-Webhook-Event' => 'user.roles_updated',
-        'Content-Type' => 'application/json',
-    ];
-}
