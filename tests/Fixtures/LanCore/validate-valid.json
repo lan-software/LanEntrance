@@ -1,0 +1,24 @@
+{
+    "decision": "valid",
+    "message": "Ticket is valid. Proceed with check-in.",
+    "validation_id": "val_8f3a2b1c",
+    "attendee": {
+        "name": "Max Mustermann",
+        "group": "Team Alpha"
+    },
+    "seating": {
+        "seat": "A-42",
+        "area": "Hall A",
+        "directions": "Enter Hall A, turn left past the info desk, Row 4, Seat 42 on the right"
+    },
+    "addons": [
+        { "name": "Pizza Package", "info": "Collect at Booth 3" },
+        { "name": "Chair Rental", "info": "Pre-placed at your seat" }
+    ],
+    "verification": null,
+    "payment": null,
+    "override_allowed": false,
+    "audit_id": "aud_9e4d3c2b",
+    "group_policy": null,
+    "degraded": false
+}

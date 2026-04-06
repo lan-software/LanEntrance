@@ -53,6 +53,95 @@ class LanCoreClient
         ];
     }
 
+    // ── Entrance API methods ─────────────────────────────────────────
+
+    /**
+     * @param  array<string, mixed>  $metadata  Audit metadata (operator_id, timestamp, etc.)
+     */
+    public function validateTicket(string $token, array $metadata): array
+    {
+        $this->ensureEnabled();
+
+        return $this->http()->post('/api/entrance/validate', [
+            'token' => $token,
+            ...$metadata,
+        ])->throw()->json();
+    }
+
+    /**
+     * @param  array<string, mixed>  $metadata
+     */
+    public function confirmCheckin(string $token, string $validationId, array $metadata): array
+    {
+        $this->ensureEnabled();
+
+        return $this->http()->post('/api/entrance/checkin', [
+            'token' => $token,
+            'validation_id' => $validationId,
+            ...$metadata,
+        ])->throw()->json();
+    }
+
+    /**
+     * @param  array<string, mixed>  $metadata
+     */
+    public function confirmVerifyCheckin(string $token, string $validationId, array $metadata): array
+    {
+        $this->ensureEnabled();
+
+        return $this->http()->post('/api/entrance/verify-checkin', [
+            'token' => $token,
+            'validation_id' => $validationId,
+            ...$metadata,
+        ])->throw()->json();
+    }
+
+    /**
+     * @param  array<string, mixed>  $metadata
+     */
+    public function confirmPayment(string $token, string $validationId, string $paymentMethod, string $amount, array $metadata): array
+    {
+        $this->ensureEnabled();
+
+        return $this->http()->post('/api/entrance/confirm-payment', [
+            'token' => $token,
+            'validation_id' => $validationId,
+            'payment_method' => $paymentMethod,
+            'amount' => $amount,
+            ...$metadata,
+        ])->throw()->json();
+    }
+
+    /**
+     * @param  array<string, mixed>  $metadata
+     */
+    public function submitOverride(string $token, string $validationId, string $reason, array $metadata): array
+    {
+        $this->ensureEnabled();
+
+        return $this->http()->post('/api/entrance/override', [
+            'token' => $token,
+            'validation_id' => $validationId,
+            'reason' => $reason,
+            ...$metadata,
+        ])->throw()->json();
+    }
+
+    /**
+     * @param  array<string, mixed>  $metadata
+     */
+    public function searchAttendees(string $query, array $metadata): array
+    {
+        $this->ensureEnabled();
+
+        return $this->http()->get('/api/entrance/search', [
+            'q' => $query,
+            ...$metadata,
+        ])->throw()->json();
+    }
+
+    // ── Internal ────────────────────────────────────────────────────
+
     private function ensureEnabled(): void
     {
         if (! config('lancore.enabled')) {
