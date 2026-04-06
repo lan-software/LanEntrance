@@ -1,10 +1,17 @@
 import type { AttendeeResult, DecisionResult } from '@/types';
 
 function getCsrfToken(): string {
-    return document.querySelector<HTMLMetaElement>('meta[name="csrf-token"]')?.content ?? '';
+    return (
+        document.querySelector<HTMLMetaElement>('meta[name="csrf-token"]')
+            ?.content ?? ''
+    );
 }
 
-async function apiRequest<T>(method: string, url: string, body?: Record<string, unknown>): Promise<T> {
+async function apiRequest<T>(
+    method: string,
+    url: string,
+    body?: Record<string, unknown>,
+): Promise<T> {
     const options: RequestInit = {
         method,
         credentials: 'same-origin',
@@ -28,21 +35,33 @@ async function apiRequest<T>(method: string, url: string, body?: Record<string, 
 
 export function useCheckin() {
     async function validate(token: string): Promise<DecisionResult> {
-        return apiRequest<DecisionResult>('POST', '/api/entrance/validate', { token });
+        return apiRequest<DecisionResult>('POST', '/api/entrance/validate', {
+            token,
+        });
     }
 
-    async function checkin(token: string, validationId: string): Promise<DecisionResult> {
+    async function checkin(
+        token: string,
+        validationId: string,
+    ): Promise<DecisionResult> {
         return apiRequest<DecisionResult>('POST', '/api/entrance/checkin', {
             token,
             validation_id: validationId,
         });
     }
 
-    async function verifyCheckin(token: string, validationId: string): Promise<DecisionResult> {
-        return apiRequest<DecisionResult>('POST', '/api/entrance/verify-checkin', {
-            token,
-            validation_id: validationId,
-        });
+    async function verifyCheckin(
+        token: string,
+        validationId: string,
+    ): Promise<DecisionResult> {
+        return apiRequest<DecisionResult>(
+            'POST',
+            '/api/entrance/verify-checkin',
+            {
+                token,
+                validation_id: validationId,
+            },
+        );
     }
 
     async function confirmPayment(
@@ -51,15 +70,23 @@ export function useCheckin() {
         paymentMethod: string,
         amount: string,
     ): Promise<DecisionResult> {
-        return apiRequest<DecisionResult>('POST', '/api/entrance/confirm-payment', {
-            token,
-            validation_id: validationId,
-            payment_method: paymentMethod,
-            amount,
-        });
+        return apiRequest<DecisionResult>(
+            'POST',
+            '/api/entrance/confirm-payment',
+            {
+                token,
+                validation_id: validationId,
+                payment_method: paymentMethod,
+                amount,
+            },
+        );
     }
 
-    async function override(token: string, validationId: string, reason: string): Promise<DecisionResult> {
+    async function override(
+        token: string,
+        validationId: string,
+        reason: string,
+    ): Promise<DecisionResult> {
         return apiRequest<DecisionResult>('POST', '/api/entrance/override', {
             token,
             validation_id: validationId,
@@ -68,9 +95,20 @@ export function useCheckin() {
     }
 
     async function lookup(query: string): Promise<AttendeeResult[]> {
-        const data = await apiRequest<{ results: AttendeeResult[] }>('GET', `/api/entrance/lookup?q=${encodeURIComponent(query)}`);
+        const data = await apiRequest<{ results: AttendeeResult[] }>(
+            'GET',
+            `/api/entrance/lookup?q=${encodeURIComponent(query)}`,
+        );
+
         return data.results ?? [];
     }
 
-    return { validate, checkin, verifyCheckin, confirmPayment, override, lookup };
+    return {
+        validate,
+        checkin,
+        verifyCheckin,
+        confirmPayment,
+        override,
+        lookup,
+    };
 }

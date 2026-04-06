@@ -424,7 +424,18 @@ Submit a staff override for a restricted ticket. Only sent by operators with Mod
 
 ## 3.6 GET /api/entrance/search
 
-Search for attendees by name or ticket identifier.
+Search for attendees by name, email, order/ticket number, or group.
+
+The `q` parameter is a free-text search query. LanCore should match against **at least** the following fields:
+
+| Searchable field        | Example query        | Description                                  |
+| ----------------------- | -------------------- | -------------------------------------------- |
+| Attendee name           | `Max Mustermann`     | First name, last name, or full name          |
+| Email address           | `max@example.com`    | Email used for ticket purchase               |
+| Order / ticket number   | `ORD-2026-1234`      | Order reference or ticket ID                 |
+| Team / group name       | `Team Alpha`         | Group name — returns all group members       |
+
+The search should be case-insensitive and support partial matches (e.g., `must` matches `Mustermann`).
 
 ### Request
 

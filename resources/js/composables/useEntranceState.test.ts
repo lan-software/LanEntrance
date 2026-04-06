@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { useEntranceState } from './useEntranceState';
 import type { DecisionResult } from '@/types';
+import { useEntranceState } from './useEntranceState';
 
 const validResult: DecisionResult = {
     decision: 'valid',
@@ -23,6 +23,7 @@ describe('useEntranceState', () => {
         const { state } = useEntranceState();
         expect(state.current).toBe('IDLE');
         expect(state.degraded).toBe(false);
+        expect(state.lastToken).toBeNull();
         expect(state.lastResult).toBeNull();
         expect(state.loading).toBe(false);
     });
@@ -40,11 +41,12 @@ describe('useEntranceState', () => {
         expect(state.current).toBe('ACTIVE_SCAN');
     });
 
-    it('transitions to DECISION_DISPLAY with result', () => {
+    it('transitions to DECISION_DISPLAY with result and token', () => {
         const { state, transition } = useEntranceState();
-        transition('DECISION_DISPLAY', validResult);
+        transition('DECISION_DISPLAY', validResult, 'scanned-token-123');
         expect(state.current).toBe('DECISION_DISPLAY');
         expect(state.lastResult).toEqual(validResult);
+        expect(state.lastToken).toBe('scanned-token-123');
         expect(state.degraded).toBe(false);
     });
 
@@ -54,11 +56,12 @@ describe('useEntranceState', () => {
         expect(state.degraded).toBe(true);
     });
 
-    it('resets to READY and clears result', () => {
+    it('resets to READY and clears result and token', () => {
         const { state, transition, resetToReady } = useEntranceState();
-        transition('DECISION_DISPLAY', validResult);
+        transition('DECISION_DISPLAY', validResult, 'some-token');
         resetToReady();
         expect(state.current).toBe('READY');
+        expect(state.lastToken).toBeNull();
         expect(state.lastResult).toBeNull();
         expect(state.loading).toBe(false);
     });

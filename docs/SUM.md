@@ -192,15 +192,41 @@ Only staff with **Moderator** role or higher can perform overrides. If you don't
 Use manual lookup when:
 * The camera is not working or permission was denied
 * The QR code is damaged or unreadable
-* You need to search for an attendee by name
+* You need to find an attendee without scanning
 
-## 5.2 Using manual lookup
+## 5.2 What you can search for
+
+You can search by any of the following:
+
+* **Attendee name** — first name, last name, or both (e.g., "Max Mustermann")
+* **Email address** — the email used for the ticket purchase (e.g., "max@example.com")
+* **Order or ticket number** — the order reference or ticket ID from the purchase confirmation
+* **Team / group name** — find all members of a team (e.g., "Team Alpha")
+
+Type at least **2 characters** to start searching. Results appear as you type.
+
+## 5.3 Using manual lookup
 
 1. Tap **Manual Lookup** on the scanner page (or navigate to the Lookup page)
-2. Type the attendee's name or ticket identifier (at least 2 characters)
-3. Matching results appear as you type
-4. Tap on the correct attendee
-5. The system validates their ticket and shows the result (same as a QR scan)
+2. Type your search (see above for what you can search by)
+3. Matching results appear as you type — each shows the attendee's name, seat, and group
+4. A green checkmark means the attendee is already checked in; a grey circle means they are not yet checked in
+5. Tap on the correct attendee to validate their ticket
+6. The system shows the result (same as a QR scan — green/red/orange screen)
+
+## 5.4 Entering a ticket token manually
+
+If the attendee has their ticket token (e.g., from a confirmation email, printed on the ticket, or shown on their phone as text), you can enter it directly instead of scanning or searching:
+
+1. On the scanner page or lookup page, tap **Enter token manually**
+2. An input field appears — paste or type the full ticket token
+3. Tap **Validate**
+4. The system validates the token and shows the result (same as a QR scan)
+
+This is useful when:
+* The QR code is damaged, smudged, or the screen is cracked
+* The attendee only has the token as text (e.g., copied from email)
+* The camera is not working and you have the token but not the attendee's name
 
 ---
 

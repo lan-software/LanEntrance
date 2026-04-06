@@ -140,6 +140,18 @@ class LanCoreClient
         ])->throw()->json();
     }
 
+    /**
+     * Fetch entrance analytics/stats from LanCore.
+     *
+     * @return array<string, mixed>
+     */
+    public function getEntranceStats(): array
+    {
+        $this->ensureEnabled();
+
+        return $this->http()->get('/api/entrance/stats')->throw()->json();
+    }
+
     // ── Internal ────────────────────────────────────────────────────
 
     private function ensureEnabled(): void

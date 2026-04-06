@@ -1,6 +1,14 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
-import { BookOpen, FolderGit2, LayoutGrid, ScanLine } from 'lucide-vue-next';
+import { usePage } from '@inertiajs/vue3';
+import {
+    BarChart3,
+    BookOpen,
+    FolderGit2,
+    LayoutGrid,
+    ScanLine,
+} from 'lucide-vue-next';
+import { computed } from 'vue';
 import AppLogo from '@/components/AppLogo.vue';
 import NavFooter from '@/components/NavFooter.vue';
 import NavMain from '@/components/NavMain.vue';
@@ -18,18 +26,35 @@ import { dashboard } from '@/routes';
 import { scanner as entranceScanner } from '@/routes/entrance';
 import type { NavItem } from '@/types';
 
-const mainNavItems: NavItem[] = [
-    {
-        title: 'Dashboard',
-        href: dashboard(),
-        icon: LayoutGrid,
-    },
-    {
-        title: 'Entrance',
-        href: entranceScanner(),
-        icon: ScanLine,
-    },
-];
+const page = usePage();
+const userRole = computed(
+    () => (page.props.auth as { user?: { role?: string } })?.user?.role,
+);
+
+const mainNavItems = computed<NavItem[]>(() => {
+    const items: NavItem[] = [
+        {
+            title: 'Dashboard',
+            href: dashboard(),
+            icon: LayoutGrid,
+        },
+        {
+            title: 'Entrance',
+            href: entranceScanner(),
+            icon: ScanLine,
+        },
+    ];
+
+    if (['admin', 'superadmin'].includes(userRole.value ?? '')) {
+        items.push({
+            title: 'Analytics',
+            href: '/entrance/analytics',
+            icon: BarChart3,
+        });
+    }
+
+    return items;
+});
 
 const footerNavItems: NavItem[] = [
     {

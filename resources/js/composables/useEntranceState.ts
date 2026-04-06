@@ -5,16 +5,27 @@ export function useEntranceState() {
     const state = reactive<EntranceState>({
         current: 'IDLE',
         degraded: false,
+        lastToken: null,
         lastResult: null,
         loading: false,
     });
 
-    function transition(to: EntranceStateName, result?: DecisionResult) {
+    function transition(
+        to: EntranceStateName,
+        result?: DecisionResult,
+        token?: string,
+    ) {
         state.current = to;
+
+        if (token !== undefined) {
+            state.lastToken = token;
+        }
+
         if (result !== undefined) {
             state.lastResult = result;
             state.degraded = result.degraded;
         }
+
         state.loading = false;
     }
 
@@ -28,6 +39,7 @@ export function useEntranceState() {
 
     function resetToReady() {
         state.current = 'READY';
+        state.lastToken = null;
         state.lastResult = null;
         state.loading = false;
     }

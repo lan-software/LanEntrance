@@ -1,5 +1,5 @@
-import { describe, expect, it, vi } from 'vitest';
 import { mount } from '@vue/test-utils';
+import { describe, expect, it, vi } from 'vitest';
 import QrScanner from './QrScanner.vue';
 
 // Mock vue-qrcode-reader since it depends on browser APIs
@@ -31,7 +31,10 @@ describe('QrScanner', () => {
         const wrapper = mountScanner();
         const stream = wrapper.findComponent({ name: 'QrcodeStream' });
 
-        await stream.vm.$emit('error', new DOMException('denied', 'NotAllowedError'));
+        await stream.vm.$emit(
+            'error',
+            new DOMException('denied', 'NotAllowedError'),
+        );
         await wrapper.vm.$nextTick();
 
         expect(wrapper.text()).toContain('Camera permission was denied');
@@ -61,7 +64,10 @@ describe('QrScanner', () => {
         const wrapper = mountScanner();
         const stream = wrapper.findComponent({ name: 'QrcodeStream' });
 
-        await stream.vm.$emit('error', new DOMException('no camera', 'NotFoundError'));
+        await stream.vm.$emit(
+            'error',
+            new DOMException('no camera', 'NotFoundError'),
+        );
 
         expect(wrapper.emitted('error')).toBeTruthy();
         expect(wrapper.emitted('error')![0][0]).toContain('No camera found');

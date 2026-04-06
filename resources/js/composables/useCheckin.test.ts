@@ -12,7 +12,13 @@ const mockValidResponse = {
 
 const mockLookupResponse = {
     results: [
-        { token: 'abc', name: 'Max', status: 'not_checked_in', seat: 'A-1', group: null },
+        {
+            token: 'abc',
+            name: 'Max',
+            status: 'not_checked_in',
+            seat: 'A-1',
+            group: null,
+        },
     ],
 };
 
@@ -26,7 +32,8 @@ function mockFetch(response: unknown, status = 200) {
 
 beforeEach(() => {
     // Provide a CSRF meta tag
-    document.head.innerHTML = '<meta name="csrf-token" content="test-csrf-token">';
+    document.head.innerHTML =
+        '<meta name="csrf-token" content="test-csrf-token">';
 });
 
 describe('useCheckin', () => {
@@ -38,10 +45,13 @@ describe('useCheckin', () => {
         expect(result.decision).toBe('valid');
         expect(result.attendee?.name).toBe('Max Mustermann');
 
-        expect(global.fetch).toHaveBeenCalledWith('/api/entrance/validate', expect.objectContaining({
-            method: 'POST',
-            body: JSON.stringify({ token: 'test-token' }),
-        }));
+        expect(global.fetch).toHaveBeenCalledWith(
+            '/api/entrance/validate',
+            expect.objectContaining({
+                method: 'POST',
+                body: JSON.stringify({ token: 'test-token' }),
+            }),
+        );
     });
 
     it('sends checkin request', async () => {
@@ -49,10 +59,16 @@ describe('useCheckin', () => {
         const { checkin } = useCheckin();
         await checkin('token', 'val_123');
 
-        expect(global.fetch).toHaveBeenCalledWith('/api/entrance/checkin', expect.objectContaining({
-            method: 'POST',
-            body: JSON.stringify({ token: 'token', validation_id: 'val_123' }),
-        }));
+        expect(global.fetch).toHaveBeenCalledWith(
+            '/api/entrance/checkin',
+            expect.objectContaining({
+                method: 'POST',
+                body: JSON.stringify({
+                    token: 'token',
+                    validation_id: 'val_123',
+                }),
+            }),
+        );
     });
 
     it('sends verify-checkin request', async () => {
@@ -60,9 +76,12 @@ describe('useCheckin', () => {
         const { verifyCheckin } = useCheckin();
         await verifyCheckin('token', 'val_123');
 
-        expect(global.fetch).toHaveBeenCalledWith('/api/entrance/verify-checkin', expect.objectContaining({
-            method: 'POST',
-        }));
+        expect(global.fetch).toHaveBeenCalledWith(
+            '/api/entrance/verify-checkin',
+            expect.objectContaining({
+                method: 'POST',
+            }),
+        );
     });
 
     it('sends confirm-payment request with method and amount', async () => {
@@ -70,15 +89,18 @@ describe('useCheckin', () => {
         const { confirmPayment } = useCheckin();
         await confirmPayment('token', 'val_123', 'cash', '42.00');
 
-        expect(global.fetch).toHaveBeenCalledWith('/api/entrance/confirm-payment', expect.objectContaining({
-            method: 'POST',
-            body: JSON.stringify({
-                token: 'token',
-                validation_id: 'val_123',
-                payment_method: 'cash',
-                amount: '42.00',
+        expect(global.fetch).toHaveBeenCalledWith(
+            '/api/entrance/confirm-payment',
+            expect.objectContaining({
+                method: 'POST',
+                body: JSON.stringify({
+                    token: 'token',
+                    validation_id: 'val_123',
+                    payment_method: 'cash',
+                    amount: '42.00',
+                }),
             }),
-        }));
+        );
     });
 
     it('sends override request with reason', async () => {
@@ -86,14 +108,17 @@ describe('useCheckin', () => {
         const { override } = useCheckin();
         await override('token', 'val_123', 'Group leader confirmed');
 
-        expect(global.fetch).toHaveBeenCalledWith('/api/entrance/override', expect.objectContaining({
-            method: 'POST',
-            body: JSON.stringify({
-                token: 'token',
-                validation_id: 'val_123',
-                reason: 'Group leader confirmed',
+        expect(global.fetch).toHaveBeenCalledWith(
+            '/api/entrance/override',
+            expect.objectContaining({
+                method: 'POST',
+                body: JSON.stringify({
+                    token: 'token',
+                    validation_id: 'val_123',
+                    reason: 'Group leader confirmed',
+                }),
             }),
-        }));
+        );
     });
 
     it('sends lookup request', async () => {
@@ -115,7 +140,8 @@ describe('useCheckin', () => {
         const { validate } = useCheckin();
         await validate('token');
 
-        const calledHeaders = (global.fetch as ReturnType<typeof vi.fn>).mock.calls[0][1].headers;
+        const calledHeaders = (global.fetch as ReturnType<typeof vi.fn>).mock
+            .calls[0][1].headers;
         expect(calledHeaders['X-CSRF-TOKEN']).toBe('test-csrf-token');
     });
 });
