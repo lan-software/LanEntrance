@@ -53,12 +53,12 @@ defineProps<{
                 >
                     Open check-in dashboard
                 </Link>
-                <Link
+                <a
                     href="/auth/redirect"
                     class="rounded-xl border border-border px-7 py-3 text-sm font-medium text-muted-foreground transition hover:border-primary hover:text-foreground"
                 >
                     Login via LanCore
-                </Link>
+                </a>
             </div>
 
             <div class="mx-auto mt-20 grid max-w-3xl gap-6 sm:grid-cols-3">
