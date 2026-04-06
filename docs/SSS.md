@@ -129,10 +129,13 @@ Requirements:
 
 * **LENT-3.2.4-001**: The system shall submit scan and lookup validation requests through the LanEntrance backend service. **[INSP, TST]**
 * **LENT-3.2.4-002**: The system shall use LanCore as the authoritative decision source for ticket validity, check-in state, and policy enforcement. **[INSP, TST]**
-* **LENT-3.2.4-003**: The system shall support, at minimum, the decision outcomes `valid`, `invalid`, `already_checked_in`, `denied_by_policy`, and `override_possible`. **[TST]**
+* **LENT-3.2.4-003**: The system shall support, at minimum, the decision outcomes `valid`, `invalid`, `already_checked_in`, `denied_by_policy`, `override_possible`, `verification_required`, and `payment_required`. **[TST]**
 * **LENT-3.2.4-004**: The system shall display the decision outcome to the operator within 2 seconds for 95 percent of requests under nominal operating conditions. **[TST, ANL]**
 * **LENT-3.2.4-005**: The system shall prevent the UI from representing a check-in as completed until a successful authoritative response has been received from LanCore. **[TST]**
 * **LENT-3.2.4-006**: The system shall support re-entry workflows when enabled by LanCore policy. **[TST]**
+* **LENT-3.2.4-007**: When LanCore returns a `verification_required` decision, the system shall display the required verification actions (e.g., check student ID, verify team membership, confirm age) to the operator before allowing check-in to proceed. **[DEM, TST]**
+* **LENT-3.2.4-008**: Upon successful check-in, the system shall display the attendee's seating information including seat identifier, area or hall designation, and directional guidance when provided by LanCore. **[DEM, TST]**
+* **LENT-3.2.4-009**: Upon successful check-in, the system shall display a list of addons purchased with the ticket (e.g., merchandise, food packages, equipment rentals) when provided by LanCore, so the operator can inform the attendee of their entitlements. **[DEM, TST]**
 
 ### 3.2.5 Group ticket handling capability
 
@@ -141,11 +144,24 @@ Requirements:
 * **LENT-3.2.5-003**: The system shall support explicit override workflows for authorized staff when LanCore indicates that an override is permitted. **[TST]**
 * **LENT-3.2.5-004**: The system shall require an override reason when performing an operator override. **[TST]**
 
+### 3.2.9 On-site payment capability
+
+Tickets purchased with a "Pay on Site" payment provider require payment collection at the entrance before admission. LanEntrance facilitates the payment interaction between operator and attendee; LanCore owns the authoritative payment record, PDF receipt generation, and receipt delivery.
+
+* **LENT-3.2.9-001**: When LanCore returns a `payment_required` decision, the system shall display the outstanding amount, a breakdown of payable items, and the accepted on-site payment methods to the operator. **[DEM, TST]**
+* **LENT-3.2.9-002**: The system shall require the operator to select the payment method used (e.g., cash, card) and explicitly confirm that payment has been collected before proceeding with check-in. **[DEM, TST]**
+* **LENT-3.2.9-003**: The system shall submit the payment confirmation (amount, method, operator identity) to LanCore through the LanEntrance backend. The system shall not represent the check-in as completed until LanCore confirms the payment has been recorded. **[TST]**
+* **LENT-3.2.9-004**: Upon successful payment confirmation, LanCore shall generate a PDF receipt and send it to the attendee via email. LanEntrance shall inform the operator that a receipt has been sent. **[DEM, TST]**
+* **LENT-3.2.9-005**: The system shall not store authoritative payment records. All payment state shall reside in LanCore. **[INSP]**
+* **LENT-3.2.9-006**: The system shall prevent the operator from bypassing the payment step for `payment_required` tickets without explicit override authorization from a Moderator or higher. **[TST]**
+
 ### 3.2.6 Operator guidance capability
 
-* **LENT-3.2.6-001**: The system shall present a clear visual state for successful, denied, warning, and exceptional outcomes. **[DEM, TST]**
-* **LENT-3.2.6-002**: The system shall display attendee routing or seat guidance information when such information is returned by LanCore and the operator is authorized to view it. **[DEM, TST]**
+* **LENT-3.2.6-001**: The system shall present the decision outcome as a full-screen overlay with color-coded visual state: green for admitted, red for denied, and orange for situations requiring operator verification or attention before proceeding. **[DEM, TST]**
+* **LENT-3.2.6-002**: The system shall display attendee seating information including seat identifier, area designation, and navigational directions when such information is returned by LanCore after a successful check-in. **[DEM, TST]**
 * **LENT-3.2.6-003**: The system shall provide a recent-result context sufficient for the operator to understand why a ticket was denied, including cases such as prior check-in. **[DEM, TST]**
+* **LENT-3.2.6-004**: The system shall display a list of ticket addons (purchased extras) to the operator upon successful check-in so the attendee can be informed of their entitlements. **[DEM, TST]**
+* **LENT-3.2.6-005**: Each full-screen decision overlay shall include a recognizable icon, a primary status message, and supplementary detail text when provided by LanCore. **[DEM, TST]**
 
 ### 3.2.7 Audit and traceability capability
 
@@ -386,14 +402,14 @@ Detailed bidirectional traceability shall be maintained in a separate traceabili
 
 # A. Appendixes
 
-## Appendix A.1 Future traceability matrix
+## Appendix A.1 Traceability matrix
 
-Reserved for detailed requirement-to-architecture and requirement-to-test traceability.
+Detailed requirement-to-architecture and requirement-to-test traceability is maintained in `docs/RTM.md`.
 
-## Appendix A.2 Future API contract extracts
+## Appendix A.2 API contract extracts
 
-Reserved for LanEntrance backend and LanCore interface payload excerpts.
+LanEntrance backend and LanCore interface payload schemas are documented in `docs/IDD.md`.
 
-## Appendix A.3 Future state machine diagrams
+## Appendix A.3 State machine diagrams
 
-Reserved for check-in, override, and degraded-mode state machine diagrams.
+Operator workflow state machine and state transition table are documented in `docs/SSDD.md` Section 5.
