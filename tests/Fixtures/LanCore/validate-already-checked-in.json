@@ -1,0 +1,17 @@
+{
+    "decision": "already_checked_in",
+    "message": "This ticket was already used for entry at 14:23.",
+    "validation_id": "val_alrdy001",
+    "attendee": {
+        "name": "Max Mustermann",
+        "group": null
+    },
+    "seating": null,
+    "addons": null,
+    "verification": null,
+    "payment": null,
+    "override_allowed": false,
+    "audit_id": "aud_alrdy001",
+    "group_policy": null,
+    "degraded": false
+}

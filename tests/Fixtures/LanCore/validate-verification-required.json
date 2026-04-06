@@ -1,0 +1,29 @@
+{
+    "decision": "verification_required",
+    "message": "Student ticket — manual verification required before entry.",
+    "validation_id": "val_verify01",
+    "attendee": {
+        "name": "Lisa Schmidt",
+        "group": null
+    },
+    "seating": {
+        "seat": "B-17",
+        "area": "Hall B",
+        "directions": "Enter Hall B straight ahead, Row 1, Seat 17 on the left"
+    },
+    "addons": [
+        { "name": "Tournament Entry", "info": null }
+    ],
+    "verification": {
+        "message": "This ticket requires manual verification before entry.",
+        "checks": [
+            { "label": "Student ID", "instruction": "Must show a valid university student ID with photo" },
+            { "label": "Age Verification", "instruction": "Attendee must be 18 or older" }
+        ]
+    },
+    "payment": null,
+    "override_allowed": false,
+    "audit_id": "aud_verify01",
+    "group_policy": null,
+    "degraded": false
+}

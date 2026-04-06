@@ -1,0 +1,14 @@
+{
+    "decision": "invalid",
+    "message": "Ticket not found or has been revoked.",
+    "validation_id": "val_0000dead",
+    "attendee": null,
+    "seating": null,
+    "addons": null,
+    "verification": null,
+    "payment": null,
+    "override_allowed": false,
+    "audit_id": "aud_invalid01",
+    "group_policy": null,
+    "degraded": false
+}

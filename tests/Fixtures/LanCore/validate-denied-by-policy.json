@@ -1,0 +1,22 @@
+{
+    "decision": "denied_by_policy",
+    "message": "Entry denied — ticket type not permitted for this entrance.",
+    "validation_id": "val_denied01",
+    "attendee": {
+        "name": "Tom Fischer",
+        "group": null
+    },
+    "seating": null,
+    "addons": null,
+    "verification": null,
+    "payment": null,
+    "override_allowed": false,
+    "audit_id": "aud_denied01",
+    "group_policy": {
+        "rule": "entrance_restriction",
+        "message": "VIP tickets only at this entrance.",
+        "members_checked_in": 0,
+        "members_total": 0
+    },
+    "degraded": false
+}

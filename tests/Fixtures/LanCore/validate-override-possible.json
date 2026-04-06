@@ -1,0 +1,22 @@
+{
+    "decision": "override_possible",
+    "message": "Group policy restricts entry — override available for authorized staff.",
+    "validation_id": "val_ovrde001",
+    "attendee": {
+        "name": "Sarah Braun",
+        "group": "Team Gamma"
+    },
+    "seating": null,
+    "addons": null,
+    "verification": null,
+    "payment": null,
+    "override_allowed": true,
+    "audit_id": "aud_ovrde001",
+    "group_policy": {
+        "rule": "all_members_present",
+        "message": "All group members must check in together.",
+        "members_checked_in": 2,
+        "members_total": 5
+    },
+    "degraded": false
+}

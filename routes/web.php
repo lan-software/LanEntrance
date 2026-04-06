@@ -26,6 +26,9 @@ Route::prefix('auth')->name('auth.')->group(function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'Dashboard')->name('dashboard');
+
+    Route::inertia('entrance', 'entrance/Scanner')->name('entrance.scanner');
+    Route::inertia('entrance/lookup', 'entrance/Lookup')->name('entrance.lookup');
 });
 
 require __DIR__.'/settings.php';

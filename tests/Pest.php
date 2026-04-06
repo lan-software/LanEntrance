@@ -43,7 +43,32 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+/**
+ * Load a LanCore API response fixture by name.
+ *
+ * @return array<string, mixed>
+ */
+function lancoreFixture(string $name): array
 {
-    // ..
+    $path = __DIR__.'/Fixtures/LanCore/'.$name.'.json';
+
+    if (! file_exists($path)) {
+        throw new RuntimeException("LanCore fixture not found: {$name}");
+    }
+
+    return json_decode(file_get_contents($path), true, 512, JSON_THROW_ON_ERROR);
+}
+
+/**
+ * Generate HMAC-signed webhook headers for LanCore role sync tests.
+ *
+ * @return array<string, string>
+ */
+function lanEntranceRolesWebhookHeaders(string $body, string $secret): array
+{
+    return [
+        'X-Webhook-Signature' => 'sha256='.hash_hmac('sha256', $body, $secret),
+        'X-Webhook-Event' => 'user.roles_updated',
+        'Content-Type' => 'application/json',
+    ];
 }

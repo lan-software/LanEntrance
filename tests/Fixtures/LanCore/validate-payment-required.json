@@ -1,0 +1,31 @@
+{
+    "decision": "payment_required",
+    "message": "Pay on Site — payment must be collected before entry.",
+    "validation_id": "val_pay00001",
+    "attendee": {
+        "name": "Jan Weber",
+        "group": "Team Beta"
+    },
+    "seating": {
+        "seat": "C-03",
+        "area": "Hall C",
+        "directions": "Enter Hall C, first row on the right"
+    },
+    "addons": [
+        { "name": "Tournament Entry", "info": null }
+    ],
+    "verification": null,
+    "payment": {
+        "amount": "42.00",
+        "currency": "EUR",
+        "items": [
+            { "name": "Weekend Ticket", "price": "35.00" },
+            { "name": "Tournament Entry", "price": "7.00" }
+        ],
+        "methods": ["cash", "card"]
+    },
+    "override_allowed": false,
+    "audit_id": "aud_pay00001",
+    "group_policy": null,
+    "degraded": false
+}

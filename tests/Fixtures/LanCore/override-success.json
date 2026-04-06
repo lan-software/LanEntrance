@@ -1,0 +1,19 @@
+{
+    "decision": "valid",
+    "message": "Override accepted. Check-in confirmed.",
+    "validation_id": "val_ovrde001",
+    "checkin_id": "chk_ovrd_4e5f",
+    "override_id": "ovr_3d2c1b0a",
+    "attendee": {
+        "name": "Sarah Braun",
+        "group": "Team Gamma"
+    },
+    "seating": {
+        "seat": "D-11",
+        "area": "Hall D",
+        "directions": "Enter Hall D, Row 1, Seat 11"
+    },
+    "addons": null,
+    "audit_id": "aud_5e6f7a8b",
+    "degraded": false
+}

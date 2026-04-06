@@ -1,0 +1,22 @@
+{
+    "decision": "valid",
+    "message": "Payment confirmed. Check-in complete.",
+    "validation_id": "val_pay00001",
+    "checkin_id": "chk_pay_9a8b",
+    "payment_id": "pay_5e4d3c2b",
+    "receipt_sent": true,
+    "attendee": {
+        "name": "Jan Weber",
+        "group": "Team Beta"
+    },
+    "seating": {
+        "seat": "C-03",
+        "area": "Hall C",
+        "directions": "Enter Hall C, first row on the right"
+    },
+    "addons": [
+        { "name": "Tournament Entry", "info": null }
+    ],
+    "audit_id": "aud_pay_conf",
+    "degraded": false
+}

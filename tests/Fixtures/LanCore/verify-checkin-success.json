@@ -1,0 +1,20 @@
+{
+    "decision": "valid",
+    "message": "Verification confirmed. Check-in complete.",
+    "validation_id": "val_verify01",
+    "checkin_id": "chk_vrfy001",
+    "attendee": {
+        "name": "Lisa Schmidt",
+        "group": null
+    },
+    "seating": {
+        "seat": "B-17",
+        "area": "Hall B",
+        "directions": "Enter Hall B straight ahead, Row 1, Seat 17 on the left"
+    },
+    "addons": [
+        { "name": "Tournament Entry", "info": null }
+    ],
+    "audit_id": "aud_vrfy0001",
+    "degraded": false
+}

@@ -1,0 +1,18 @@
+{
+    "results": [
+        {
+            "token": "abc123-opaque-ticket-token",
+            "name": "Max Mustermann",
+            "status": "not_checked_in",
+            "seat": "A-42",
+            "group": "Team Alpha"
+        },
+        {
+            "token": "def456-opaque-ticket-token",
+            "name": "Maria Mustermann",
+            "status": "checked_in",
+            "seat": "A-43",
+            "group": "Team Alpha"
+        }
+    ]
+}
