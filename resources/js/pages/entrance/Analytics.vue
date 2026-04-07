@@ -45,8 +45,8 @@ const avgTimeFormatted = computed(() => {
     const ms = props.stats.avg_checkin_time_ms;
 
     if (!ms || ms <= 0) {
-return '—';
-}
+        return '—';
+    }
 
     return ms < 1000 ? `${ms}ms` : `${(ms / 1000).toFixed(1)}s`;
 });

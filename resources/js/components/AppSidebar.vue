@@ -35,8 +35,12 @@ const userRole = computed(
     () => (page.props.auth as { user?: { role?: string } })?.user?.role,
 );
 
-const selectedEventId = computed(() => page.props.entranceEventId as number | null);
-const selectedEventName = computed(() => page.props.entranceEventName as string | null);
+const selectedEventId = computed(
+    () => page.props.entranceEventId as number | null,
+);
+const selectedEventName = computed(
+    () => page.props.entranceEventName as string | null,
+);
 
 const mainNavItems = computed<NavItem[]>(() => {
     const items: NavItem[] = [
@@ -46,7 +50,11 @@ const mainNavItems = computed<NavItem[]>(() => {
     ];
 
     if (['admin', 'superadmin'].includes(userRole.value ?? '')) {
-        items.push({ title: 'Analytics', href: '/entrance/analytics', icon: BarChart3 });
+        items.push({
+            title: 'Analytics',
+            href: '/entrance/analytics',
+            icon: BarChart3,
+        });
     }
 
     return items;
@@ -129,21 +137,38 @@ function clearEvent() {
                             @click="loadEvents"
                         >
                             <span class="flex items-center gap-2 truncate">
-                                <Calendar class="size-4 shrink-0 text-muted-foreground" />
-                                <span v-if="selectedEventName" class="truncate font-medium">{{ selectedEventName }}</span>
-                                <span v-else class="text-muted-foreground">Select event...</span>
+                                <Calendar
+                                    class="size-4 shrink-0 text-muted-foreground"
+                                />
+                                <span
+                                    v-if="selectedEventName"
+                                    class="truncate font-medium"
+                                    >{{ selectedEventName }}</span
+                                >
+                                <span v-else class="text-muted-foreground"
+                                    >Select event...</span
+                                >
                             </span>
-                            <ChevronDown class="size-3 shrink-0 text-muted-foreground" />
+                            <ChevronDown
+                                class="size-3 shrink-0 text-muted-foreground"
+                            />
                         </button>
 
                         <!-- Event picker dropdown -->
-                        <div v-if="showEventPicker" class="mt-1 space-y-1 rounded-md border bg-popover p-1 shadow-md">
+                        <div
+                            v-if="showEventPicker"
+                            class="mt-1 space-y-1 rounded-md border bg-popover p-1 shadow-md"
+                        >
                             <button
                                 v-for="event in events"
                                 :key="event.id"
                                 type="button"
                                 class="flex w-full items-center rounded px-2 py-1.5 text-left text-sm transition hover:bg-accent"
-                                :class="event.id === selectedEventId ? 'bg-accent font-medium' : ''"
+                                :class="
+                                    event.id === selectedEventId
+                                        ? 'bg-accent font-medium'
+                                        : ''
+                                "
                                 @click="selectEvent(event)"
                             >
                                 {{ event.name }}
@@ -156,7 +181,10 @@ function clearEvent() {
                             >
                                 <X class="size-3" /> Clear selection
                             </button>
-                            <p v-if="events.length === 0 && !loadingEvents" class="px-2 py-1.5 text-xs text-muted-foreground">
+                            <p
+                                v-if="events.length === 0 && !loadingEvents"
+                                class="px-2 py-1.5 text-xs text-muted-foreground"
+                            >
                                 No events available
                             </p>
                         </div>

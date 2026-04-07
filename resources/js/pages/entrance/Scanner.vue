@@ -51,8 +51,8 @@ function onScanError() {
 
 async function onVerifyCheckin() {
     if (!state.lastToken || !state.lastResult) {
-return;
-}
+        return;
+    }
 
     setLoading(true);
     const result = await verifyCheckin(
@@ -64,8 +64,8 @@ return;
 
 async function onConfirmPayment(method: string) {
     if (!state.lastToken || !state.lastResult?.payment) {
-return;
-}
+        return;
+    }
 
     setLoading(true);
     const result = await confirmPayment(
@@ -83,8 +83,8 @@ function showOverride() {
 
 async function onOverrideSubmit(reason: string) {
     if (!state.lastToken || !state.lastResult) {
-return;
-}
+        return;
+    }
 
     overrideVisible.value = false;
     setLoading(true);

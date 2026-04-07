@@ -54,8 +54,8 @@ export function useRequestQueue() {
      */
     async function retryAll(processFn: (token: string) => Promise<boolean>) {
         if (isRetrying.value) {
-return;
-}
+            return;
+        }
 
         isRetrying.value = true;
 
@@ -96,8 +96,8 @@ return;
 
     function startRetryLoop() {
         if (retryTimer) {
-return;
-}
+            return;
+        }
 
         retryTimer = setInterval(() => {
             // Emit event for the consumer to call retryAll with their processFn

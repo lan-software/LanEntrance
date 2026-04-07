@@ -96,12 +96,34 @@ function selectAttendee(token: string) {
                 <User class="h-8 w-8 flex-shrink-0 text-muted-foreground" />
                 <div class="min-w-0 flex-1">
                     <p class="truncate font-medium">{{ attendee.name }}</p>
-                    <p v-if="attendee.email" class="truncate text-xs text-muted-foreground">{{ attendee.email }}</p>
-                    <div class="mt-1 flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground">
-                        <span v-if="attendee.ticket_type" class="rounded bg-muted px-1.5 py-0.5 font-medium">{{ attendee.ticket_type }}</span>
-                        <span v-if="attendee.validation_token_suffix" class="font-mono">···{{ attendee.validation_token_suffix }}</span>
-                        <span v-if="attendee.seat">Seat {{ attendee.seat }}</span>
-                        <span v-for="addon in (attendee.addons ?? [])" :key="addon" class="rounded bg-muted px-1.5 py-0.5">{{ addon }}</span>
+                    <p
+                        v-if="attendee.email"
+                        class="truncate text-xs text-muted-foreground"
+                    >
+                        {{ attendee.email }}
+                    </p>
+                    <div
+                        class="mt-1 flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground"
+                    >
+                        <span
+                            v-if="attendee.ticket_type"
+                            class="rounded bg-muted px-1.5 py-0.5 font-medium"
+                            >{{ attendee.ticket_type }}</span
+                        >
+                        <span
+                            v-if="attendee.validation_token_suffix"
+                            class="font-mono"
+                            >···{{ attendee.validation_token_suffix }}</span
+                        >
+                        <span v-if="attendee.seat"
+                            >Seat {{ attendee.seat }}</span
+                        >
+                        <span
+                            v-for="addon in attendee.addons ?? []"
+                            :key="addon"
+                            class="rounded bg-muted px-1.5 py-0.5"
+                            >{{ addon }}</span
+                        >
                     </div>
                 </div>
                 <CheckCircle2
