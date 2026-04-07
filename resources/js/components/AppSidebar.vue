@@ -77,10 +77,12 @@ const loadingEvents = ref(false);
 async function loadEvents() {
     if (events.value.length > 0) {
         showEventPicker.value = !showEventPicker.value;
+
         return;
     }
 
     loadingEvents.value = true;
+
     try {
         const res = await fetch('/entrance/events', {
             headers: { Accept: 'application/json' },

@@ -13,7 +13,11 @@ const expanded = ref(false);
 
 function handleSubmit() {
     const trimmed = token.value.trim();
-    if (trimmed.length === 0) return;
+
+    if (trimmed.length === 0) {
+return;
+}
+
     emit('submit', trimmed);
     token.value = '';
     expanded.value = false;
