@@ -145,11 +145,25 @@ class LanCoreClient
      *
      * @return array<string, mixed>
      */
-    public function getEntranceStats(): array
+    public function getEntranceStats(?int $eventId = null): array
     {
         $this->ensureEnabled();
 
-        return $this->http()->get('/api/entrance/stats')->throw()->json();
+        return $this->http()->get('/api/entrance/stats', array_filter([
+            'event_id' => $eventId,
+        ]))->throw()->json();
+    }
+
+    /**
+     * Fetch available events from LanCore.
+     *
+     * @return array<int, array{id: int, name: string, start_date: string|null, end_date: string|null}>
+     */
+    public function getEvents(): array
+    {
+        $this->ensureEnabled();
+
+        return $this->http()->get('/api/entrance/events')->throw()->json('events', []);
     }
 
     // ── Internal ────────────────────────────────────────────────────

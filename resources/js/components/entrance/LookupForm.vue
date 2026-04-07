@@ -72,12 +72,10 @@ function selectAttendee(token: string) {
                 <ul class="mt-1 list-inside list-disc space-y-0.5">
                     <li>Attendee name (e.g., "Max Mustermann")</li>
                     <li>Email address (e.g., "max@example.com")</li>
-                    <li>Order or ticket number</li>
-                    <li>Team / group name</li>
                 </ul>
                 <p class="mt-1.5">
                     Type at least 2 characters to start searching. You can also
-                    enter a ticket token directly using the
+                    enter a validation token directly using the
                     <strong>Enter token manually</strong> option below.
                 </p>
             </div>
@@ -98,15 +96,13 @@ function selectAttendee(token: string) {
                 <User class="h-8 w-8 flex-shrink-0 text-muted-foreground" />
                 <div class="min-w-0 flex-1">
                     <p class="truncate font-medium">{{ attendee.name }}</p>
-                    <p class="text-sm text-muted-foreground">
-                        <span v-if="attendee.seat"
-                            >Seat {{ attendee.seat }}</span
-                        >
-                        <span v-if="attendee.seat && attendee.group">
-                            &middot;
-                        </span>
-                        <span v-if="attendee.group">{{ attendee.group }}</span>
-                    </p>
+                    <p v-if="attendee.email" class="truncate text-xs text-muted-foreground">{{ attendee.email }}</p>
+                    <div class="mt-1 flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground">
+                        <span v-if="attendee.ticket_type" class="rounded bg-muted px-1.5 py-0.5 font-medium">{{ attendee.ticket_type }}</span>
+                        <span v-if="attendee.validation_token_suffix" class="font-mono">···{{ attendee.validation_token_suffix }}</span>
+                        <span v-if="attendee.seat">Seat {{ attendee.seat }}</span>
+                        <span v-for="addon in (attendee.addons ?? [])" :key="addon" class="rounded bg-muted px-1.5 py-0.5">{{ addon }}</span>
+                    </div>
                 </div>
                 <CheckCircle2
                     v-if="attendee.status === 'checked_in'"

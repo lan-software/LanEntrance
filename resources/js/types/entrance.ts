@@ -69,6 +69,10 @@ export interface DecisionResult {
 export interface AttendeeResult {
     token: string;
     name: string;
+    email?: string;
+    ticket_type?: string;
+    validation_token_suffix?: string;
+    addons?: string[];
     status: 'not_checked_in' | 'checked_in';
     seat?: string | null;
     group?: string | null;

@@ -30,7 +30,7 @@ class AnalyticsController extends Controller
     private function fetchStats(): array
     {
         try {
-            return $this->client->getEntranceStats();
+            return $this->client->getEntranceStats(session('entrance_event_id'));
         } catch (ConnectionException|RequestException) {
             return [
                 'error' => true,

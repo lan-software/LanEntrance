@@ -47,6 +47,8 @@ class HandleInertiaRequests extends Middleware
                 'eventLogo' => config('lancore.event_logo') ?: null,
                 'primaryColor' => config('lancore.primary_color') ?: null,
             ],
+            'entranceEventId' => $request->session()->get('entrance_event_id'),
+            'entranceEventName' => $request->session()->get('entrance_event_name'),
         ];
     }
 }

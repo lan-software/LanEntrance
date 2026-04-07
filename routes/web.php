@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LanCoreAuthController;
 use App\Http\Controllers\Entrance\AnalyticsController;
 use App\Http\Controllers\Entrance\EntranceController;
+use App\Http\Controllers\Entrance\EventSelectorController;
 use App\Http\Controllers\Entrance\LookupController;
 use App\Http\Controllers\Entrance\OverrideController;
 use App\Http\Controllers\Entrance\PaymentController;
@@ -37,6 +38,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('entrance/analytics', AnalyticsController::class)
         ->middleware('entrance.role:admin')
         ->name('entrance.analytics');
+
+    Route::get('entrance/events', [EventSelectorController::class, 'index'])->name('entrance.events');
+    Route::post('entrance/events/select', [EventSelectorController::class, 'select'])->name('entrance.events.select');
+    Route::delete('entrance/events/select', [EventSelectorController::class, 'clear'])->name('entrance.events.clear');
 
     // Entrance API (browser-called, needs session auth)
     Route::prefix('api/entrance')->group(function () {

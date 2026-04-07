@@ -87,12 +87,13 @@ class LanCoreValidationService
      */
     private function buildMetadata(User $operator): array
     {
-        return [
+        return array_filter([
             'operator_id' => $operator->lancore_user_id,
             'operator_session' => session()->getId(),
             'timestamp' => now()->toISOString(),
             'client_info' => request()->userAgent(),
-        ];
+            'event_id' => session('entrance_event_id'),
+        ], fn ($value) => $value !== null);
     }
 
     /**
