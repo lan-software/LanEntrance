@@ -52,7 +52,6 @@ beforeEach(function () {
     config()->set('lancore.signing_keys_cache_ttl', 3600);
     config()->set('lancore.signing_keys_bootstrap', []);
     config()->set('lancore.token_format.version', 'LCT1');
-    config()->set('lancore.token_format.signature_precheck_enabled', true);
 
     Cache::store('array')->flush();
 

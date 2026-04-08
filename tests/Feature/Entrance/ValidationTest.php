@@ -1,11 +1,22 @@
 <?php
 
 use App\Models\User;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
+use Tests\Fixtures\LCT1ContractFixture;
 
 beforeEach(function () {
-    // Legacy tests use opaque non-LCT1 tokens; disable the signature pre-check.
-    config()->set('lancore.token_format.signature_precheck_enabled', false);
+    config()->set('lancore.signing_keys_cache_store', 'array');
+    config()->set('lancore.token_format.version', 'LCT1');
+    Cache::store('array')->flush();
+
+    $fixture = LCT1ContractFixture::build();
+    $this->lct1Token = $fixture['token'];
+    Cache::store('array')->put(
+        'lancore:signing-key:'.$fixture['kid'],
+        $fixture['publicKey'],
+        3600,
+    );
 });
 
 it('returns valid decision for a valid ticket', function () {
@@ -14,7 +25,7 @@ it('returns valid decision for a valid ticket', function () {
     $user = User::factory()->lanCoreUser(42)->create();
 
     $response = $this->actingAs($user)->postJson('/api/entrance/validate', [
-        'token' => 'valid-token-abc123',
+        'token' => $this->lct1Token,
     ]);
 
     $response->assertOk()
@@ -30,7 +41,7 @@ it('returns invalid decision for an unknown ticket', function () {
     $user = User::factory()->lanCoreUser()->create();
 
     $response = $this->actingAs($user)->postJson('/api/entrance/validate', [
-        'token' => 'unknown-token',
+        'token' => $this->lct1Token,
     ]);
 
     $response->assertOk()
@@ -43,7 +54,7 @@ it('returns already_checked_in decision', function () {
     $user = User::factory()->lanCoreUser()->create();
 
     $response = $this->actingAs($user)->postJson('/api/entrance/validate', [
-        'token' => 'duplicate-token',
+        'token' => $this->lct1Token,
     ]);
 
     $response->assertOk()
@@ -56,7 +67,7 @@ it('returns verification_required decision with checks', function () {
     $user = User::factory()->lanCoreUser()->create();
 
     $response = $this->actingAs($user)->postJson('/api/entrance/validate', [
-        'token' => 'student-ticket-token',
+        'token' => $this->lct1Token,
     ]);
 
     $response->assertOk()
@@ -70,7 +81,7 @@ it('returns payment_required decision with payment details', function () {
     $user = User::factory()->lanCoreUser()->create();
 
     $response = $this->actingAs($user)->postJson('/api/entrance/validate', [
-        'token' => 'pay-on-site-token',
+        'token' => $this->lct1Token,
     ]);
 
     $response->assertOk()
@@ -86,7 +97,7 @@ it('returns override_possible decision with group policy', function () {
     $user = User::factory()->lanCoreUser()->create();
 
     $response = $this->actingAs($user)->postJson('/api/entrance/validate', [
-        'token' => 'group-restricted-token',
+        'token' => $this->lct1Token,
     ]);
 
     $response->assertOk()
@@ -101,7 +112,7 @@ it('returns denied_by_policy decision', function () {
     $user = User::factory()->lanCoreUser()->create();
 
     $response = $this->actingAs($user)->postJson('/api/entrance/validate', [
-        'token' => 'denied-token',
+        'token' => $this->lct1Token,
     ]);
 
     $response->assertOk()

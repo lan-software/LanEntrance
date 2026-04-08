@@ -17,12 +17,10 @@ class LanCoreValidationService
 
     public function validate(string $token, User $operator): array
     {
-        if ((bool) config('lancore.token_format.signature_precheck_enabled', true)) {
-            try {
-                $this->verifier->verify($token);
-            } catch (TokenVerificationException $e) {
-                return $this->precheckRejection($e);
-            }
+        try {
+            $this->verifier->verify($token);
+        } catch (TokenVerificationException $e) {
+            return $this->precheckRejection($e);
         }
 
         return $this->execute(

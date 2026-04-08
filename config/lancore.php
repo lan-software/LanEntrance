@@ -52,11 +52,6 @@ return [
 
     'token_format' => [
         'version' => 'LCT1',
-        'signature_precheck_enabled' => filter_var(
-            env('LANCORE_TOKEN_PRECHECK_ENABLED', true),
-            FILTER_VALIDATE_BOOLEAN,
-            FILTER_NULL_ON_FAILURE,
-        ) ?? true,
     ],
 
     /*

@@ -12,7 +12,6 @@ beforeEach(function () {
     config()->set('lancore.internal_url', 'http://lancore.test');
     config()->set('lancore.token', 'lci_integration_token');
     config()->set('lancore.signing_keys_cache_store', 'array');
-    config()->set('lancore.token_format.signature_precheck_enabled', true);
     config()->set('lancore.token_format.version', 'LCT1');
 
     Cache::store('array')->flush();
@@ -74,18 +73,4 @@ it('invalid signature short-circuits without calling validate', function () {
 
     expect($result['decision'])->toBe('invalid_signature');
     Http::assertNotSent(fn ($req) => str_contains($req->url(), '/api/entrance/validate'));
-});
-
-it('feature flag off skips pre-check entirely', function () {
-    config()->set('lancore.token_format.signature_precheck_enabled', false);
-
-    Http::fake([
-        '*/api/entrance/validate' => Http::response(lancoreFixture('validate-valid')),
-    ]);
-
-    $user = User::factory()->lanCoreUser()->create();
-    $result = app(LanCoreValidationService::class)->validate('not-a-real-lct1-token', $user);
-
-    expect($result['decision'])->toBe('valid');
-    Http::assertNotSent(fn ($req) => str_contains($req->url(), '/api/entrance/signing-keys'));
 });
