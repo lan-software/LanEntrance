@@ -1,5 +1,6 @@
 import { createInertiaApp } from '@inertiajs/vue3';
 import { initializeTheme } from '@/composables/useAppearance';
+import DemoShell from '@/components/demo/DemoShell.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import AuthLayout from '@/layouts/AuthLayout.vue';
 import SettingsLayout from '@/layouts/settings/Layout.vue';
@@ -11,13 +12,13 @@ createInertiaApp({
     layout: (name) => {
         switch (true) {
             case name === 'Welcome':
-                return null;
+                return [DemoShell];
             case name.startsWith('auth/'):
-                return AuthLayout;
+                return [DemoShell, AuthLayout];
             case name.startsWith('settings/'):
-                return [AppLayout, SettingsLayout];
+                return [DemoShell, AppLayout, SettingsLayout];
             default:
-                return AppLayout;
+                return [DemoShell, AppLayout];
         }
     },
     progress: {
