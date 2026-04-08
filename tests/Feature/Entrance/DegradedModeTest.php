@@ -4,6 +4,10 @@ use App\Models\User;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
 
+beforeEach(function () {
+    config()->set('lancore.token_format.signature_precheck_enabled', false);
+});
+
 it('returns degraded response on LanCore connection timeout', function () {
     Http::fake(['*/api/entrance/validate' => fn () => throw new ConnectionException('Connection timed out')]);
 

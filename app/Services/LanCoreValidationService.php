@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\DTOs\ValidationResponse;
 use App\Models\User;
+use App\Services\Exceptions\TokenVerificationException;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Client\RequestException;
 
@@ -11,10 +12,19 @@ class LanCoreValidationService
 {
     public function __construct(
         private readonly LanCoreClient $client,
+        private readonly TicketSignatureVerifier $verifier,
     ) {}
 
     public function validate(string $token, User $operator): array
     {
+        if ((bool) config('lancore.token_format.signature_precheck_enabled', true)) {
+            try {
+                $this->verifier->verify($token);
+            } catch (TokenVerificationException $e) {
+                return $this->precheckRejection($e);
+            }
+        }
+
         return $this->execute(
             fn () => $this->client->validateTicket($token, $this->buildMetadata($operator)),
         );
@@ -94,6 +104,31 @@ class LanCoreValidationService
             'client_info' => request()->userAgent(),
             'event_id' => session('entrance_event_id'),
         ], fn ($value) => $value !== null);
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    /**
+     * @return array<string, mixed>
+     */
+    private function precheckRejection(TokenVerificationException $e): array
+    {
+        $code = $e->decisionCode();
+
+        $messages = [
+            'invalid_signature' => 'Ticket signature is invalid.',
+            'unknown_kid' => 'Ticket was signed with an unknown key.',
+            'expired' => 'Ticket has expired.',
+        ];
+
+        return [
+            'decision' => $code,
+            'message' => $messages[$code] ?? 'Ticket rejected.',
+            'validation_id' => '',
+            'degraded' => false,
+            'override_allowed' => false,
+        ];
     }
 
     /**

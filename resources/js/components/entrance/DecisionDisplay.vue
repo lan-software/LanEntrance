@@ -59,13 +59,33 @@ const tierConfig = computed(() => {
             icon: Banknote,
             text: 'Payment Required',
         },
+        invalid_signature: {
+            class: 'bg-red-600',
+            icon: ShieldX,
+            text: 'Invalid Signature',
+        },
+        unknown_kid: {
+            class: 'bg-red-600',
+            icon: ShieldX,
+            text: 'Unknown Signing Key',
+        },
+        expired: {
+            class: 'bg-red-600',
+            icon: CircleX,
+            text: 'Ticket Expired',
+        },
+        revoked: {
+            class: 'bg-red-600',
+            icon: ShieldX,
+            text: 'Ticket Revoked',
+        },
     };
 
     return map[props.result.decision];
 });
 
 const isRedTier = computed(() =>
-    ['invalid', 'denied_by_policy'].includes(props.result.decision),
+    ['invalid', 'denied_by_policy', 'invalid_signature', 'unknown_kid', 'expired', 'revoked'].includes(props.result.decision),
 );
 const isActionRequired = computed(() =>
     ['verification_required', 'payment_required'].includes(

@@ -4,6 +4,10 @@ use App\Enums\UserRole;
 use App\Models\User;
 use Illuminate\Support\Facades\Http;
 
+beforeEach(function () {
+    config()->set('lancore.token_format.signature_precheck_enabled', false);
+});
+
 it('sends operator identity and metadata to LanCore', function () {
     Http::fake(['*/api/entrance/validate' => Http::response(lancoreFixture('validate-valid'))]);
 

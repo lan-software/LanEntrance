@@ -5,7 +5,11 @@ export type Decision =
     | 'denied_by_policy'
     | 'override_possible'
     | 'verification_required'
-    | 'payment_required';
+    | 'payment_required'
+    | 'invalid_signature'
+    | 'unknown_kid'
+    | 'expired'
+    | 'revoked';
 
 export interface Seating {
     seat: string;

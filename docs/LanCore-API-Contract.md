@@ -3,35 +3,94 @@ LanCore API Contract for LanEntrance
 
 > **Status**: Draft — pending confirmation from the LanCore team
 > **Consumer**: LanEntrance (entrance check-in subsystem)
-> **Date**: 2026-04-06
-> **Version**: 0.1
+> **Date**: 2026-04-07
+> **Version**: 0.2 — LCT1 signed token scheme; JWKS endpoint; updated validate error codes
 
 This document defines the API endpoints that **LanCore must provide** for LanEntrance to function. LanEntrance is a mobile-first entrance check-in app that validates tickets, collects on-site payments, and manages attendee admission at LAN events. LanCore is the authoritative source of truth for all ticket, payment, check-in, and audit state.
 
 ---
 
-# 1. QR code token format (LanCore-owned)
+# 1. QR code token format — LCT1 Signed Token Scheme
 
-LanEntrance treats QR code payloads as **opaque tokens**. It does not parse, decode, or validate the internal structure of the QR content. The raw string scanned from the QR code is forwarded verbatim to LanCore in the `token` field.
+LanCore issues cryptographically signed ticket tokens in the **LCT1** format. LanEntrance performs a fast local signature pre-check before calling the authoritative validate endpoint.
 
-**LanCore is responsible for defining the QR code format**, including:
+## 1.1 Token Format
 
-- Token structure and encoding (e.g., UUID, signed JWT, base64, custom format)
-- Token generation when tickets are issued
-- Token validation and lookup when received via the `/api/entrance/validate` endpoint
-- Whether the token embeds data or is a lookup key into LanCore's database
+```
+LCT1.<kid>.<body>.<sig>
+```
 
-**LanEntrance constraints on the token**:
+| Segment | Description |
+| ------- | ----------- |
+| `LCT1` | Literal version prefix — identifies the scheme |
+| `kid` | Key identifier (max 16 URL-safe characters) — identifies which Ed25519 signing key was used |
+| `body` | `base64url(json({tid, nonce, iat, exp, evt}))` — see §1.2 |
+| `sig` | `base64url(Ed25519_sign(sk[kid], "LCT1." + kid + "." + body))` |
 
-| Constraint       | Value                                                              |
-| ---------------- | ------------------------------------------------------------------ |
-| Max length       | 512 characters (enforced by LanEntrance request validation)        |
-| Content          | Any UTF-8 string — LanEntrance does not inspect or parse it        |
-| Sensitivity      | Must **not** contain PII (per SSS LENT-3.8-005)                   |
-| URL requirement  | Must **not** require the token to be a URL (per SSS LENT-3.12-002)|
-| Quiet zone       | QR codes should have adequate white margin for reliable scanning   |
+The signing input is the concatenation: `"LCT1." + kid + "." + body` (ASCII, no newlines).
 
-**Recommendation**: Use a short, opaque, non-guessable identifier (e.g., a UUID or HMAC-signed short token) that LanCore can resolve server-side. This keeps QR codes compact (faster scanning) and avoids exposing ticket details if a QR code is photographed.
+## 1.2 Token Body Fields
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| `tid` | integer | LanCore ticket primary key |
+| `nonce` | string | base64url-encoded 128-bit random value; unique per token issuance |
+| `iat` | integer | Issued-at Unix timestamp (UTC) |
+| `exp` | integer | Expiry Unix timestamp (UTC) — typically event end + grace period |
+| `evt` | integer | LanCore event primary key |
+
+## 1.3 LanEntrance Token Constraints
+
+| Constraint | Value |
+| ---------- | ----- |
+| Max length | 512 characters (enforced by LanEntrance request validation) |
+| Format | `LCT1.<kid>.<body>.<sig>` — four dot-separated segments |
+| Sensitivity | Must **not** contain PII (per SSS LENT-3.8-005) — the body embeds only IDs and a random nonce, no name or email |
+| URL requirement | Must **not** require the token to be a URL (per SSS LENT-3.12-002) |
+| Quiet zone | QR codes shall have adequate white margin for reliable scanning |
+
+## 1.4 LanEntrance Signature Pre-Check (Local Fast Path)
+
+Before calling `/api/entrance/validate`, LanEntrance performs a local Ed25519 signature verification using the cached public key for the `kid` in the token:
+
+1. Split token on `.` — must yield exactly 4 segments; first must be `LCT1`
+2. Look up `kid` in the local JWKS cache (fetched from `GET /api/entrance/signing-keys`)
+3. Reconstruct signing input: `"LCT1." + kid + "." + body`
+4. Call `sodium_crypto_sign_verify_detached(sig_bytes, signing_input, pk_bytes)`
+5. If verification fails locally, return `decision: "invalid_signature"` immediately without calling validate (fast rejection, avoids a round-trip for tampered tokens)
+6. If verification passes locally, proceed to call `/api/entrance/validate` for authoritative lookup (nonce hash check, expiry, check-in state)
+
+**The local check is advisory only.** LanCore's authoritative validate endpoint is always the final authority. LanEntrance must not record a check-in based solely on a locally passing signature.
+
+## 1.5 JWKS Public Key Fetching
+
+LanEntrance fetches LanCore's public keys from:
+
+```
+GET /api/entrance/signing-keys
+Authorization: Bearer {LANCORE_TOKEN}
+```
+
+The response is a JWKS document:
+
+```json
+{
+  "keys": [
+    {
+      "kty": "OKP",
+      "crv": "Ed25519",
+      "use": "sig",
+      "kid": "key-2026-01",
+      "x": "base64url-encoded-32-byte-public-key"
+    }
+  ]
+}
+```
+
+LanEntrance must:
+- Cache the JWKS response for the duration indicated by the `Cache-Control: max-age` response header (default 3600 seconds)
+- Refresh the cache before expiry or when an unknown `kid` is encountered
+- Not call this endpoint more frequently than the cache TTL allows
 
 ---
 
@@ -141,12 +200,25 @@ Validate a scanned or manually entered ticket token. Returns a decision with att
 | Decision               | When to return                                                          | Expected `seating`/`addons` | Expected special object |
 | ---------------------- | ----------------------------------------------------------------------- | --------------------------- | ----------------------- |
 | `valid`                | Ticket is valid, check-in may proceed                                   | Yes (if assigned)           | —                       |
-| `invalid`              | Ticket not found, revoked, or malformed                                 | No                          | —                       |
+| `invalid`              | Token structurally malformed or ticket not found                        | No                          | —                       |
 | `already_checked_in`   | Ticket was already used for entry                                       | No                          | —                       |
+| `invalid_signature`    | Ed25519 signature did not verify against the public key for the given `kid` | No                      | —                       |
+| `unknown_kid`          | The `kid` in the token does not correspond to any known LanCore key     | No                          | —                       |
+| `expired`              | Current time is past the token's `exp` claim                            | No                          | —                       |
+| `revoked`              | Token nonce hash not found in database — ticket cancelled or token rotated | No                       | —                       |
 | `denied_by_policy`     | Policy restriction with no override available                           | No                          | `group_policy`          |
 | `override_possible`    | Policy restriction but authorized staff can override                    | No                          | `group_policy`          |
 | `verification_required`| Ticket requires manual operator checks before entry (e.g., student ID) | Yes (if assigned)           | `verification`          |
 | `payment_required`     | Ticket was purchased with "Pay on Site" — payment must be collected     | Yes (if assigned)           | `payment`               |
+
+**LanEntrance handling of new error codes:**
+
+| Decision | LanEntrance behavior |
+| -------- | -------------------- |
+| `invalid_signature` | Display "Invalid QR code — signature mismatch" in red; do not allow override |
+| `unknown_kid` | Display "Unknown signing key — contact system administrator"; do not allow override |
+| `expired` | Display "Ticket expired — ask attendee to contact organizer"; do not allow override |
+| `revoked` | Display "Ticket cancelled or reissued — ask attendee to show their latest ticket"; do not allow override |
 
 ### 3.1b Seating object
 
@@ -483,6 +555,64 @@ Audit metadata fields (`operator_id`, `operator_session`, `timestamp`, `client_i
 
 ---
 
+## 4.7 GET /api/entrance/signing-keys
+
+Fetch the active and retained Ed25519 public keys for local signature pre-checking. LanEntrance calls this endpoint on startup and caches the result per the `Cache-Control` response header.
+
+### Request
+
+```
+GET /api/entrance/signing-keys
+Authorization: Bearer {LANCORE_TOKEN}
+```
+
+No request body.
+
+### Response (200 OK)
+
+```json
+{
+  "keys": [
+    {
+      "kty": "OKP",
+      "crv": "Ed25519",
+      "use": "sig",
+      "kid": "key-2026-01",
+      "x": "base64url-encoded-32-byte-public-key"
+    },
+    {
+      "kty": "OKP",
+      "crv": "Ed25519",
+      "use": "sig",
+      "kid": "key-2025-12",
+      "x": "base64url-encoded-32-byte-retired-public-key"
+    }
+  ]
+}
+```
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| `keys` | array | All active and retired-but-unexpired Ed25519 public keys |
+| `keys[].kty` | string | Always `"OKP"` |
+| `keys[].crv` | string | Always `"Ed25519"` |
+| `keys[].use` | string | Always `"sig"` |
+| `keys[].kid` | string | Key identifier matching the `kid` segment in LCT1 tokens |
+| `keys[].x` | string | base64url-encoded 32-byte Ed25519 public key |
+
+**Response Headers:**
+- `Cache-Control: max-age=3600` (or configured TTL) — LanEntrance must not call this endpoint more frequently
+- `Content-Type: application/json`
+
+### Error Responses
+
+| Status | Condition |
+| ------ | --------- |
+| 401 | Missing or invalid Bearer token |
+| 200 | Success (empty `keys` array if no keys generated yet) |
+
+---
+
 # 5. Error responses
 
 All endpoints should return errors in this format:
@@ -541,6 +671,9 @@ Signature: `HMAC-SHA256(body, LANCORE_ROLES_WEBHOOK_SECRET)`
 
 | Responsibility                | Endpoint(s) affected            | Notes                                    |
 | ----------------------------- | ------------------------------- | ---------------------------------------- |
+| **LCT1 token issuance**       | (internal — at order fulfillment / assignment change) | Signs with Ed25519, embeds in QR PDF |
+| **JWKS key publication**      | signing-keys                    | Active + retired-but-unexpired Ed25519 public keys |
+| **Token validation (authoritative)** | validate               | Signature verify + nonce hash lookup + expiry check |
 | Ticket validation logic       | validate                        | Determine decision type for each token   |
 | Attendee data                 | validate, checkin, search       | Return name, group, seat as authorized   |
 | Seating assignments           | validate, checkin, verify, pay  | Seat + area + directions                 |
@@ -563,19 +696,24 @@ Signature: `HMAC-SHA256(body, LANCORE_ROLES_WEBHOOK_SECRET)`
 
 LanEntrance has **12 JSON fixture files** in `tests/Fixtures/LanCore/` representing the expected response shapes for each scenario. These can be used as reference implementations:
 
-| Fixture file                          | Decision type          |
-| ------------------------------------- | ---------------------- |
-| `validate-valid.json`                 | `valid`                |
-| `validate-invalid.json`              | `invalid`              |
-| `validate-already-checked-in.json`   | `already_checked_in`   |
-| `validate-verification-required.json`| `verification_required`|
-| `validate-payment-required.json`     | `payment_required`     |
-| `validate-override-possible.json`    | `override_possible`    |
-| `validate-denied-by-policy.json`     | `denied_by_policy`     |
-| `checkin-success.json`               | Check-in confirmation  |
-| `verify-checkin-success.json`        | Verify + check-in      |
-| `confirm-payment-success.json`       | Payment + check-in     |
-| `override-success.json`             | Override + check-in    |
-| `lookup-results.json`               | Search results         |
+| Fixture file                              | Decision type / endpoint    |
+| ----------------------------------------- | --------------------------- |
+| `validate-valid.json`                     | `valid`                     |
+| `validate-invalid.json`                   | `invalid`                   |
+| `validate-already-checked-in.json`        | `already_checked_in`        |
+| `validate-invalid-signature.json`         | `invalid_signature`         |
+| `validate-unknown-kid.json`               | `unknown_kid`               |
+| `validate-expired.json`                   | `expired`                   |
+| `validate-revoked.json`                   | `revoked`                   |
+| `validate-verification-required.json`     | `verification_required`     |
+| `validate-payment-required.json`          | `payment_required`          |
+| `validate-override-possible.json`         | `override_possible`         |
+| `validate-denied-by-policy.json`          | `denied_by_policy`          |
+| `checkin-success.json`                    | Check-in confirmation       |
+| `verify-checkin-success.json`             | Verify + check-in           |
+| `confirm-payment-success.json`            | Payment + check-in          |
+| `override-success.json`                   | Override + check-in         |
+| `lookup-results.json`                     | Search results              |
+| `signing-keys-response.json`              | JWKS key set response       |
 
 These fixtures serve as the **acceptance contract** — LanCore's responses must match these shapes for LanEntrance to function correctly.

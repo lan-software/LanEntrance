@@ -3,6 +3,11 @@
 use App\Models\User;
 use Illuminate\Support\Facades\Http;
 
+beforeEach(function () {
+    // Legacy tests use opaque non-LCT1 tokens; disable the signature pre-check.
+    config()->set('lancore.token_format.signature_precheck_enabled', false);
+});
+
 it('returns valid decision for a valid ticket', function () {
     Http::fake(['*/api/entrance/validate' => Http::response(lancoreFixture('validate-valid'))]);
 

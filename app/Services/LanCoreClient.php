@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Services\Exceptions\LanCoreUnavailableException;
 use Illuminate\Http\Client\ConnectionException;
+use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Facades\Http;
 use RuntimeException;
 
@@ -164,6 +166,55 @@ class LanCoreClient
         $this->ensureEnabled();
 
         return $this->http()->get('/api/entrance/events')->throw()->json('events', []);
+    }
+
+    /**
+     * Fetch the JWKS-style list of Ed25519 signing keys from LanCore.
+     *
+     * @return array<int, array{kid:string, kty:string, crv:string, x:string}>
+     */
+    public function fetchSigningKeys(): array
+    {
+        $this->ensureEnabled();
+
+        $endpoint = (string) config('lancore.signing_keys_endpoint', 'api/entrance/signing-keys');
+
+        try {
+            $response = $this->http()->get($endpoint);
+        } catch (ConnectionException $e) {
+            throw new LanCoreUnavailableException('LanCore signing-keys endpoint is unreachable.', 0, $e);
+        } catch (\Throwable $e) {
+            if ($e instanceof RequestException && $e->response !== null) {
+                $status = $e->response->status();
+
+                if ($status >= 500) {
+                    throw new LanCoreUnavailableException('LanCore signing-keys endpoint failed: '.$status, 0, $e);
+                }
+
+                throw new RuntimeException('LanCore signing-keys request failed: '.$status, $status, $e);
+            }
+
+            throw new LanCoreUnavailableException('LanCore signing-keys endpoint is unreachable.', 0, $e);
+        }
+
+        if (! $response->successful()) {
+            if ($response->serverError()) {
+                throw new LanCoreUnavailableException('LanCore signing-keys endpoint failed: '.$response->status());
+            }
+
+            throw new RuntimeException('LanCore signing-keys request failed: '.$response->status(), $response->status());
+        }
+
+        $keys = $response->json('keys');
+
+        if (! is_array($keys)) {
+            throw new RuntimeException('LanCore signing-keys response missing "keys" array.');
+        }
+
+        return array_values(array_filter(
+            $keys,
+            fn ($k) => is_array($k) && isset($k['kid'], $k['x']),
+        ));
     }
 
     // ── Internal ────────────────────────────────────────────────────
