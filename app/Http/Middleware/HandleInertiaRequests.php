@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Services\LanCoreAnnouncementFeed;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -49,6 +50,11 @@ class HandleInertiaRequests extends Middleware
             ],
             'entranceEventId' => $request->session()->get('entrance_event_id'),
             'entranceEventName' => $request->session()->get('entrance_event_name'),
+            'demoBanner' => fn () => config('app.demo') ? [
+                'message' => config('app.demo_banner_message'),
+                'mailpit_url' => config('app.demo_mailpit_url'),
+            ] : null,
+            'announcements' => fn () => app(LanCoreAnnouncementFeed::class)->fetch(),
         ];
     }
 }

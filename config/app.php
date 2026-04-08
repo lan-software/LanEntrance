@@ -99,6 +99,12 @@ return [
 
     'key' => env('APP_KEY'),
 
+    'demo' => env('APP_DEMO', false),
+
+    'demo_banner_message' => env('APP_DEMO_BANNER_MESSAGE', "This is a public demo — resets hourly. Please don't enter real data."),
+
+    'demo_mailpit_url' => env('APP_DEMO_MAILPIT_URL'),
+
     'previous_keys' => [
         ...array_filter(
             explode(',', (string) env('APP_PREVIOUS_KEYS', '')),
