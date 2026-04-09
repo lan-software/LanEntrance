@@ -160,7 +160,7 @@ All configuration is via environment variables (`.env` file or container environ
 | `LANCORE_TOKEN`                | Yes*     | —                              | Bearer token for LanCore API      |
 | `LANCORE_APP_SLUG`             | No       | `lanentrance`                  | Application slug in LanCore       |
 | `LANCORE_CALLBACK_URL`         | No       | `{APP_URL}/auth/callback`      | SSO callback URL                  |
-| `LANCORE_ROLES_WEBHOOK_SECRET` | Yes*     | —                              | HMAC secret for role webhooks     |
+| `LANCORE_WEBHOOK_SECRET` | Yes*     | —                              | HMAC secret for role webhooks     |
 | `LANCORE_TIMEOUT`              | No       | `5`                            | API timeout in seconds            |
 | `LANCORE_RETRIES`              | No       | `2`                            | API retry count                   |
 | `LANCORE_RETRY_DELAY`          | No       | `100`                          | API retry delay in milliseconds   |
@@ -213,7 +213,7 @@ Quick reference for deployment. Variables marked **Prod** are required in produc
 | `LANCORE_ENABLED`              | Yes  | Yes | `true` to enable SSO + entrance features  |
 | `LANCORE_BASE_URL`             | Yes  | Yes | Public LanCore URL (SSO redirects)        |
 | `LANCORE_TOKEN`                | Yes  | Yes | API bearer token                          |
-| `LANCORE_ROLES_WEBHOOK_SECRET` | Yes  | Yes | HMAC secret for role webhooks             |
+| `LANCORE_WEBHOOK_SECRET` | Yes  | Yes | HMAC secret for role webhooks             |
 | `LANCORE_INTERNAL_URL`         | Rec  | Rec | Service-to-service URL (Docker network)   |
 | `LANCORE_CALLBACK_URL`         | Rec  | No  | Override if APP_URL differs from callback |
 | `LANCORE_TIMEOUT`              | No   | No  | Default: 5s                               |

@@ -675,7 +675,7 @@ The backend shall support configuration via environment variables for:
 * LanCore connection: `LANCORE_BASE_URL`, `LANCORE_INTERNAL_URL`, `LANCORE_TOKEN`, `LANCORE_APP_SLUG`, `LANCORE_CALLBACK_URL`
 * Operational tuning: `LANCORE_TIMEOUT`, `LANCORE_RETRIES`, `LANCORE_RETRY_DELAY`
 * Feature flags: `LANCORE_ENABLED`
-* Webhook security: `LANCORE_ROLES_WEBHOOK_SECRET`
+* Webhook security: `LANCORE_WEBHOOK_SECRET`
 
 **Status**: Implemented in `config/lancore.php`
 **Qualification**: INSP, TST

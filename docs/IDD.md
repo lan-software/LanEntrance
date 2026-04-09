@@ -685,7 +685,7 @@ X-Webhook-Event: user.roles_updated
 ### Signature verification
 
 ```
-HMAC-SHA256(request_body, LANCORE_ROLES_WEBHOOK_SECRET) == X-Webhook-Signature header value
+HMAC-SHA256(request_body, LANCORE_WEBHOOK_SECRET) == X-Webhook-Signature header value
 ```
 
 The signature header format is: `sha256={hex_digest}`

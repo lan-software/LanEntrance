@@ -251,7 +251,7 @@ The backend shall accept role update webhooks from LanCore at `POST /api/webhook
 * `user.id`: LanCore user ID
 * `user.roles`: Array of role strings
 
-The webhook shall be authenticated via HMAC-SHA256 signature in the `X-Webhook-Signature` header using the `LANCORE_ROLES_WEBHOOK_SECRET`.
+The webhook shall be authenticated via HMAC-SHA256 signature in the `X-Webhook-Signature` header using the `LANCORE_WEBHOOK_SECRET`.
 
 **Status**: Implemented in `LanCoreRolesWebhookController`
 **Qualification**: TST

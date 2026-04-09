@@ -663,7 +663,7 @@ LanCore pushes role changes to `POST /api/webhooks/roles` on LanEntrance.
 
 **Body**: `{ "user": { "id": 42, "roles": ["admin", "moderator", "user"] } }`
 
-Signature: `HMAC-SHA256(body, LANCORE_ROLES_WEBHOOK_SECRET)`
+Signature: `HMAC-SHA256(body, LANCORE_WEBHOOK_SECRET)`
 
 ---
 
