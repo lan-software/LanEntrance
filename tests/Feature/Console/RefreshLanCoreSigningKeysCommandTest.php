@@ -6,8 +6,9 @@ use Illuminate\Support\Facades\Http;
 
 beforeEach(function () {
     config()->set('lancore.enabled', true);
-    config()->set('lancore.signing_keys_cache_store', 'array');
-    config()->set('lancore.signing_keys_cache_ttl', 1800);
+    config()->set('lancore.entrance.enabled', true);
+    config()->set('lancore.entrance.signing_keys_cache_store', 'array');
+    config()->set('lancore.entrance.signing_keys_cache_ttl', 1800);
     Cache::store('array')->flush();
 });
 
