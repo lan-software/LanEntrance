@@ -16,6 +16,10 @@ use Tests\TestCase;
 
 pest()->extend(TestCase::class)
     ->use(RefreshDatabase::class)
+    ->beforeEach(function () {
+        config()->set('lancore.enabled', true);
+        config()->set('lancore.entrance.enabled', true);
+    })
     ->in('Feature');
 
 /*
