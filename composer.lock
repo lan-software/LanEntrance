@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "53d6925ccb857d61832c48c2b03c7955",
+    "content-hash": "d0bca69e380debd6a548b496b06e726e",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -1230,6 +1230,50 @@
                 "source": "https://github.com/inertiajs/inertia-laravel/tree/v3.0.1"
             },
             "time": "2026-03-25T21:07:46+00:00"
+        },
+        {
+            "name": "lan-software/lancore-client",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "../lancore-client",
+                "reference": "23b2555ce4597ea641a75ef660b6e95604f167cf"
+            },
+            "require": {
+                "illuminate/contracts": "^13.0",
+                "illuminate/http": "^13.0",
+                "illuminate/support": "^13.0",
+                "php": "^8.3"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^11.0",
+                "pestphp/pest": "^3.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "LanSoftware\\LanCoreClient\\LanCoreServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "LanSoftware\\LanCoreClient\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "LanSoftware\\LanCoreClient\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Canonical LanCore Integration API client for Lan* satellite applications",
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "laravel/fortify",
@@ -9989,7 +10033,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "lan-software/lancore-client": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

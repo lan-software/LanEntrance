@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Entrance;
 
 use App\Http\Controllers\Controller;
-use App\Services\LanCoreClient;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use LanSoftware\LanCoreClient\LanCoreClient;
 
 class EventSelectorController extends Controller
 {
@@ -15,7 +15,7 @@ class EventSelectorController extends Controller
     public function index(): JsonResponse
     {
         try {
-            $events = $this->client->getEvents();
+            $events = $this->client->entrance()->events();
         } catch (\Throwable) {
             $events = [];
         }

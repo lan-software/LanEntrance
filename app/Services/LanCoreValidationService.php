@@ -5,8 +5,9 @@ namespace App\Services;
 use App\DTOs\ValidationResponse;
 use App\Models\User;
 use App\Services\Exceptions\TokenVerificationException;
-use Illuminate\Http\Client\ConnectionException;
-use Illuminate\Http\Client\RequestException;
+use LanSoftware\LanCoreClient\Exceptions\LanCoreRequestException;
+use LanSoftware\LanCoreClient\Exceptions\LanCoreUnavailableException;
+use LanSoftware\LanCoreClient\LanCoreClient;
 
 class LanCoreValidationService
 {
@@ -24,35 +25,35 @@ class LanCoreValidationService
         }
 
         return $this->execute(
-            fn () => $this->client->validateTicket($token, $this->buildMetadata($operator)),
+            fn () => $this->client->entrance()->validate($token, $this->buildMetadata($operator)),
         );
     }
 
     public function checkin(string $token, string $validationId, User $operator): array
     {
         return $this->execute(
-            fn () => $this->client->confirmCheckin($token, $validationId, $this->buildMetadata($operator)),
+            fn () => $this->client->entrance()->confirmCheckin($token, $validationId, $this->buildMetadata($operator)),
         );
     }
 
     public function verifyCheckin(string $token, string $validationId, User $operator): array
     {
         return $this->execute(
-            fn () => $this->client->confirmVerifyCheckin($token, $validationId, $this->buildMetadata($operator)),
+            fn () => $this->client->entrance()->verifyCheckin($token, $validationId, $this->buildMetadata($operator)),
         );
     }
 
     public function confirmPayment(string $token, string $validationId, string $paymentMethod, string $amount, User $operator): array
     {
         return $this->execute(
-            fn () => $this->client->confirmPayment($token, $validationId, $paymentMethod, $amount, $this->buildMetadata($operator)),
+            fn () => $this->client->entrance()->confirmPayment($token, $validationId, $paymentMethod, $amount, $this->buildMetadata($operator)),
         );
     }
 
     public function override(string $token, string $validationId, string $reason, User $operator): array
     {
         return $this->execute(
-            fn () => $this->client->submitOverride($token, $validationId, $reason, $this->buildMetadata($operator)),
+            fn () => $this->client->entrance()->submitOverride($token, $validationId, $reason, $this->buildMetadata($operator)),
         );
     }
 
@@ -62,12 +63,10 @@ class LanCoreValidationService
     public function search(string $query, User $operator): array
     {
         try {
-            $response = $this->client->searchAttendees($query, $this->buildMetadata($operator));
+            $response = $this->client->entrance()->searchAttendees($query, $this->buildMetadata($operator));
 
             return $response['results'] ?? [];
-        } catch (ConnectionException) {
-            return [];
-        } catch (RequestException) {
+        } catch (LanCoreUnavailableException|LanCoreRequestException) {
             return [];
         }
     }
@@ -83,9 +82,9 @@ class LanCoreValidationService
             $data = $call();
 
             return ValidationResponse::fromLanCore($data)->toArray();
-        } catch (ConnectionException) {
+        } catch (LanCoreUnavailableException) {
             return $this->degradedResponse('LanCore is currently unreachable. Please try again.');
-        } catch (RequestException $e) {
+        } catch (LanCoreRequestException $e) {
             return $this->mapErrorResponse($e);
         }
     }
@@ -104,9 +103,6 @@ class LanCoreValidationService
         ], fn ($value) => $value !== null);
     }
 
-    /**
-     * @return array<string, mixed>
-     */
     /**
      * @return array<string, mixed>
      */
@@ -144,31 +140,27 @@ class LanCoreValidationService
     /**
      * @return array<string, mixed>
      */
-    private function mapErrorResponse(RequestException $e): array
+    private function mapErrorResponse(LanCoreRequestException $e): array
     {
-        $status = $e->response->status();
-        $body = $e->response->json() ?? [];
+        $status = $e->statusCode;
 
         return match (true) {
             $status === 404 => [
                 'decision' => 'invalid',
-                'message' => (string) ($body['message'] ?? 'Ticket not found.'),
+                'message' => $e->getMessage() ?: 'Ticket not found.',
                 'degraded' => false,
             ],
             $status === 422 => [
                 'error' => 'validation_error',
-                'message' => (string) ($body['message'] ?? 'Invalid request.'),
+                'message' => $e->getMessage() ?: 'Invalid request.',
                 'degraded' => false,
-                'details' => $body['details'] ?? $body['errors'] ?? [],
             ],
             $status === 429 => [
                 'error' => 'rate_limited',
                 'message' => 'Too many requests. Please wait a moment.',
                 'degraded' => false,
             ],
-            default => $this->degradedResponse(
-                (string) ($body['message'] ?? 'An unexpected error occurred.'),
-            ),
+            default => $this->degradedResponse($e->getMessage() ?: 'An unexpected error occurred.'),
         };
     }
 }

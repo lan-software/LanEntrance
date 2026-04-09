@@ -1,15 +1,17 @@
 <?php
 
-use App\Services\Exceptions\LanCoreUnavailableException;
-use App\Services\LanCoreClient;
 use Illuminate\Support\Facades\Http;
+use LanSoftware\LanCoreClient\Exceptions\LanCoreRequestException;
+use LanSoftware\LanCoreClient\Exceptions\LanCoreUnavailableException;
+use LanSoftware\LanCoreClient\LanCoreClient;
 
 beforeEach(function () {
     config()->set('lancore.enabled', true);
     config()->set('lancore.base_url', 'http://lancore.test');
     config()->set('lancore.internal_url', 'http://lancore.test');
     config()->set('lancore.token', 'lci_integration_token');
-    config()->set('lancore.signing_keys_endpoint', 'api/entrance/signing-keys');
+    config()->set('lancore.entrance.enabled', true);
+    config()->set('lancore.entrance.signing_keys_endpoint', 'api/entrance/signing-keys');
 });
 
 it('fetches and parses the JWKS keys array', function () {
@@ -22,7 +24,7 @@ it('fetches and parses the JWKS keys array', function () {
         ]),
     ]);
 
-    $keys = app(LanCoreClient::class)->fetchSigningKeys();
+    $keys = app(LanCoreClient::class)->entrance()->fetchSigningKeys();
 
     expect($keys)->toHaveCount(2)
         ->and($keys[0]['kid'])->toBe('k1');
@@ -38,13 +40,13 @@ it('throws LanCoreUnavailableException on server error', function () {
         '*/api/entrance/signing-keys' => Http::response('boom', 500),
     ]);
 
-    app(LanCoreClient::class)->fetchSigningKeys();
+    app(LanCoreClient::class)->entrance()->fetchSigningKeys();
 })->throws(LanCoreUnavailableException::class);
 
-it('throws RuntimeException on 401 unauthorized', function () {
+it('throws LanCoreRequestException on 401 unauthorized', function () {
     Http::fake([
         '*/api/entrance/signing-keys' => Http::response(['error' => 'unauthorized'], 401),
     ]);
 
-    app(LanCoreClient::class)->fetchSigningKeys();
-})->throws(RuntimeException::class);
+    app(LanCoreClient::class)->entrance()->fetchSigningKeys();
+})->throws(LanCoreRequestException::class);

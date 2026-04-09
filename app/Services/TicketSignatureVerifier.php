@@ -4,11 +4,12 @@ namespace App\Services;
 
 use App\Services\Exceptions\ExpiredTokenException;
 use App\Services\Exceptions\InvalidSignatureException;
-use App\Services\Exceptions\LanCoreUnavailableException;
 use App\Services\Exceptions\MalformedTokenException;
 use App\Services\Exceptions\UnknownKidException;
 use Illuminate\Contracts\Cache\Factory as CacheFactory;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
+use LanSoftware\LanCoreClient\Exceptions\LanCoreUnavailableException;
+use LanSoftware\LanCoreClient\LanCoreClient;
 use Throwable;
 
 class TicketSignatureVerifier
@@ -29,7 +30,7 @@ class TicketSignatureVerifier
 
         [$prefix, $kid, $body, $sig] = $segments;
 
-        if ($prefix !== ($this->config->get('lancore.token_format.version') ?? 'LCT1')) {
+        if ($prefix !== ($this->config->get('entrance.token_format.version') ?? 'LCT1')) {
             throw new MalformedTokenException('Unsupported token version.');
         }
 
@@ -96,7 +97,7 @@ class TicketSignatureVerifier
         }
 
         try {
-            $keys = $this->client->fetchSigningKeys();
+            $keys = $this->client->entrance()->fetchSigningKeys();
             $this->storeKeys($keys);
 
             $fresh = $store->get($cacheKey);
@@ -129,7 +130,7 @@ class TicketSignatureVerifier
     private function storeKeys(array $keys): void
     {
         $store = $this->cacheStore();
-        $ttl = (int) $this->config->get('lancore.signing_keys_cache_ttl', 3600);
+        $ttl = (int) $this->config->get('lancore.entrance.signing_keys_cache_ttl', 3600);
 
         foreach ($keys as $key) {
             if (! is_array($key) || ! isset($key['kid'], $key['x'])) {
@@ -148,22 +149,26 @@ class TicketSignatureVerifier
 
     private function bootstrapKey(string $kid): ?string
     {
-        $bootstrap = $this->config->get('lancore.signing_keys_bootstrap', []);
+        $bootstrap = $this->config->get('lancore.entrance.signing_keys_bootstrap', '');
 
-        if (! is_array($bootstrap)) {
+        if (! is_string($bootstrap) || $bootstrap === '') {
             return null;
         }
 
-        foreach ($bootstrap as $entry) {
-            if (! is_array($entry) || ! isset($entry['kid'], $entry['x'])) {
+        foreach (explode(',', $bootstrap) as $pair) {
+            $parts = explode(':', trim($pair), 2);
+
+            if (count($parts) !== 2) {
                 continue;
             }
 
-            if ((string) $entry['kid'] !== $kid) {
+            [$entryKid, $x] = $parts;
+
+            if ($entryKid !== $kid) {
                 continue;
             }
 
-            $bin = self::base64UrlDecode((string) $entry['x']);
+            $bin = self::base64UrlDecode($x);
 
             if ($bin === false || strlen($bin) !== SODIUM_CRYPTO_SIGN_PUBLICKEYBYTES) {
                 continue;
@@ -177,7 +182,7 @@ class TicketSignatureVerifier
 
     private function cacheStore()
     {
-        $store = (string) $this->config->get('lancore.signing_keys_cache_store', 'file');
+        $store = (string) $this->config->get('lancore.entrance.signing_keys_cache_store', 'file');
 
         return $this->cache->store($store);
     }

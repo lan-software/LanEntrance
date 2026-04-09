@@ -20,7 +20,7 @@ class LanCoreAnnouncementFeed
     public function fetch(): array
     {
         return Cache::remember(self::CACHE_KEY, self::CACHE_TTL, function (): array {
-            $url = (string) config('lancore.announcements_feed_url');
+            $url = (string) config('entrance.announcements_feed_url');
 
             if ($url === '') {
                 return [];

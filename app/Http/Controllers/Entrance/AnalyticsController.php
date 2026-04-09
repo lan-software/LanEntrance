@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Entrance;
 
 use App\Http\Controllers\Controller;
-use App\Services\LanCoreClient;
-use Illuminate\Http\Client\ConnectionException;
-use Illuminate\Http\Client\RequestException;
 use Inertia\Inertia;
 use Inertia\Response;
+use LanSoftware\LanCoreClient\Exceptions\LanCoreException;
+use LanSoftware\LanCoreClient\LanCoreClient;
 
 class AnalyticsController extends Controller
 {
@@ -30,8 +29,8 @@ class AnalyticsController extends Controller
     private function fetchStats(): array
     {
         try {
-            return $this->client->getEntranceStats(session('entrance_event_id'));
-        } catch (ConnectionException|RequestException) {
+            return $this->client->entrance()->stats(session('entrance_event_id'));
+        } catch (LanCoreException) {
             return [
                 'error' => true,
                 'message' => 'Unable to load analytics — LanCore is unreachable.',

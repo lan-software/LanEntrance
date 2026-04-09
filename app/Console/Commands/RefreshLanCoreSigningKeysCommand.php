@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands;
 
-use App\Services\LanCoreClient;
 use App\Services\TicketSignatureVerifier;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Cache\Factory as CacheFactory;
+use LanSoftware\LanCoreClient\LanCoreClient;
 
 class RefreshLanCoreSigningKeysCommand extends Command
 {
@@ -15,10 +15,10 @@ class RefreshLanCoreSigningKeysCommand extends Command
 
     public function handle(LanCoreClient $client, CacheFactory $cache): int
     {
-        $keys = $client->fetchSigningKeys();
+        $keys = $client->entrance()->fetchSigningKeys(forceRefresh: true);
 
-        $store = $cache->store((string) config('lancore.signing_keys_cache_store', 'file'));
-        $ttl = (int) config('lancore.signing_keys_cache_ttl', 3600);
+        $store = $cache->store((string) config('lancore.entrance.signing_keys_cache_store', 'file'));
+        $ttl = (int) config('lancore.entrance.signing_keys_cache_ttl', 3600);
 
         $stored = 0;
 

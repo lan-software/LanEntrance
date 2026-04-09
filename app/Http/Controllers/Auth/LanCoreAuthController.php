@@ -4,14 +4,16 @@ namespace App\Http\Controllers\Auth;
 
 use App\Actions\SyncUserRolesFromLanCore;
 use App\Http\Controllers\Controller;
-use App\Services\LanCoreClient;
 use App\Services\UserSyncService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
-use RuntimeException;
+use LanSoftware\LanCoreClient\Exceptions\LanCoreDisabledException;
+use LanSoftware\LanCoreClient\Exceptions\LanCoreRequestException;
+use LanSoftware\LanCoreClient\Exceptions\LanCoreUnavailableException;
+use LanSoftware\LanCoreClient\LanCoreClient;
 use Symfony\Component\HttpFoundation\Response;
 
 class LanCoreAuthController extends Controller
@@ -26,7 +28,7 @@ class LanCoreAuthController extends Controller
     {
         try {
             return Inertia::location($this->client->ssoAuthorizeUrl());
-        } catch (RuntimeException) {
+        } catch (LanCoreDisabledException) {
             return redirect()->route('login', ['local' => 1]);
         }
     }
@@ -42,11 +44,13 @@ class LanCoreAuthController extends Controller
         try {
             $lanCoreUser = $this->client->exchangeCode($code);
             $user = $this->syncService->resolveFromLanCore($lanCoreUser);
-            $this->syncRoles->handle($user, $lanCoreUser['roles']);
-        } catch (RuntimeException $e) {
-            return redirect()->route('home')->with('error', $e->getCode() === 400
+            $this->syncRoles->handle($user, $lanCoreUser->roles);
+        } catch (LanCoreRequestException $e) {
+            return redirect()->route('home')->with('error', $e->statusCode === 400
                 ? 'The login link has expired. Please try again.'
                 : 'Could not connect to authentication service. Please try again later.');
+        } catch (LanCoreUnavailableException) {
+            return redirect()->route('home')->with('error', 'Could not connect to authentication service. Please try again later.');
         }
 
         Auth::login($user, remember: true);

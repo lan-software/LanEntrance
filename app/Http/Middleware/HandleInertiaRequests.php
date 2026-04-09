@@ -44,9 +44,9 @@ class HandleInertiaRequests extends Middleware
             ],
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
             'branding' => [
-                'eventName' => config('lancore.event_name') ?: null,
-                'eventLogo' => config('lancore.event_logo') ?: null,
-                'primaryColor' => config('lancore.primary_color') ?: null,
+                'eventName' => config('entrance.event_name') ?: null,
+                'eventLogo' => config('entrance.event_logo') ?: null,
+                'primaryColor' => config('entrance.primary_color') ?: null,
             ],
             'entranceEventId' => $request->session()->get('entrance_event_id'),
             'entranceEventName' => $request->session()->get('entrance_event_name'),
