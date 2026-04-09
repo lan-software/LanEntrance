@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d0bca69e380debd6a548b496b06e726e",
+    "content-hash": "fb24957dc5b9cc42f88dd662dbe88b29",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -1246,6 +1246,7 @@
                 "php": "^8.3"
             },
             "require-dev": {
+                "laravel/pint": "^1.29",
                 "orchestra/testbench": "^11.0",
                 "pestphp/pest": "^3.0"
             },
@@ -1272,6 +1273,7 @@
             ],
             "description": "Canonical LanCore Integration API client for Lan* satellite applications",
             "transport-options": {
+                "symlink": false,
                 "relative": true
             }
         },
