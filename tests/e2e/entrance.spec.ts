@@ -19,17 +19,20 @@ test.describe('Entrance Scanner', () => {
         await login(page, TEST_USER.email, TEST_USER.password);
         await page.goto('/entrance');
 
-        const lookupLink = page.locator('a[href="/entrance/lookup"]');
+        // The sidebar also links to /entrance/lookup; scope to the in-page
+        // call-to-action that has the "Manual Lookup" label.
+        const lookupLink = page.getByRole('link', { name: /Manual Lookup/ });
         await expect(lookupLink).toBeVisible();
-        await expect(lookupLink).toContainText('Manual Lookup');
     });
 
-    test('shows entrance link in sidebar navigation', async ({ page }) => {
+    test('shows scanner link in sidebar navigation', async ({ page }) => {
         await login(page, TEST_USER.email, TEST_USER.password);
         await page.goto('/dashboard');
 
-        const entranceNav = page.locator('a:has-text("Entrance")');
-        await expect(entranceNav).toBeVisible();
+        // Sidebar exposes Scanner + Lookup entries to all authenticated users.
+        await expect(
+            page.getByRole('link', { name: /Scanner/ }),
+        ).toBeVisible();
     });
 });
 
@@ -59,8 +62,8 @@ test.describe('Entrance Lookup', () => {
         await login(page, TEST_USER.email, TEST_USER.password);
         await page.goto('/entrance/lookup');
 
-        const scannerLink = page.locator('a[href="/entrance"]');
+        // Scope to the in-page CTA; the sidebar also links to /entrance.
+        const scannerLink = page.getByRole('link', { name: /Back to Scanner/ });
         await expect(scannerLink).toBeVisible();
-        await expect(scannerLink).toContainText('Back to Scanner');
     });
 });

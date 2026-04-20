@@ -8,15 +8,17 @@ export default function globalSetup() {
     const appUrl = process.env.APP_URL ?? 'http://localhost';
 
     try {
-        // Seed a regular user for entrance tests
+        // Seed a regular user for entrance tests. The User model casts
+        // `password` to `hashed`, so we pass plaintext and let Eloquent hash
+        // once — double-hashing with bcrypt() here would make the login fail.
         execSync(
-            `php artisan tinker --execute="\\App\\Models\\User::factory()->create(['email' => 'e2e-test@lanentrance.test', 'password' => bcrypt('password'), 'name' => 'E2E Test User', 'role' => 'user', 'lancore_user_id' => 9999]);"`,
+            `php artisan tinker --execute="\\App\\Models\\User::factory()->create(['email' => 'e2e-test@lanentrance.test', 'password' => 'password', 'name' => 'E2E Test User', 'role' => 'user', 'lancore_user_id' => 9999]);"`,
             { stdio: 'pipe', timeout: 10000 },
         );
 
         // Seed a moderator user for override tests
         execSync(
-            `php artisan tinker --execute="\\App\\Models\\User::factory()->create(['email' => 'e2e-moderator@lanentrance.test', 'password' => bcrypt('password'), 'name' => 'E2E Moderator', 'role' => 'moderator', 'lancore_user_id' => 9998]);"`,
+            `php artisan tinker --execute="\\App\\Models\\User::factory()->create(['email' => 'e2e-moderator@lanentrance.test', 'password' => 'password', 'name' => 'E2E Moderator', 'role' => 'moderator', 'lancore_user_id' => 9998]);"`,
             { stdio: 'pipe', timeout: 10000 },
         );
     } catch {

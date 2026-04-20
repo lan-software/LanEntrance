@@ -28,7 +28,8 @@ test.describe('Mobile Entrance', () => {
         await login(page, TEST_USER.email, TEST_USER.password);
         await page.goto('/entrance');
 
-        const link = page.locator('a[href="/entrance/lookup"]');
+        // The sidebar also links to /entrance/lookup; scope to the in-page CTA.
+        const link = page.getByRole('link', { name: /Manual Lookup/ });
         const box = await link.boundingBox();
 
         if (box) {
