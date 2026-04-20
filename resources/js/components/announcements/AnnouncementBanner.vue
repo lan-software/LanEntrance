@@ -18,7 +18,9 @@ const page = usePage<{ announcements: SharedAnnouncement[] | null }>();
 const dismissed = ref<number[]>([]);
 
 const visible = computed<SharedAnnouncement[]>(() =>
-    (page.props.announcements ?? []).filter((a: SharedAnnouncement) => ! dismissed.value.includes(a.id)),
+    (page.props.announcements ?? []).filter(
+        (a: SharedAnnouncement) => !dismissed.value.includes(a.id),
+    ),
 );
 
 const classesFor = (severity: string | null): string => {
@@ -48,7 +50,9 @@ const dismiss = (announcement: SharedAnnouncement): void => {
         >
             <div class="flex-1">
                 <p class="font-semibold">{{ announcement.title }}</p>
-                <p v-if="announcement.body" class="mt-0.5 opacity-90">{{ announcement.body }}</p>
+                <p v-if="announcement.body" class="mt-0.5 opacity-90">
+                    {{ announcement.body }}
+                </p>
             </div>
             <button
                 v-if="announcement.dismissible"

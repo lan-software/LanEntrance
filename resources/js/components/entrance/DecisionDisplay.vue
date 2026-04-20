@@ -85,7 +85,14 @@ const tierConfig = computed(() => {
 });
 
 const isRedTier = computed(() =>
-    ['invalid', 'denied_by_policy', 'invalid_signature', 'unknown_kid', 'expired', 'revoked'].includes(props.result.decision),
+    [
+        'invalid',
+        'denied_by_policy',
+        'invalid_signature',
+        'unknown_kid',
+        'expired',
+        'revoked',
+    ].includes(props.result.decision),
 );
 const isActionRequired = computed(() =>
     ['verification_required', 'payment_required'].includes(

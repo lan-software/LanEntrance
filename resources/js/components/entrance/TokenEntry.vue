@@ -15,8 +15,8 @@ function handleSubmit() {
     const trimmed = token.value.trim();
 
     if (trimmed.length === 0) {
-return;
-}
+        return;
+    }
 
     emit('submit', trimmed);
     token.value = '';
