@@ -1,0 +1,25 @@
+{
+    "common": {
+        "appName": "LanEntrance",
+        "loading": "Cargando...",
+        "error": "Error",
+        "success": "Éxito",
+        "save": "Guardar",
+        "cancel": "Cancelar",
+        "close": "Cerrar",
+        "submit": "Enviar",
+        "back": "Atrás"
+    },
+    "navigation": {
+        "home": "Inicio",
+        "dashboard": "Panel",
+        "checkIn": "Registro",
+        "tickets": "Entradas"
+    },
+    "settings": {
+        "language": {
+            "current": "Idioma de visualización",
+            "managedInLanCore": "Cambia tu idioma en tu perfil de LanCore."
+        }
+    }
+}
