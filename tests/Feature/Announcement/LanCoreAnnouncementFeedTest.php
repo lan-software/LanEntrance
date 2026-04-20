@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Http;
 
 beforeEach(function (): void {
     Cache::flush();
-    config()->set('lancore.announcements_feed_url', 'https://lancore.test/api/announcements/feed');
+    config()->set('entrance.announcements_feed_url', 'https://lancore.test/api/announcements/feed');
 });
 
 it('returns array on 200', function (): void {

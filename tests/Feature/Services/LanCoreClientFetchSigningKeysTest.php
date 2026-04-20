@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use LanSoftware\LanCoreClient\Exceptions\LanCoreRequestException;
 use LanSoftware\LanCoreClient\Exceptions\LanCoreUnavailableException;
@@ -12,6 +13,11 @@ beforeEach(function () {
     config()->set('lancore.token', 'lci_integration_token');
     config()->set('lancore.entrance.enabled', true);
     config()->set('lancore.entrance.signing_keys_endpoint', 'api/entrance/signing-keys');
+    config()->set('lancore.entrance.signing_keys_cache_store', 'array');
+
+    // Ensure no JWKS payload is cached from a prior test run — the client caches
+    // successful lookups and would short-circuit the HTTP fake otherwise.
+    Cache::store('array')->forget('lancore.jwks');
 });
 
 it('fetches and parses the JWKS keys array', function () {

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Http;
 use Tests\Fixtures\LCT1ContractFixture;
 
 beforeEach(function () {
-    config()->set('lancore.signing_keys_cache_store', 'array');
+    config()->set('lancore.entrance.signing_keys_cache_store', 'array');
     config()->set('lancore.token_format.version', 'LCT1');
     Cache::store('array')->flush();
 

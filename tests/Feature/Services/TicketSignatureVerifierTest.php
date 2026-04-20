@@ -48,9 +48,9 @@ function jwksFor(string $publicKey, string $kid): array
 
 beforeEach(function () {
     config()->set('lancore.enabled', true);
-    config()->set('lancore.signing_keys_cache_store', 'array');
-    config()->set('lancore.signing_keys_cache_ttl', 3600);
-    config()->set('lancore.signing_keys_bootstrap', []);
+    config()->set('lancore.entrance.signing_keys_cache_store', 'array');
+    config()->set('lancore.entrance.signing_keys_cache_ttl', 3600);
+    config()->set('lancore.entrance.signing_keys_bootstrap', []);
     config()->set('lancore.token_format.version', 'LCT1');
 
     Cache::store('array')->flush();
@@ -152,9 +152,11 @@ it('falls back to bootstrap key when LanCore is unreachable', function () {
         '*/api/entrance/signing-keys' => fn () => throw new ConnectionException('down'),
     ]);
 
-    config()->set('lancore.signing_keys_bootstrap', [
-        ['kid' => $this->kid, 'x' => TicketSignatureVerifier::base64UrlEncode($this->publicKey)],
-    ]);
+    // The verifier parses bootstrap keys from a comma-separated `kid:x` string.
+    config()->set(
+        'lancore.entrance.signing_keys_bootstrap',
+        $this->kid.':'.TicketSignatureVerifier::base64UrlEncode($this->publicKey),
+    );
 
     $token = makeToken([], $this->secretKey, $this->kid);
     $result = app(TicketSignatureVerifier::class)->verify($token);

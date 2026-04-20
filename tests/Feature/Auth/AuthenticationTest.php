@@ -4,8 +4,11 @@ use App\Models\User;
 use Illuminate\Support\Facades\RateLimiter;
 use Laravel\Fortify\Features;
 
-test('login screen can be rendered', function () {
-    $response = $this->get(route('login'));
+test('login screen can be rendered with ?local parameter', function () {
+    // The Feature beforeEach sets lancore.enabled=true; with LanCore enabled
+    // the bare login route redirects to SSO. The ?local=1 escape hatch forces
+    // the native login form to render.
+    $response = $this->get(route('login', ['local' => '']));
 
     $response->assertOk();
 });

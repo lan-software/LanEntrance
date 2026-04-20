@@ -11,7 +11,7 @@ beforeEach(function () {
     config()->set('lancore.base_url', 'http://lancore.test');
     config()->set('lancore.internal_url', 'http://lancore.test');
     config()->set('lancore.token', 'lci_integration_token');
-    config()->set('lancore.signing_keys_cache_store', 'array');
+    config()->set('lancore.entrance.signing_keys_cache_store', 'array');
     config()->set('lancore.token_format.version', 'LCT1');
 
     Cache::store('array')->flush();
