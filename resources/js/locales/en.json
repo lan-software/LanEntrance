@@ -2,24 +2,187 @@
     "common": {
         "appName": "LanEntrance",
         "loading": "Loading...",
+        "saving": "Saving...",
         "error": "Error",
         "success": "Success",
         "save": "Save",
+        "saved": "Saved.",
         "cancel": "Cancel",
+        "delete": "Delete",
+        "edit": "Edit",
         "close": "Close",
         "submit": "Submit",
-        "back": "Back"
-    },
-    "navigation": {
-        "home": "Home",
+        "search": "Search",
+        "settings": "Settings",
+        "logout": "Log out",
+        "profile": "Profile",
         "dashboard": "Dashboard",
-        "checkIn": "Check-in",
-        "tickets": "Tickets"
+        "admin": "Admin",
+        "users": "Users",
+        "back": "Back",
+        "create": "Create",
+        "update": "Update",
+        "confirm": "Confirm",
+        "yes": "Yes",
+        "no": "No",
+        "add": "Add",
+        "remove": "Remove",
+        "actions": "Actions",
+        "view": "View",
+        "copy": "Copy",
+        "copied": "Copied",
+        "optional": "optional",
+        "required": "required",
+        "loadingMore": "Loading more...",
+        "noResults": "No results found",
+        "showMore": "Show more",
+        "showLess": "Show less"
+    },
+    "auth": {
+        "login": {
+            "title": "Log in to LanEntrance",
+            "description": "Sign in with your LanCore account to continue",
+            "email": "Email address",
+            "emailPlaceholder": "email@example.com",
+            "password": "Password",
+            "passwordPlaceholder": "Password",
+            "rememberMe": "Remember me",
+            "forgotPassword": "Forgot password?",
+            "button": "Log in",
+            "signInWithLanCore": "Sign in with LanCore"
+        },
+        "verifyEmail": {
+            "title": "Verify your email address",
+            "description": "Thanks for signing up! Please verify your email to continue.",
+            "resendButton": "Resend verification email",
+            "linkSent": "A new verification link has been sent to your email address.",
+            "logout": "Log out"
+        },
+        "confirmPassword": {
+            "title": "Confirm your password",
+            "description": "This is a secure area of the application. Please confirm your password before continuing.",
+            "password": "Password",
+            "passwordPlaceholder": "Password",
+            "button": "Confirm"
+        },
+        "ssoStatus": {
+            "title": "Signing you in...",
+            "description": "We are completing the LanCore sign-in flow.",
+            "error": "Sign-in failed.",
+            "retry": "Try again"
+        }
     },
     "settings": {
+        "title": "Settings",
+        "description": "Manage your account settings and preferences",
+        "profile": {
+            "title": "Profile",
+            "description": "Your profile is managed in LanCore",
+            "name": "Name",
+            "email": "Email address",
+            "updateButton": "Save",
+            "updated": "Saved."
+        },
+        "appearance": {
+            "title": "Appearance",
+            "description": "Update your account's appearance settings",
+            "theme": "Theme",
+            "light": "Light",
+            "dark": "Dark",
+            "system": "System"
+        },
         "language": {
             "current": "Display language",
             "managedInLanCore": "Change your language in your LanCore profile."
         }
+    },
+    "navigation": {
+        "home": "Home",
+        "dashboard": "Dashboard",
+        "entrance": "Entrance",
+        "scanner": "Scanner",
+        "lookup": "Ticket lookup",
+        "analytics": "Analytics",
+        "events": "Events",
+        "settings": "Settings",
+        "profile": "Profile",
+        "appearance": "Appearance"
+    },
+    "landing": {
+        "title": "Welcome to LanEntrance",
+        "subtitle": "Fast, on-site ticket check-in for your LAN events.",
+        "getStarted": "Get started",
+        "logIn": "Log in",
+        "signIn": "Sign in",
+        "register": "Register",
+        "hero": "Fast, smooth check-in for every attendee.",
+        "heroDescription": "LanEntrance handles event entry — scan tickets, verify identities, and track attendance. Get people through the door and into the action.",
+        "openDashboard": "Open check-in dashboard",
+        "loginViaLanCore": "Login via LanCore",
+        "features": {
+            "scanning": {
+                "title": "Ticket scanning",
+                "description": "Scan QR codes or look up tickets manually. Validate in seconds."
+            },
+            "attendance": {
+                "title": "Attendance tracking",
+                "description": "See who's checked in, who's pending, and real-time headcounts."
+            },
+            "sso": {
+                "title": "LanCore SSO",
+                "description": "Staff authenticate via LanCore. Roles and permissions synced automatically."
+            }
+        },
+        "footer": "Powered by LanEntrance — Part of the Lan-Software ecosystem",
+        "headTitle": "LanEntrance — Event check-in"
+    },
+    "dashboard": {
+        "title": "Dashboard",
+        "welcome": "Welcome back!"
+    },
+    "entrance": {
+        "scanner": {
+            "title": "Scanner",
+            "description": "Scan ticket QR codes to check attendees in.",
+            "cameraRequest": "Allow camera access to begin scanning.",
+            "scanning": "Scanning...",
+            "lastScanned": "Last scanned",
+            "checkInSuccess": "Checked in",
+            "checkInError": "Check-in failed",
+            "alreadyChecked": "Already checked in",
+            "invalid": "Invalid ticket",
+            "manualEntry": "Manual entry"
+        },
+        "lookup": {
+            "title": "Ticket lookup",
+            "description": "Find a ticket by name, email, or ticket code.",
+            "searchPlaceholder": "Search by name, email, or code",
+            "empty": "No tickets match your search.",
+            "results": "Results"
+        },
+        "analytics": {
+            "title": "Analytics",
+            "description": "Check-in statistics for the current event",
+            "totalCheckIns": "Total check-ins",
+            "attendanceRate": "Attendance rate",
+            "checkInsOverTime": "Check-ins over time",
+            "byTicketType": "By ticket type"
+        },
+        "events": {
+            "title": "Select event",
+            "description": "Choose the event to work with",
+            "select": "Select",
+            "clear": "Clear selection",
+            "current": "Current event",
+            "empty": "No events available"
+        }
+    },
+    "validation": {
+        "required": "This field is required",
+        "email": "Please enter a valid email address",
+        "minLength": "Must be at least {min} characters",
+        "maxLength": "Must be no more than {max} characters",
+        "passwordMatch": "Passwords must match",
+        "invalid": "Invalid value"
     }
 }

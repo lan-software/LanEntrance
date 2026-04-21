@@ -10,6 +10,7 @@ import {
     X,
 } from 'lucide-vue-next';
 import { computed, ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 import AppLogo from '@/components/AppLogo.vue';
 import NavFooter from '@/components/NavFooter.vue';
 import NavMain from '@/components/NavMain.vue';
@@ -30,6 +31,7 @@ import { dashboard } from '@/routes';
 import { scanner as entranceScanner } from '@/routes/entrance';
 import type { NavItem } from '@/types';
 
+const { t } = useI18n();
 const page = usePage();
 const userRole = computed(
     () => (page.props.auth as { user?: { role?: string } })?.user?.role,
@@ -44,14 +46,14 @@ const selectedEventName = computed(
 
 const mainNavItems = computed<NavItem[]>(() => {
     const items: NavItem[] = [
-        { title: 'Dashboard', href: dashboard(), icon: LayoutGrid },
-        { title: 'Scanner', href: entranceScanner(), icon: ScanLine },
-        { title: 'Lookup', href: '/entrance/lookup', icon: Search },
+        { title: t('navigation.dashboard'), href: dashboard(), icon: LayoutGrid },
+        { title: t('navigation.scanner'), href: entranceScanner(), icon: ScanLine },
+        { title: t('navigation.lookup'), href: '/entrance/lookup', icon: Search },
     ];
 
     if (['admin', 'superadmin'].includes(userRole.value ?? '')) {
         items.push({
-            title: 'Analytics',
+            title: t('navigation.analytics'),
             href: '/entrance/analytics',
             icon: BarChart3,
         });
@@ -130,7 +132,7 @@ function clearEvent() {
         <SidebarContent>
             <!-- Event Selector (hidden when sidebar collapsed) -->
             <SidebarGroup class="group-data-[collapsible=icon]:hidden">
-                <SidebarGroupLabel>Event</SidebarGroupLabel>
+                <SidebarGroupLabel>{{ $t('entrance.events.current') }}</SidebarGroupLabel>
                 <SidebarGroupContent>
                     <div class="px-2">
                         <button
@@ -147,9 +149,9 @@ function clearEvent() {
                                     class="truncate font-medium"
                                     >{{ selectedEventName }}</span
                                 >
-                                <span v-else class="text-muted-foreground"
-                                    >Select event...</span
-                                >
+                                <span v-else class="text-muted-foreground">{{
+                                    $t('entrance.events.title')
+                                }}</span>
                             </span>
                             <ChevronDown
                                 class="size-3 shrink-0 text-muted-foreground"
@@ -181,13 +183,13 @@ function clearEvent() {
                                 class="flex w-full items-center gap-1 rounded px-2 py-1.5 text-left text-sm text-muted-foreground transition hover:bg-accent"
                                 @click="clearEvent"
                             >
-                                <X class="size-3" /> Clear selection
+                                <X class="size-3" /> {{ $t('entrance.events.clear') }}
                             </button>
                             <p
                                 v-if="events.length === 0 && !loadingEvents"
                                 class="px-2 py-1.5 text-xs text-muted-foreground"
                             >
-                                No events available
+                                {{ $t('entrance.events.empty') }}
                             </p>
                         </div>
                     </div>

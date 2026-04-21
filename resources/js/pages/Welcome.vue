@@ -8,7 +8,7 @@ defineProps<{
 </script>
 
 <template>
-    <Head title="LanEntrance — Event Check-In" />
+    <Head :title="$t('landing.headTitle')" />
 
     <div class="flex min-h-screen flex-col bg-background text-foreground">
         <header
@@ -20,23 +20,23 @@ defineProps<{
                 >
                     <ScanLine class="h-5 w-5 text-primary-foreground" />
                 </div>
-                <span class="text-lg font-semibold tracking-tight"
-                    >LanEntrance</span
-                >
+                <span class="text-lg font-semibold tracking-tight">{{
+                    $t('common.appName')
+                }}</span>
             </div>
             <div class="flex items-center gap-3">
                 <Link
                     href="/login"
                     class="rounded-full border border-border px-5 py-2 text-sm font-medium text-muted-foreground transition hover:border-primary hover:text-foreground"
                 >
-                    Sign in
+                    {{ $t('landing.signIn') }}
                 </Link>
                 <Link
                     v-if="canRegister"
                     href="/register"
                     class="rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-foreground transition hover:bg-primary/90"
                 >
-                    Register
+                    {{ $t('landing.register') }}
                 </Link>
             </div>
         </header>
@@ -52,14 +52,12 @@ defineProps<{
             <h1
                 class="mt-6 max-w-2xl text-4xl leading-tight font-bold sm:text-5xl"
             >
-                Fast, smooth check-in for every attendee.
+                {{ $t('landing.hero') }}
             </h1>
             <p
                 class="mt-4 max-w-lg text-lg leading-relaxed text-muted-foreground"
             >
-                LanEntrance handles event entry — scan tickets, verify
-                identities, and track attendance. Get people through the door
-                and into the action.
+                {{ $t('landing.heroDescription') }}
             </p>
 
             <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
@@ -67,13 +65,13 @@ defineProps<{
                     href="/login"
                     class="rounded-xl bg-primary px-7 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
                 >
-                    Open check-in dashboard
+                    {{ $t('landing.openDashboard') }}
                 </Link>
                 <a
                     href="/auth/redirect"
                     class="rounded-xl border border-border px-7 py-3 text-sm font-medium text-muted-foreground transition hover:border-primary hover:text-foreground"
                 >
-                    Login via LanCore
+                    {{ $t('landing.loginViaLanCore') }}
                 </a>
             </div>
 
@@ -101,12 +99,13 @@ defineProps<{
                             <path d="M7 12h10" />
                         </svg>
                     </div>
-                    <h3 class="text-sm font-semibold">Ticket Scanning</h3>
+                    <h3 class="text-sm font-semibold">
+                        {{ $t('landing.features.scanning.title') }}
+                    </h3>
                     <p
                         class="mt-2 text-sm leading-relaxed text-muted-foreground"
                     >
-                        Scan QR codes or look up tickets manually. Validate in
-                        seconds.
+                        {{ $t('landing.features.scanning.description') }}
                     </p>
                 </div>
                 <div
@@ -133,12 +132,13 @@ defineProps<{
                             <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                         </svg>
                     </div>
-                    <h3 class="text-sm font-semibold">Attendance Tracking</h3>
+                    <h3 class="text-sm font-semibold">
+                        {{ $t('landing.features.attendance.title') }}
+                    </h3>
                     <p
                         class="mt-2 text-sm leading-relaxed text-muted-foreground"
                     >
-                        See who's checked in, who's pending, and real-time
-                        headcounts.
+                        {{ $t('landing.features.attendance.description') }}
                     </p>
                 </div>
                 <div
@@ -164,19 +164,20 @@ defineProps<{
                             <line x1="15" x2="3" y1="12" y2="12" />
                         </svg>
                     </div>
-                    <h3 class="text-sm font-semibold">LanCore SSO</h3>
+                    <h3 class="text-sm font-semibold">
+                        {{ $t('landing.features.sso.title') }}
+                    </h3>
                     <p
                         class="mt-2 text-sm leading-relaxed text-muted-foreground"
                     >
-                        Staff authenticate via LanCore. Roles and permissions
-                        synced automatically.
+                        {{ $t('landing.features.sso.description') }}
                     </p>
                 </div>
             </div>
         </main>
 
         <footer class="py-8 text-center text-xs text-muted-foreground">
-            Powered by LanEntrance &mdash; Part of the Lan-Software ecosystem
+            {{ $t('landing.footer') }}
         </footer>
     </div>
 </template>

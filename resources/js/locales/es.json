@@ -2,24 +2,187 @@
     "common": {
         "appName": "LanEntrance",
         "loading": "Cargando...",
+        "saving": "Guardando...",
         "error": "Error",
         "success": "Éxito",
         "save": "Guardar",
+        "saved": "Guardado.",
         "cancel": "Cancelar",
+        "delete": "Eliminar",
+        "edit": "Editar",
         "close": "Cerrar",
         "submit": "Enviar",
-        "back": "Atrás"
-    },
-    "navigation": {
-        "home": "Inicio",
+        "search": "Buscar",
+        "settings": "Ajustes",
+        "logout": "Cerrar sesión",
+        "profile": "Perfil",
         "dashboard": "Panel",
-        "checkIn": "Registro",
-        "tickets": "Entradas"
+        "admin": "Admin",
+        "users": "Usuarios",
+        "back": "Atrás",
+        "create": "Crear",
+        "update": "Actualizar",
+        "confirm": "Confirmar",
+        "yes": "Sí",
+        "no": "No",
+        "add": "Añadir",
+        "remove": "Quitar",
+        "actions": "Acciones",
+        "view": "Ver",
+        "copy": "Copiar",
+        "copied": "Copiado",
+        "optional": "opcional",
+        "required": "obligatorio",
+        "loadingMore": "Cargando más...",
+        "noResults": "No se encontraron resultados",
+        "showMore": "Mostrar más",
+        "showLess": "Mostrar menos"
+    },
+    "auth": {
+        "login": {
+            "title": "Inicia sesión en LanEntrance",
+            "description": "Inicia sesión con tu cuenta de LanCore para continuar",
+            "email": "Correo electrónico",
+            "emailPlaceholder": "email@ejemplo.es",
+            "password": "Contraseña",
+            "passwordPlaceholder": "Contraseña",
+            "rememberMe": "Recuérdame",
+            "forgotPassword": "¿Olvidaste tu contraseña?",
+            "button": "Iniciar sesión",
+            "signInWithLanCore": "Iniciar sesión con LanCore"
+        },
+        "verifyEmail": {
+            "title": "Verificar tu correo electrónico",
+            "description": "¡Gracias por registrarte! Verifica tu correo electrónico para continuar.",
+            "resendButton": "Reenviar correo de verificación",
+            "linkSent": "Se ha enviado un nuevo enlace de verificación a tu correo electrónico.",
+            "logout": "Cerrar sesión"
+        },
+        "confirmPassword": {
+            "title": "Confirmar tu contraseña",
+            "description": "Esta es un área segura de la aplicación. Confirma tu contraseña antes de continuar.",
+            "password": "Contraseña",
+            "passwordPlaceholder": "Contraseña",
+            "button": "Confirmar"
+        },
+        "ssoStatus": {
+            "title": "Iniciando sesión...",
+            "description": "Estamos completando el flujo de inicio de sesión de LanCore.",
+            "error": "Error al iniciar sesión.",
+            "retry": "Reintentar"
+        }
     },
     "settings": {
+        "title": "Ajustes",
+        "description": "Gestiona los ajustes y preferencias de tu cuenta",
+        "profile": {
+            "title": "Perfil",
+            "description": "Tu perfil se gestiona en LanCore",
+            "name": "Nombre",
+            "email": "Correo electrónico",
+            "updateButton": "Guardar",
+            "updated": "Guardado."
+        },
+        "appearance": {
+            "title": "Apariencia",
+            "description": "Actualiza los ajustes de apariencia de tu cuenta",
+            "theme": "Tema",
+            "light": "Claro",
+            "dark": "Oscuro",
+            "system": "Sistema"
+        },
         "language": {
             "current": "Idioma de visualización",
             "managedInLanCore": "Cambia tu idioma en tu perfil de LanCore."
         }
+    },
+    "navigation": {
+        "home": "Inicio",
+        "dashboard": "Panel",
+        "entrance": "Entrada",
+        "scanner": "Escáner",
+        "lookup": "Búsqueda de entrada",
+        "analytics": "Analítica",
+        "events": "Eventos",
+        "settings": "Ajustes",
+        "profile": "Perfil",
+        "appearance": "Apariencia"
+    },
+    "landing": {
+        "title": "Bienvenido a LanEntrance",
+        "subtitle": "Check-in de entradas rápido en el sitio para tus eventos LAN.",
+        "getStarted": "Empezar",
+        "logIn": "Iniciar sesión",
+        "signIn": "Iniciar sesión",
+        "register": "Registrarse",
+        "hero": "Check-in rápido y fluido para cada asistente.",
+        "heroDescription": "LanEntrance gestiona la entrada al evento: escanea entradas, verifica identidades y controla la asistencia. Haz que la gente entre rápido.",
+        "openDashboard": "Abrir panel de check-in",
+        "loginViaLanCore": "Iniciar sesión con LanCore",
+        "features": {
+            "scanning": {
+                "title": "Escaneo de entradas",
+                "description": "Escanea códigos QR o busca entradas manualmente. Validación en segundos."
+            },
+            "attendance": {
+                "title": "Control de asistencia",
+                "description": "Ve quién ha entrado, quién está pendiente y recuentos en tiempo real."
+            },
+            "sso": {
+                "title": "LanCore SSO",
+                "description": "El staff se autentica vía LanCore. Roles y permisos sincronizados automáticamente."
+            }
+        },
+        "footer": "Desarrollado con LanEntrance — Parte del ecosistema Lan-Software",
+        "headTitle": "LanEntrance — Check-in de evento"
+    },
+    "dashboard": {
+        "title": "Panel",
+        "welcome": "¡Bienvenido de nuevo!"
+    },
+    "entrance": {
+        "scanner": {
+            "title": "Escáner",
+            "description": "Escanea códigos QR de entradas para hacer el check-in de los asistentes.",
+            "cameraRequest": "Permite el acceso a la cámara para empezar a escanear.",
+            "scanning": "Escaneando...",
+            "lastScanned": "Último escaneado",
+            "checkInSuccess": "Admitido",
+            "checkInError": "Error en el check-in",
+            "alreadyChecked": "Ya admitido",
+            "invalid": "Entrada no válida",
+            "manualEntry": "Entrada manual"
+        },
+        "lookup": {
+            "title": "Búsqueda de entrada",
+            "description": "Encuentra una entrada por nombre, correo o código de entrada.",
+            "searchPlaceholder": "Buscar por nombre, correo o código",
+            "empty": "No hay entradas que coincidan con tu búsqueda.",
+            "results": "Resultados"
+        },
+        "analytics": {
+            "title": "Analítica",
+            "description": "Estadísticas de check-in del evento actual",
+            "totalCheckIns": "Total de check-ins",
+            "attendanceRate": "Tasa de asistencia",
+            "checkInsOverTime": "Check-ins a lo largo del tiempo",
+            "byTicketType": "Por tipo de entrada"
+        },
+        "events": {
+            "title": "Seleccionar evento",
+            "description": "Elige el evento con el que trabajar",
+            "select": "Seleccionar",
+            "clear": "Borrar selección",
+            "current": "Evento actual",
+            "empty": "No hay eventos disponibles"
+        }
+    },
+    "validation": {
+        "required": "Este campo es obligatorio",
+        "email": "Introduce una dirección de correo electrónico válida",
+        "minLength": "Debe tener al menos {min} caracteres",
+        "maxLength": "No debe superar los {max} caracteres",
+        "passwordMatch": "Las contraseñas deben coincidir",
+        "invalid": "Valor no válido"
     }
 }
