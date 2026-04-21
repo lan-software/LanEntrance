@@ -46,9 +46,21 @@ const selectedEventName = computed(
 
 const mainNavItems = computed<NavItem[]>(() => {
     const items: NavItem[] = [
-        { title: t('navigation.dashboard'), href: dashboard(), icon: LayoutGrid },
-        { title: t('navigation.scanner'), href: entranceScanner(), icon: ScanLine },
-        { title: t('navigation.lookup'), href: '/entrance/lookup', icon: Search },
+        {
+            title: t('navigation.dashboard'),
+            href: dashboard(),
+            icon: LayoutGrid,
+        },
+        {
+            title: t('navigation.scanner'),
+            href: entranceScanner(),
+            icon: ScanLine,
+        },
+        {
+            title: t('navigation.lookup'),
+            href: '/entrance/lookup',
+            icon: Search,
+        },
     ];
 
     if (['admin', 'superadmin'].includes(userRole.value ?? '')) {
@@ -132,7 +144,9 @@ function clearEvent() {
         <SidebarContent>
             <!-- Event Selector (hidden when sidebar collapsed) -->
             <SidebarGroup class="group-data-[collapsible=icon]:hidden">
-                <SidebarGroupLabel>{{ $t('entrance.events.current') }}</SidebarGroupLabel>
+                <SidebarGroupLabel>{{
+                    $t('entrance.events.current')
+                }}</SidebarGroupLabel>
                 <SidebarGroupContent>
                     <div class="px-2">
                         <button
@@ -183,7 +197,8 @@ function clearEvent() {
                                 class="flex w-full items-center gap-1 rounded px-2 py-1.5 text-left text-sm text-muted-foreground transition hover:bg-accent"
                                 @click="clearEvent"
                             >
-                                <X class="size-3" /> {{ $t('entrance.events.clear') }}
+                                <X class="size-3" />
+                                {{ $t('entrance.events.clear') }}
                             </button>
                             <p
                                 v-if="events.length === 0 && !loadingEvents"
