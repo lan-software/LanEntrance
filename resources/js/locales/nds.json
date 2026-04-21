@@ -1,0 +1,188 @@
+{
+    "common": {
+        "appName": "LanEntrance",
+        "loading": "Ladt...",
+        "saving": "Sekert...",
+        "error": "Fehler",
+        "success": "Klor",
+        "save": "Sekern",
+        "saved": "Sekert.",
+        "cancel": "Afbreken",
+        "delete": "Wegmaken",
+        "edit": "Bewarken",
+        "close": "Tomaken",
+        "submit": "Afschicken",
+        "search": "Söken",
+        "settings": "Instellungen",
+        "logout": "Utlogg",
+        "profile": "Profil",
+        "dashboard": "Översicht",
+        "admin": "Administration",
+        "users": "Bruker",
+        "back": "Torügg",
+        "create": "Anleggen",
+        "update": "Opfrischen",
+        "confirm": "Beglöven",
+        "yes": "Jo",
+        "no": "Nee",
+        "add": "Tofögen",
+        "remove": "Wegnehmen",
+        "actions": "Akschonen",
+        "view": "Ankieken",
+        "copy": "Koperen",
+        "copied": "Kopert",
+        "optional": "frietwillig",
+        "required": "nödig",
+        "loadingMore": "Mehr ladt...",
+        "noResults": "Keen Resultaten funnen",
+        "showMore": "Mehr wiesen",
+        "showLess": "Weniger wiesen"
+    },
+    "auth": {
+        "login": {
+            "title": "Meld di bi LanEntrance an",
+            "description": "Meld di mit dien LanCore-Konto an, üm wiedertomaken",
+            "email": "E-Mail-Adress",
+            "emailPlaceholder": "epost@bispeel.de",
+            "password": "Passwoort",
+            "passwordPlaceholder": "Passwoort",
+            "rememberMe": "Behöll mi in'n Kopp",
+            "forgotPassword": "Passwoort vergeten?",
+            "button": "Anmellen",
+            "signInWithLanCore": "Mit LanCore anmellen"
+        },
+        "verifyEmail": {
+            "title": "Bestätig diene E-Mail-Adress",
+            "description": "Danke, dat du di anmellt hest! Bestätig bidde diene E-Mail, üm wiedertomaken.",
+            "resendButton": "Bestätigungs-E-Mail nochmal schicken",
+            "linkSent": "En nieg Bestätigungslink is an diene E-Mail-Adress schickt worrn.",
+            "logout": "Utlogg"
+        },
+        "confirmPassword": {
+            "title": "Bestätig dien Passwoort",
+            "description": "Dit is en sekern Rebeet vun de Anwennung. Bestätig dien Passwoort, eer du wiedergeihst.",
+            "password": "Passwoort",
+            "passwordPlaceholder": "Passwoort",
+            "button": "Bestätigen"
+        },
+        "ssoStatus": {
+            "title": "Anmeldung löpt...",
+            "description": "Wi maakt den LanCore-Anmell-Aflopp fertig.",
+            "error": "Anmeldung is fehlslaan.",
+            "retry": "Noch mal versöken"
+        }
+    },
+    "settings": {
+        "title": "Instellungen",
+        "description": "Verwalt diene Konto-Instellungen un Vörlieven",
+        "profile": {
+            "title": "Profil",
+            "description": "Dien Profil warrt in LanCore verwalt't",
+            "name": "Naam",
+            "email": "E-Mail-Adress",
+            "updateButton": "Sekern",
+            "updated": "Sekert."
+        },
+        "appearance": {
+            "title": "Utseen",
+            "description": "Aktualisier de Utseen-Instellungen vun dien Konto",
+            "theme": "Thema",
+            "light": "Hell",
+            "dark": "Düster",
+            "system": "System"
+        },
+        "language": {
+            "current": "Anzeig-Spraak",
+            "managedInLanCore": "Änner diene Spraak in dien LanCore-Profil."
+        }
+    },
+    "navigation": {
+        "home": "Tohuus",
+        "dashboard": "Översicht",
+        "entrance": "Ingang",
+        "scanner": "Scanner",
+        "lookup": "Ticket söken",
+        "analytics": "Analyse",
+        "events": "Evenementen",
+        "settings": "Instellungen",
+        "profile": "Profil",
+        "appearance": "Utseen"
+    },
+    "landing": {
+        "title": "Willkamen bi LanEntrance",
+        "subtitle": "Gau vör-Ort-Ticket-Inchecken för diene LAN-Evenementen.",
+        "getStarted": "Loslegge",
+        "logIn": "Anmellen",
+        "signIn": "Anmellen",
+        "register": "Registréren",
+        "hero": "Gau un rund Inchecken för elk Deelnehmer.",
+        "heroDescription": "LanEntrance kümmert sik üm den Evenement-Ingang — Tickets scannen, Personen bestätigen un de Anwesenheit bijholn. Krieg de Lüüd dörch de Döör un in't Gescheh.",
+        "openDashboard": "Incheck-Översicht apen maken",
+        "loginViaLanCore": "Över LanCore anmellen",
+        "features": {
+            "scanning": {
+                "title": "Ticket-Scanning",
+                "description": "QR-Koden scannen oder Tickets per Hand söken. In Sekunnen prüfen."
+            },
+            "attendance": {
+                "title": "Anwesenheit bijholn",
+                "description": "Sie, wer incheckt is, wer töövt, un Echttiet-Tellen."
+            },
+            "sso": {
+                "title": "LanCore SSO",
+                "description": "Personaal authentifiseert sik över LanCore. Rullen un Rechten warrt automaatsch synkroniseert."
+            }
+        },
+        "footer": "Powered by LanEntrance — Deel vun'n Lan-Software-Ökosystem",
+        "headTitle": "LanEntrance — Evenement-Incheck"
+    },
+    "dashboard": {
+        "title": "Översicht",
+        "welcome": "Willkamen torügg!"
+    },
+    "entrance": {
+        "scanner": {
+            "title": "Scanner",
+            "description": "Ticket-QR-Koden scannen, üm Deelnehmer intochecken.",
+            "cameraRequest": "Giff Kameratogriep free, üm mit't Scannen antofangen.",
+            "scanning": "Scannt...",
+            "lastScanned": "Tolest scannt",
+            "checkInSuccess": "Incheckt",
+            "checkInError": "Inchecken fehlslaan",
+            "alreadyChecked": "Al incheckt",
+            "invalid": "Ungellen Ticket",
+            "manualEntry": "Per Hand ingeven"
+        },
+        "lookup": {
+            "title": "Ticket söken",
+            "description": "Söök en Ticket över Naam, E-Mail oder Ticket-Kood.",
+            "searchPlaceholder": "Söken över Naam, E-Mail oder Kood",
+            "empty": "Keen Tickets to de Söök funnen.",
+            "results": "Resultaten"
+        },
+        "analytics": {
+            "title": "Analyse",
+            "description": "Incheck-Statistiken för dat aktuelle Evenement",
+            "totalCheckIns": "Incheckungen tohopen",
+            "attendanceRate": "Anwesenheits-Satz",
+            "checkInsOverTime": "Incheckungen över de Tiet",
+            "byTicketType": "Na Ticket-Oort"
+        },
+        "events": {
+            "title": "Evenement uteschen",
+            "description": "Söök dat Evenement ut, mit dat du arbeiden wullst",
+            "select": "Uteschen",
+            "clear": "Utschal Wahl",
+            "current": "Aktuell Evenement",
+            "empty": "Keen Evenementen verfögbor"
+        }
+    },
+    "validation": {
+        "required": "Dit Feld is nödig",
+        "email": "Giff bidde en gellen E-Mail-Adress in",
+        "minLength": "Mutt tominnst {min} Tekens lang ween",
+        "maxLength": "Dröff nich mehr as {max} Tekens lang ween",
+        "passwordMatch": "Passwöör mööt översteen",
+        "invalid": "Ungellen Weert"
+    }
+}

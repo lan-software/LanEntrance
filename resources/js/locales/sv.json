@@ -1,0 +1,188 @@
+{
+    "common": {
+        "appName": "LanEntrance",
+        "loading": "Laddar...",
+        "saving": "Sparar...",
+        "error": "Fel",
+        "success": "Klart",
+        "save": "Spara",
+        "saved": "Sparat.",
+        "cancel": "Avbryt",
+        "delete": "Radera",
+        "edit": "Redigera",
+        "close": "Stäng",
+        "submit": "Skicka",
+        "search": "Sök",
+        "settings": "Inställningar",
+        "logout": "Logga ut",
+        "profile": "Profil",
+        "dashboard": "Översikt",
+        "admin": "Administration",
+        "users": "Användare",
+        "back": "Tillbaka",
+        "create": "Skapa",
+        "update": "Uppdatera",
+        "confirm": "Bekräfta",
+        "yes": "Ja",
+        "no": "Nej",
+        "add": "Lägg till",
+        "remove": "Ta bort",
+        "actions": "Åtgärder",
+        "view": "Visa",
+        "copy": "Kopiera",
+        "copied": "Kopierat",
+        "optional": "valfritt",
+        "required": "obligatoriskt",
+        "loadingMore": "Laddar mer...",
+        "noResults": "Inga resultat hittades",
+        "showMore": "Visa mer",
+        "showLess": "Visa mindre"
+    },
+    "auth": {
+        "login": {
+            "title": "Logga in på LanEntrance",
+            "description": "Logga in med ditt LanCore-konto för att fortsätta",
+            "email": "E-postadress",
+            "emailPlaceholder": "epost@exempel.se",
+            "password": "Lösenord",
+            "passwordPlaceholder": "Lösenord",
+            "rememberMe": "Kom ihåg mig",
+            "forgotPassword": "Glömt lösenordet?",
+            "button": "Logga in",
+            "signInWithLanCore": "Logga in med LanCore"
+        },
+        "verifyEmail": {
+            "title": "Verifiera din e-postadress",
+            "description": "Tack för att du registrerat dig! Verifiera din e-post för att fortsätta.",
+            "resendButton": "Skicka verifieringsmejl igen",
+            "linkSent": "En ny verifieringslänk har skickats till din e-postadress.",
+            "logout": "Logga ut"
+        },
+        "confirmPassword": {
+            "title": "Bekräfta ditt lösenord",
+            "description": "Detta är ett säkert område i programmet. Bekräfta ditt lösenord innan du fortsätter.",
+            "password": "Lösenord",
+            "passwordPlaceholder": "Lösenord",
+            "button": "Bekräfta"
+        },
+        "ssoStatus": {
+            "title": "Loggar in dig...",
+            "description": "Vi slutför LanCore-inloggningsflödet.",
+            "error": "Inloggning misslyckades.",
+            "retry": "Försök igen"
+        }
+    },
+    "settings": {
+        "title": "Inställningar",
+        "description": "Hantera dina kontoinställningar och preferenser",
+        "profile": {
+            "title": "Profil",
+            "description": "Din profil hanteras i LanCore",
+            "name": "Namn",
+            "email": "E-postadress",
+            "updateButton": "Spara",
+            "updated": "Sparat."
+        },
+        "appearance": {
+            "title": "Utseende",
+            "description": "Uppdatera kontots utseendeinställningar",
+            "theme": "Tema",
+            "light": "Ljust",
+            "dark": "Mörkt",
+            "system": "System"
+        },
+        "language": {
+            "current": "Visningsspråk",
+            "managedInLanCore": "Ändra ditt språk i din LanCore-profil."
+        }
+    },
+    "navigation": {
+        "home": "Hem",
+        "dashboard": "Översikt",
+        "entrance": "Entré",
+        "scanner": "Skanner",
+        "lookup": "Biljettsökning",
+        "analytics": "Analys",
+        "events": "Evenemang",
+        "settings": "Inställningar",
+        "profile": "Profil",
+        "appearance": "Utseende"
+    },
+    "landing": {
+        "title": "Välkommen till LanEntrance",
+        "subtitle": "Snabb incheckning på plats för dina LAN-evenemang.",
+        "getStarted": "Kom igång",
+        "logIn": "Logga in",
+        "signIn": "Logga in",
+        "register": "Registrera",
+        "hero": "Snabb och smidig incheckning för varje deltagare.",
+        "heroDescription": "LanEntrance hanterar entrén till evenemanget — skanna biljetter, verifiera identiteter och följ deltagandet. Få in alla genom dörren och in i action.",
+        "openDashboard": "Öppna incheckningsöversikten",
+        "loginViaLanCore": "Logga in via LanCore",
+        "features": {
+            "scanning": {
+                "title": "Biljettskanning",
+                "description": "Skanna QR-koder eller slå upp biljetter manuellt. Validera på några sekunder."
+            },
+            "attendance": {
+                "title": "Närvarouppföljning",
+                "description": "Se vilka som är incheckade, vilka som väntar och antal i realtid."
+            },
+            "sso": {
+                "title": "LanCore SSO",
+                "description": "Personalen autentiseras via LanCore. Roller och behörigheter synkas automatiskt."
+            }
+        },
+        "footer": "Drivs av LanEntrance — Del av Lan-Software-ekosystemet",
+        "headTitle": "LanEntrance — Incheckning till evenemang"
+    },
+    "dashboard": {
+        "title": "Översikt",
+        "welcome": "Välkommen tillbaka!"
+    },
+    "entrance": {
+        "scanner": {
+            "title": "Skanner",
+            "description": "Skanna QR-koder på biljetter för att checka in deltagare.",
+            "cameraRequest": "Tillåt kameraåtkomst för att börja skanna.",
+            "scanning": "Skannar...",
+            "lastScanned": "Senast skannad",
+            "checkInSuccess": "Incheckad",
+            "checkInError": "Incheckning misslyckades",
+            "alreadyChecked": "Redan incheckad",
+            "invalid": "Ogiltig biljett",
+            "manualEntry": "Manuell inmatning"
+        },
+        "lookup": {
+            "title": "Biljettsökning",
+            "description": "Hitta en biljett via namn, e-post eller biljettkod.",
+            "searchPlaceholder": "Sök efter namn, e-post eller kod",
+            "empty": "Inga biljetter matchar din sökning.",
+            "results": "Resultat"
+        },
+        "analytics": {
+            "title": "Analys",
+            "description": "Incheckningsstatistik för det aktuella evenemanget",
+            "totalCheckIns": "Totalt antal incheckningar",
+            "attendanceRate": "Närvarofrekvens",
+            "checkInsOverTime": "Incheckningar över tid",
+            "byTicketType": "Per biljettyp"
+        },
+        "events": {
+            "title": "Välj evenemang",
+            "description": "Välj evenemanget du vill arbeta med",
+            "select": "Välj",
+            "clear": "Rensa val",
+            "current": "Nuvarande evenemang",
+            "empty": "Inga evenemang tillgängliga"
+        }
+    },
+    "validation": {
+        "required": "Detta fält är obligatoriskt",
+        "email": "Ange en giltig e-postadress",
+        "minLength": "Måste vara minst {min} tecken",
+        "maxLength": "Får inte vara fler än {max} tecken",
+        "passwordMatch": "Lösenorden måste stämma överens",
+        "invalid": "Ogiltigt värde"
+    }
+}

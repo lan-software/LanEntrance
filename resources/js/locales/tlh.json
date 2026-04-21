@@ -1,0 +1,188 @@
+{
+    "common": {
+        "appName": "LanEntrance",
+        "loading": "ghoStaH...",
+        "saving": "polchoHtaH...",
+        "error": "Qagh",
+        "success": "Qapla'",
+        "save": "pol",
+        "saved": "polpu'.",
+        "cancel": "qIl",
+        "delete": "Qaw'",
+        "edit": "choH",
+        "close": "SoQmoH",
+        "submit": "nob",
+        "search": "nej",
+        "settings": "nabmey",
+        "logout": "mej",
+        "profile": "pong De'",
+        "dashboard": "De' jIH",
+        "admin": "che'wI'",
+        "users": "lo'wI'pu'",
+        "back": "tlhoS",
+        "create": "chen",
+        "update": "chu'choH",
+        "confirm": "lu'",
+        "yes": "HIja'",
+        "no": "ghobe'",
+        "add": "chel",
+        "remove": "teq",
+        "actions": "vangmey",
+        "view": "legh",
+        "copy": "velqa'moH",
+        "copied": "velqa'pu'",
+        "optional": "chaq",
+        "required": "poQlu'",
+        "loadingMore": "latlh ghoStaH...",
+        "noResults": "pagh Sampu'",
+        "showMore": "latlh 'aghHa'",
+        "showLess": "puS 'aghHa'"
+    },
+    "auth": {
+        "login": {
+            "title": "LanEntrance 'el",
+            "description": "LanCore De'wI'lIj lo' 'ej taH",
+            "email": "De'wI' ngeb",
+            "emailPlaceholder": "email@example.com",
+            "password": "vo'ral",
+            "passwordPlaceholder": "vo'ral",
+            "rememberMe": "jIH qaw",
+            "forgotPassword": "vo'ral DalIjpu''a'?",
+            "button": "'el",
+            "signInWithLanCore": "LanCore lo' 'ej 'el"
+        },
+        "verifyEmail": {
+            "title": "De'wI' ngeblIj yIngu'",
+            "description": "Dachu'qa'moH batlh qatlho'! taHmeH, De'wI' ngeblIj yIngu'.",
+            "resendButton": "De'wI' ngu'meH De' ngeHqa'",
+            "linkSent": "De'wI' chu' ngeHta' De'wI' ngeblIjvaD.",
+            "logout": "mej"
+        },
+        "confirmPassword": {
+            "title": "vo'ralIj yIlu'",
+            "description": "Hup Hol 'oH naDev'e'. DataH pa' vo'ralIj yIlu'.",
+            "password": "vo'ral",
+            "passwordPlaceholder": "vo'ral",
+            "button": "lu'"
+        },
+        "ssoStatus": {
+            "title": "'eltaH...",
+            "description": "LanCore 'el mIw wIruch.",
+            "error": "'elpu'be'.",
+            "retry": "qen nID"
+        }
+    },
+    "settings": {
+        "title": "nabmey",
+        "description": "De'wI'lIj nabmey DuH",
+        "profile": {
+            "title": "pong De'",
+            "description": "LanCore Daq pong De'lIj naw'lu'",
+            "name": "pong",
+            "email": "De'wI' ngeb",
+            "updateButton": "pol",
+            "updated": "polpu'."
+        },
+        "appearance": {
+            "title": "boch",
+            "description": "De'wI'lIj boch nabmey yIchu'",
+            "theme": "Dotlh",
+            "light": "wovbogh",
+            "dark": "Hurghbogh",
+            "system": "patlIj"
+        },
+        "language": {
+            "current": "'ang Hol",
+            "managedInLanCore": "LanCore pong De'Daq HollIj yIchoH."
+        }
+    },
+    "navigation": {
+        "home": "juH",
+        "dashboard": "De' jIH",
+        "entrance": "'elmeH",
+        "scanner": "poch",
+        "lookup": "lojmIt Sam",
+        "analytics": "nabmey naw'",
+        "events": "wanI'mey",
+        "settings": "nabmey",
+        "profile": "pong De'",
+        "appearance": "boch"
+    },
+    "landing": {
+        "title": "LanEntrance nuqneH",
+        "subtitle": "LAN wanI'meyvaD lojmIt ngu' nom.",
+        "getStarted": "taghmoH",
+        "logIn": "'el",
+        "signIn": "'el",
+        "register": "chen",
+        "hero": "Hoch 'elwI'vaD lojmIt nom 'ej bIH.",
+        "heroDescription": "LanEntrance wanI' lojmIt luH — lojmItmey poch, ghot ngu' 'ej 'elwI'pu' tlhaq. Ghotpu' lojmIt 'el 'ej wanI' jaj.",
+        "openDashboard": "'el De' jIH poSmoH",
+        "loginViaLanCore": "LanCore lo' 'ej 'el",
+        "features": {
+            "scanning": {
+                "title": "lojmIt poch",
+                "description": "QR yInmey poch pagh nab lojmIt Sam. loQ poHDaq luH."
+            },
+            "attendance": {
+                "title": "'elwI'pu' tlhaq",
+                "description": "'elpu' bogh, loSbogh 'ej DaH mI' legh."
+            },
+            "sso": {
+                "title": "LanCore SSO",
+                "description": "LanCore lo' vumwI'pu' lugh. patmey 'ej yaS bejlu'."
+            }
+        },
+        "footer": "LanEntrance vaj — Lan-Software pat'e'",
+        "headTitle": "LanEntrance — wanI' 'elmeH"
+    },
+    "dashboard": {
+        "title": "De' jIH",
+        "welcome": "narghmo' nuqneH!"
+    },
+    "entrance": {
+        "scanner": {
+            "title": "poch",
+            "description": "'elwI'pu' 'elmeH lojmIt QR-yIn yIpoch.",
+            "cameraRequest": "pochtaHmeH mIllogh HoS yIchaw'.",
+            "scanning": "pochtaH...",
+            "lastScanned": "Dung pochpu'bogh",
+            "checkInSuccess": "'elpu'",
+            "checkInError": "'elpu'be'",
+            "alreadyChecked": "'elpu'ta'",
+            "invalid": "lojmIt lu'be'",
+            "manualEntry": "ghItlh 'el"
+        },
+        "lookup": {
+            "title": "lojmIt Sam",
+            "description": "pong, De'wI' ngeb, pagh lojmIt mI' lo' 'ej lojmIt Sam.",
+            "searchPlaceholder": "pong, De'wI' ngeb, pagh mI' lo' Sam",
+            "empty": "wa' lojmIt Sam SamlaHbe'.",
+            "results": "SamghomDI'"
+        },
+        "analytics": {
+            "title": "nabmey naw'",
+            "description": "DaH wanI' 'el nabmey",
+            "totalCheckIns": "'el Hoch",
+            "attendanceRate": "'el San",
+            "checkInsOverTime": "poH 'elpu'",
+            "byTicketType": "lojmIt Segh"
+        },
+        "events": {
+            "title": "wanI' wIv",
+            "description": "DavumHa'bogh wanI' wIv",
+            "select": "wIv",
+            "clear": "wIv Qaw'",
+            "current": "DaH wanI'",
+            "empty": "wanI'mey tu'laHbe'"
+        }
+    },
+    "validation": {
+        "required": "yab vam poQlu'",
+        "email": "De'wI' ngeb lu'lu'bogh yIja'",
+        "minLength": "loQ {min} tetlh law'",
+        "maxLength": "law'be' {max} tetlh law'",
+        "passwordMatch": "vo'ralmey rurnIS",
+        "invalid": "lu'be'lu'bogh"
+    }
+}

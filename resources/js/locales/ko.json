@@ -1,0 +1,188 @@
+{
+    "common": {
+        "appName": "LanEntrance",
+        "loading": "로드 중...",
+        "saving": "저장 중...",
+        "error": "오류",
+        "success": "성공",
+        "save": "저장",
+        "saved": "저장되었습니다.",
+        "cancel": "취소",
+        "delete": "삭제",
+        "edit": "편집",
+        "close": "닫기",
+        "submit": "제출",
+        "search": "검색",
+        "settings": "설정",
+        "logout": "로그아웃",
+        "profile": "프로필",
+        "dashboard": "대시보드",
+        "admin": "관리자",
+        "users": "사용자",
+        "back": "뒤로",
+        "create": "생성",
+        "update": "업데이트",
+        "confirm": "확인",
+        "yes": "예",
+        "no": "아니요",
+        "add": "추가",
+        "remove": "제거",
+        "actions": "작업",
+        "view": "보기",
+        "copy": "복사",
+        "copied": "복사됨",
+        "optional": "선택 사항",
+        "required": "필수",
+        "loadingMore": "더 불러오는 중...",
+        "noResults": "결과를 찾을 수 없습니다",
+        "showMore": "더 보기",
+        "showLess": "간략히 보기"
+    },
+    "auth": {
+        "login": {
+            "title": "LanEntrance에 로그인",
+            "description": "LanCore 계정으로 로그인하여 계속하세요",
+            "email": "이메일 주소",
+            "emailPlaceholder": "email@example.com",
+            "password": "비밀번호",
+            "passwordPlaceholder": "비밀번호",
+            "rememberMe": "로그인 유지",
+            "forgotPassword": "비밀번호를 잊으셨나요?",
+            "button": "로그인",
+            "signInWithLanCore": "LanCore로 로그인"
+        },
+        "verifyEmail": {
+            "title": "이메일 주소 확인",
+            "description": "가입해 주셔서 감사합니다! 계속하려면 이메일을 확인하세요.",
+            "resendButton": "확인 이메일 다시 보내기",
+            "linkSent": "새 확인 링크가 이메일 주소로 전송되었습니다.",
+            "logout": "로그아웃"
+        },
+        "confirmPassword": {
+            "title": "비밀번호 확인",
+            "description": "애플리케이션의 보안 영역입니다. 계속하기 전에 비밀번호를 확인하세요.",
+            "password": "비밀번호",
+            "passwordPlaceholder": "비밀번호",
+            "button": "확인"
+        },
+        "ssoStatus": {
+            "title": "로그인 중...",
+            "description": "LanCore 로그인 과정을 완료하는 중입니다.",
+            "error": "로그인에 실패했습니다.",
+            "retry": "다시 시도"
+        }
+    },
+    "settings": {
+        "title": "설정",
+        "description": "계정 설정 및 환경설정 관리",
+        "profile": {
+            "title": "프로필",
+            "description": "프로필은 LanCore에서 관리됩니다",
+            "name": "이름",
+            "email": "이메일 주소",
+            "updateButton": "저장",
+            "updated": "저장되었습니다."
+        },
+        "appearance": {
+            "title": "모양",
+            "description": "계정의 모양 설정 업데이트",
+            "theme": "테마",
+            "light": "밝게",
+            "dark": "어둡게",
+            "system": "시스템"
+        },
+        "language": {
+            "current": "표시 언어",
+            "managedInLanCore": "LanCore 프로필에서 언어를 변경하세요."
+        }
+    },
+    "navigation": {
+        "home": "홈",
+        "dashboard": "대시보드",
+        "entrance": "입장",
+        "scanner": "스캐너",
+        "lookup": "티켓 조회",
+        "analytics": "분석",
+        "events": "이벤트",
+        "settings": "설정",
+        "profile": "프로필",
+        "appearance": "모양"
+    },
+    "landing": {
+        "title": "LanEntrance에 오신 것을 환영합니다",
+        "subtitle": "LAN 이벤트를 위한 빠른 현장 티켓 체크인.",
+        "getStarted": "시작하기",
+        "logIn": "로그인",
+        "signIn": "로그인",
+        "register": "등록",
+        "hero": "모든 참가자를 위한 빠르고 원활한 체크인.",
+        "heroDescription": "LanEntrance는 이벤트 입장을 처리합니다 — 티켓을 스캔하고, 신원을 확인하며, 출석을 추적합니다. 사람들을 문을 통해 들여보내고 행사에 바로 참여하게 하세요.",
+        "openDashboard": "체크인 대시보드 열기",
+        "loginViaLanCore": "LanCore를 통해 로그인",
+        "features": {
+            "scanning": {
+                "title": "티켓 스캔",
+                "description": "QR 코드를 스캔하거나 티켓을 수동으로 조회하세요. 몇 초 만에 확인하세요."
+            },
+            "attendance": {
+                "title": "출석 추적",
+                "description": "누가 체크인했는지, 누가 대기 중인지, 실시간 인원수를 확인하세요."
+            },
+            "sso": {
+                "title": "LanCore SSO",
+                "description": "스태프는 LanCore를 통해 인증합니다. 역할과 권한이 자동으로 동기화됩니다."
+            }
+        },
+        "footer": "LanEntrance 제공 — Lan-Software 생태계의 일부",
+        "headTitle": "LanEntrance — 이벤트 체크인"
+    },
+    "dashboard": {
+        "title": "대시보드",
+        "welcome": "다시 오신 것을 환영합니다!"
+    },
+    "entrance": {
+        "scanner": {
+            "title": "스캐너",
+            "description": "티켓 QR 코드를 스캔하여 참석자를 체크인하세요.",
+            "cameraRequest": "스캔을 시작하려면 카메라 접근을 허용하세요.",
+            "scanning": "스캔 중...",
+            "lastScanned": "마지막 스캔",
+            "checkInSuccess": "체크인 완료",
+            "checkInError": "체크인 실패",
+            "alreadyChecked": "이미 체크인됨",
+            "invalid": "잘못된 티켓",
+            "manualEntry": "수동 입력"
+        },
+        "lookup": {
+            "title": "티켓 조회",
+            "description": "이름, 이메일 또는 티켓 코드로 티켓을 찾으세요.",
+            "searchPlaceholder": "이름, 이메일 또는 코드로 검색",
+            "empty": "검색과 일치하는 티켓이 없습니다.",
+            "results": "결과"
+        },
+        "analytics": {
+            "title": "분석",
+            "description": "현재 이벤트의 체크인 통계",
+            "totalCheckIns": "총 체크인",
+            "attendanceRate": "참석률",
+            "checkInsOverTime": "시간별 체크인",
+            "byTicketType": "티켓 유형별"
+        },
+        "events": {
+            "title": "이벤트 선택",
+            "description": "작업할 이벤트를 선택하세요",
+            "select": "선택",
+            "clear": "선택 해제",
+            "current": "현재 이벤트",
+            "empty": "사용 가능한 이벤트가 없습니다"
+        }
+    },
+    "validation": {
+        "required": "필수 입력 항목입니다",
+        "email": "올바른 이메일 주소를 입력하세요",
+        "minLength": "{min}자 이상이어야 합니다",
+        "maxLength": "{max}자 이하이어야 합니다",
+        "passwordMatch": "비밀번호가 일치해야 합니다",
+        "invalid": "잘못된 값"
+    }
+}
