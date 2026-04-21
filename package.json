@@ -13,8 +13,6 @@
         "types:check": "vue-tsc --noEmit",
         "test": "vitest run",
         "test:watch": "vitest",
-        "i18n:push": "tolgee push",
-        "i18n:pull": "tolgee pull",
         "test:coverage": "vitest run --coverage",
         "test:e2e": "playwright test"
     },
@@ -24,7 +22,6 @@
         "@playwright/test": "^1.52.0",
         "@stylistic/eslint-plugin": "^5.10.0",
         "@tailwindcss/vite": "^4.1.11",
-        "@tolgee/cli": "^2.16.1",
         "@types/node": "^22.13.5",
         "@vitejs/plugin-vue": "^6.0.0",
         "@vitest/coverage-v8": "^4.1.0",
