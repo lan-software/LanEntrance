@@ -33,7 +33,7 @@ readonly class ValidationResponse
         return new self(
             decision: (string) ($data['decision'] ?? 'error'),
             message: (string) ($data['message'] ?? ''),
-            validationId: (string) ($data['validation_id'] ?? ''),
+            validationId: (string) ($data['validation_id'] ?? $data['audit_id'] ?? ''),
             degraded: (bool) ($data['degraded'] ?? false),
             overrideAllowed: (bool) ($data['override_allowed'] ?? false),
             auditId: isset($data['audit_id']) ? (string) $data['audit_id'] : null,

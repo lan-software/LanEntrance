@@ -22,10 +22,44 @@ function mountDisplay(result: DecisionResult) {
 }
 
 describe('DecisionDisplay', () => {
-    it('renders green overlay for valid decision', () => {
+    it('renders green overlay with Valid Ticket title before check-in', () => {
         const wrapper = mountDisplay(makeResult({ decision: 'valid' }));
         expect(wrapper.find('.bg-green-600').exists()).toBe(true);
+        expect(wrapper.text()).toContain('Valid Ticket');
+    });
+
+    it('switches title to Checked In once checkin_id is set', () => {
+        const wrapper = mountDisplay(
+            makeResult({ decision: 'valid', checkin_id: 'chk_xyz' }),
+        );
         expect(wrapper.text()).toContain('Checked In');
+    });
+
+    it('shows Check In button for valid decision without checkin_id', () => {
+        const wrapper = mountDisplay(makeResult({ decision: 'valid' }));
+        const btn = wrapper
+            .findAll('button')
+            .find((b) => b.text().trim() === 'Check In');
+        expect(btn).toBeDefined();
+    });
+
+    it('hides Check In button once the ticket has a checkin_id', () => {
+        const wrapper = mountDisplay(
+            makeResult({ decision: 'valid', checkin_id: 'chk_xyz' }),
+        );
+        const btn = wrapper
+            .findAll('button')
+            .find((b) => b.text().trim() === 'Check In');
+        expect(btn).toBeUndefined();
+    });
+
+    it('emits checkin on Check In click', async () => {
+        const wrapper = mountDisplay(makeResult({ decision: 'valid' }));
+        const btn = wrapper
+            .findAll('button')
+            .find((b) => b.text().trim() === 'Check In');
+        await btn!.trigger('click');
+        expect(wrapper.emitted('checkin')).toHaveLength(1);
     });
 
     it('renders red overlay for invalid decision', () => {

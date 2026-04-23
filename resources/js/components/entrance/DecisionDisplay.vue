@@ -21,6 +21,7 @@ const props = defineProps<{
 defineEmits<{
     dismiss: [];
     override: [];
+    checkin: [];
     verifyCheckin: [];
     confirmPayment: [method: string];
 }>();
@@ -32,7 +33,11 @@ const tierConfig = computed(() => {
         Decision,
         { class: string; icon: typeof CircleCheck; text: string }
     > = {
-        valid: { class: 'bg-green-600', icon: CircleCheck, text: 'Checked In' },
+        valid: {
+            class: 'bg-green-600',
+            icon: CircleCheck,
+            text: props.result.checkin_id ? 'Checked In' : 'Valid Ticket',
+        },
         invalid: { class: 'bg-red-600', icon: CircleX, text: 'Entry Denied' },
         denied_by_policy: {
             class: 'bg-red-600',
@@ -334,6 +339,16 @@ const isActionRequired = computed(() =>
             <p v-if="result.audit_id" class="text-center text-xs text-white/40">
                 Ref: {{ result.audit_id }}
             </p>
+
+            <!-- Plain check-in (ticket validated, not yet checked in) -->
+            <button
+                v-if="result.decision === 'valid' && !result.checkin_id"
+                type="button"
+                class="w-full rounded-2xl bg-white py-4 text-lg font-bold text-green-700 shadow-lg transition-transform active:scale-[0.98]"
+                @click="$emit('checkin')"
+            >
+                Check In
+            </button>
 
             <!-- Verification confirm -->
             <button

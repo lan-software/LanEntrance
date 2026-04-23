@@ -23,7 +23,8 @@ const scannerRef = ref<InstanceType<typeof QrScanner> | null>(null);
 const overrideVisible = ref(false);
 
 const { state, transition, setLoading, resetToReady } = useEntranceState();
-const { validate, verifyCheckin, confirmPayment, override } = useCheckin();
+const { validate, checkin, verifyCheckin, confirmPayment, override } =
+    useCheckin();
 const { queue, enqueue, clear: clearQueue, retryAll } = useRequestQueue();
 
 // Start in READY state
@@ -47,6 +48,19 @@ async function onQrDecoded(token: string) {
 
 function onScanError() {
     // Camera error — scanner component shows its own error UI.
+}
+
+async function onCheckin() {
+    if (!state.lastToken || !state.lastResult) {
+        return;
+    }
+
+    setLoading(true);
+    const result = await checkin(
+        state.lastToken,
+        state.lastResult.validation_id,
+    );
+    transition('DECISION_DISPLAY', result);
 }
 
 async function onVerifyCheckin() {
@@ -171,6 +185,7 @@ onUnmounted(() => {
         :result="state.lastResult"
         @dismiss="resetAndResume"
         @override="showOverride"
+        @checkin="onCheckin"
         @verify-checkin="onVerifyCheckin"
         @confirm-payment="onConfirmPayment"
     />
