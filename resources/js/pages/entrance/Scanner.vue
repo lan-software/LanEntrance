@@ -141,7 +141,7 @@ onUnmounted(() => {
         </div>
 
         <!-- Scanner viewport -->
-        <div class="flex-1">
+        <div class="min-h-0 flex-1 overflow-hidden">
             <QrScanner
                 ref="scannerRef"
                 @decoded="onQrDecoded"

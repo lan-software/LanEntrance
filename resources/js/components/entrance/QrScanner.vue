@@ -79,7 +79,7 @@ defineExpose({ resume });
 </script>
 
 <template>
-    <div class="relative h-full w-full">
+    <div class="relative h-full w-full overflow-hidden">
         <div
             v-if="cameraError"
             class="flex h-full flex-col items-center justify-center gap-4 p-6"
@@ -100,6 +100,7 @@ defineExpose({ resume });
             :constraints="{ facingMode: 'environment' }"
             :formats="['qr_code']"
             :track="trackDetectedCodes"
+            class="qr-stream"
             @detect="onDetect"
             @camera-on="onCameraOn"
             @camera-off="onCameraOff"
@@ -123,3 +124,12 @@ defineExpose({ resume });
         </QrcodeStream>
     </div>
 </template>
+
+<style scoped>
+.qr-stream,
+.qr-stream :deep(video) {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+</style>

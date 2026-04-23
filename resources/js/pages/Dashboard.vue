@@ -1,16 +1,14 @@
 <script setup lang="ts">
 import { Head } from '@inertiajs/vue3';
-import { useI18n } from 'vue-i18n';
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
+import i18n from '@/i18n';
 import { dashboard } from '@/routes';
-
-const { t } = useI18n();
 
 defineOptions({
     layout: {
         breadcrumbs: [
             {
-                title: () => t('dashboard.title'),
+                title: () => i18n.global.t('dashboard.title'),
                 href: dashboard(),
             },
         ],
