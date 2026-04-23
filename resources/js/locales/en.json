@@ -42,6 +42,8 @@
         "login": {
             "title": "Log in to LanEntrance",
             "description": "Sign in with your LanCore account to continue",
+            "layoutTitle": "Log in to your account",
+            "layoutDescription": "Enter your email and password below to log in",
             "email": "Email address",
             "emailPlaceholder": "email@example.com",
             "password": "Password",
@@ -49,7 +51,62 @@
             "rememberMe": "Remember me",
             "forgotPassword": "Forgot password?",
             "button": "Log in",
-            "signInWithLanCore": "Sign in with LanCore"
+            "signInWithLanCore": "Sign in with LanCore",
+            "noAccount": "Don't have an account?",
+            "signUp": "Sign up"
+        },
+        "register": {
+            "layoutTitle": "Create an account",
+            "layoutDescription": "Enter your details below to create your account",
+            "headTitle": "Register",
+            "name": "Name",
+            "namePlaceholder": "Full name",
+            "email": "Email address",
+            "emailPlaceholder": "email@example.com",
+            "password": "Password",
+            "passwordPlaceholder": "Password",
+            "confirmPassword": "Confirm password",
+            "confirmPasswordPlaceholder": "Confirm password",
+            "button": "Create account",
+            "alreadyHaveAccount": "Already have an account?",
+            "logIn": "Log in"
+        },
+        "forgotPassword": {
+            "layoutTitle": "Forgot password",
+            "layoutDescription": "Enter your email to receive a password reset link",
+            "headTitle": "Forgot password",
+            "email": "Email address",
+            "emailPlaceholder": "email@example.com",
+            "button": "Email password reset link",
+            "returnToLogin": "Or, return to",
+            "logIn": "log in"
+        },
+        "resetPassword": {
+            "layoutTitle": "Reset password",
+            "layoutDescription": "Please enter your new password below",
+            "headTitle": "Reset password",
+            "email": "Email",
+            "password": "Password",
+            "passwordPlaceholder": "Password",
+            "confirmPassword": "Confirm password",
+            "confirmPasswordPlaceholder": "Confirm password",
+            "button": "Reset password"
+        },
+        "twoFactor": {
+            "headTitle": "Two-factor authentication",
+            "authCode": {
+                "title": "Authentication code",
+                "description": "Enter the authentication code provided by your authenticator application.",
+                "switchToRecovery": "login using a recovery code"
+            },
+            "recoveryCode": {
+                "title": "Recovery code",
+                "description": "Please confirm access to your account by entering one of your emergency recovery codes.",
+                "switchToAuthCode": "login using an authentication code"
+            },
+            "orYouCan": "or you can",
+            "continueButton": "Continue",
+            "recoveryCodePlaceholder": "Enter recovery code"
         },
         "verifyEmail": {
             "title": "Verify your email address",
@@ -63,7 +120,7 @@
             "description": "This is a secure area of the application. Please confirm your password before continuing.",
             "password": "Password",
             "passwordPlaceholder": "Password",
-            "button": "Confirm"
+            "button": "Confirm password"
         },
         "ssoStatus": {
             "title": "Signing you in...",
@@ -78,18 +135,66 @@
         "profile": {
             "title": "Profile",
             "description": "Your profile is managed in LanCore",
+            "breadcrumb": "Profile settings",
+            "headTitle": "Profile settings",
+            "srHeading": "Profile settings",
+            "infoTitle": "Profile information",
+            "infoDescription": "Update your name and email address",
             "name": "Name",
+            "namePlaceholder": "Full name",
             "email": "Email address",
+            "emailPlaceholder": "Email address",
+            "unverifiedEmail": "Your email address is unverified.",
+            "resendVerification": "Click here to resend the verification email.",
+            "verificationLinkSent": "A new verification link has been sent to your email address.",
             "updateButton": "Save",
             "updated": "Saved."
         },
         "appearance": {
             "title": "Appearance",
             "description": "Update your account's appearance settings",
+            "breadcrumb": "Appearance settings",
+            "headTitle": "Appearance settings",
+            "srHeading": "Appearance settings",
             "theme": "Theme",
             "light": "Light",
             "dark": "Dark",
             "system": "System"
+        },
+        "security": {
+            "breadcrumb": "Security settings",
+            "headTitle": "Security settings",
+            "srHeading": "Security settings",
+            "passwordTitle": "Update password",
+            "passwordDescription": "Ensure your account is using a long, random password to stay secure",
+            "currentPassword": "Current password",
+            "currentPasswordPlaceholder": "Current password",
+            "newPassword": "New password",
+            "newPasswordPlaceholder": "New password",
+            "confirmPassword": "Confirm password",
+            "confirmPasswordPlaceholder": "Confirm password",
+            "savePassword": "Save password",
+            "saved": "Saved.",
+            "twoFactorTitle": "Two-factor authentication",
+            "twoFactorDescription": "Manage your two-factor authentication settings",
+            "twoFactorDisabledInfo": "When you enable two-factor authentication, you will be prompted for a secure pin during login. This pin can be retrieved from a TOTP-supported application on your phone.",
+            "twoFactorEnabledInfo": "You will be prompted for a secure, random pin during login, which you can retrieve from the TOTP-supported application on your phone.",
+            "continueSetup": "Continue setup",
+            "enable2fa": "Enable 2FA",
+            "disable2fa": "Disable 2FA"
+        },
+        "deleteAccount": {
+            "title": "Delete account",
+            "description": "Delete your account and all of its resources",
+            "warning": "Warning",
+            "warningMessage": "Please proceed with caution, this cannot be undone.",
+            "triggerButton": "Delete account",
+            "dialogTitle": "Are you sure you want to delete your account?",
+            "dialogDescription": "Once your account is deleted, all of its resources and data will also be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.",
+            "passwordLabel": "Password",
+            "passwordPlaceholder": "Password",
+            "cancelButton": "Cancel",
+            "confirmButton": "Delete account"
         },
         "language": {
             "current": "Display language",
@@ -106,7 +211,8 @@
         "events": "Events",
         "settings": "Settings",
         "profile": "Profile",
-        "appearance": "Appearance"
+        "appearance": "Appearance",
+        "platform": "Platform"
     },
     "landing": {
         "title": "Welcome to LanEntrance",
@@ -143,6 +249,7 @@
     "entrance": {
         "scanner": {
             "title": "Scanner",
+            "headTitle": "Entrance Scanner",
             "description": "Scan ticket QR codes to check attendees in.",
             "cameraRequest": "Allow camera access to begin scanning.",
             "scanning": "Scanning...",
@@ -151,22 +258,41 @@
             "checkInError": "Check-in failed",
             "alreadyChecked": "Already checked in",
             "invalid": "Invalid ticket",
-            "manualEntry": "Manual entry"
+            "manualEntry": "Manual entry",
+            "manualLookup": "Manual Lookup"
         },
         "lookup": {
             "title": "Ticket lookup",
+            "headTitle": "Manual Lookup",
             "description": "Find a ticket by name, email, or ticket code.",
-            "searchPlaceholder": "Search by name, email, or code",
+            "searchPlaceholder": "Search attendees...",
+            "backToScanner": "Back to Scanner",
+            "searchHintTitle": "You can search by:",
+            "searchHintName": "Attendee name (e.g., \"Max Mustermann\")",
+            "searchHintEmail": "Email address (e.g., \"max@example.com\")",
+            "searchHintMin": "Type at least 2 characters to start searching. You can also enter a validation token directly using the {link} option below.",
+            "searchHintManualLink": "Enter token manually",
+            "noResults": "No attendees found for \"{query}\"",
+            "seat": "Seat {seat}",
             "empty": "No tickets match your search.",
             "results": "Results"
         },
         "analytics": {
             "title": "Analytics",
+            "headTitle": "Entrance Analytics",
             "description": "Check-in statistics for the current event",
+            "totalScans": "Total Scans",
+            "checkedIn": "Checked In",
+            "denied": "Denied",
+            "overrides": "Overrides",
+            "paymentsCollected": "Payments Collected",
+            "avgCheckinTime": "Avg Check-in Time",
+            "scansPerHour": "Scans per Hour",
             "totalCheckIns": "Total check-ins",
             "attendanceRate": "Attendance rate",
             "checkInsOverTime": "Check-ins over time",
-            "byTicketType": "By ticket type"
+            "byTicketType": "By ticket type",
+            "loadError": "Unable to load analytics."
         },
         "events": {
             "title": "Select event",
@@ -175,7 +301,116 @@
             "clear": "Clear selection",
             "current": "Current event",
             "empty": "No events available"
+        },
+        "decision": {
+            "checkedIn": "Checked In",
+            "validTicket": "Valid Ticket",
+            "entryDenied": "Entry Denied",
+            "alreadyCheckedIn": "Already Checked In",
+            "overrideAvailable": "Override Available",
+            "verificationRequired": "Verification Required",
+            "paymentRequired": "Payment Required",
+            "invalidSignature": "Invalid Signature",
+            "unknownSigningKey": "Unknown Signing Key",
+            "ticketExpired": "Ticket Expired",
+            "ticketRevoked": "Ticket Revoked",
+            "seating": "Seating",
+            "ticketAddons": "Ticket Addons",
+            "receiptSent": "Receipt sent to attendee's email",
+            "pleaseVerify": "Please Verify",
+            "amountDue": "Amount Due",
+            "items": "Items",
+            "paymentMethod": "Payment Method",
+            "cash": "Cash",
+            "card": "Card",
+            "membersCheckedIn": "{checked} of {total} members checked in",
+            "checkIn": "Check In",
+            "confirmAndCheckIn": "Confirm & Check In",
+            "confirmPaymentAndCheckIn": "Confirm Payment & Check In",
+            "override": "Override",
+            "nextScan": "Next Scan"
+        },
+        "override": {
+            "title": "Override",
+            "description": "Provide a reason for overriding the restriction for {attendee}.",
+            "fallbackAttendee": "this attendee",
+            "placeholder": "Override reason (minimum 10 characters)...",
+            "charsNeeded": "{count} more characters needed",
+            "cancel": "Cancel",
+            "confirm": "Confirm Override"
+        },
+        "tokenEntry": {
+            "enterManually": "Enter token manually",
+            "placeholder": "Paste or type ticket token...",
+            "validate": "Validate"
+        },
+        "qrScanner": {
+            "useManualLookup": "Use Manual Lookup instead",
+            "errors": {
+                "NotAllowedError": "Camera permission was denied. Please allow camera access in your browser settings.",
+                "NotFoundError": "No camera found on this device.",
+                "NotSupportedError": "Secure connection (HTTPS) required for camera access.",
+                "NotReadableError": "Camera is in use by another application.",
+                "OverconstrainedError": "No suitable camera found.",
+                "StreamApiNotSupportedError": "Your browser does not support camera streaming.",
+                "InsecureContextError": "Camera requires a secure (HTTPS) connection.",
+                "generic": "Camera error: {message}"
+            }
+        },
+        "queuedScans": {
+            "title": "Queued Scans ({count})",
+            "clear": "Clear",
+            "retriedCount": "{count}x retried",
+            "failed": "Failed",
+            "pendingMessage": "Pending scans will retry automatically when connectivity is restored"
+        },
+        "degraded": {
+            "message": "Reduced connectivity — results may be delayed or unavailable"
         }
+    },
+    "twoFactor": {
+        "recoveryCodes": {
+            "title": "2FA recovery codes",
+            "description": "Recovery codes let you regain access if you lose your 2FA device. Store them in a secure password manager.",
+            "viewButton": "View recovery codes",
+            "hideButton": "Hide recovery codes",
+            "regenerateButton": "Regenerate codes",
+            "usageNote": "Each recovery code can be used once to access your account and will be removed after use. If you need more, click {regenerateLink} above.",
+            "regenerateLink": "Regenerate codes"
+        },
+        "setup": {
+            "enabled": {
+                "title": "Two-factor authentication enabled",
+                "description": "Two-factor authentication is now enabled. Scan the QR code or enter the setup key in your authenticator app.",
+                "buttonText": "Close"
+            },
+            "verify": {
+                "title": "Verify authentication code",
+                "description": "Enter the 6-digit code from your authenticator app",
+                "buttonText": "Continue"
+            },
+            "initial": {
+                "title": "Enable two-factor authentication",
+                "description": "To finish enabling two-factor authentication, scan the QR code or enter the setup key in your authenticator app",
+                "buttonText": "Continue"
+            },
+            "orEnterManually": "or, enter the code manually",
+            "back": "Back",
+            "confirm": "Confirm"
+        }
+    },
+    "announcements": {
+        "dismiss": "Dismiss"
+    },
+    "userMenu": {
+        "settings": "Settings",
+        "logout": "Log out"
+    },
+    "navigation_menu": {
+        "navigationMenu": "Navigation menu"
+    },
+    "errors": {
+        "somethingWentWrong": "Something went wrong."
     },
     "validation": {
         "required": "This field is required",

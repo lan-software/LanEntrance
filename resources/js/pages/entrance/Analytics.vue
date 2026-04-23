@@ -53,7 +53,7 @@ const avgTimeFormatted = computed(() => {
 </script>
 
 <template>
-    <Head title="Entrance Analytics" />
+    <Head :title="$t('entrance.analytics.headTitle')" />
 
     <div class="mx-auto max-w-4xl space-y-6 p-4">
         <!-- Error state -->
@@ -63,7 +63,7 @@ const avgTimeFormatted = computed(() => {
         >
             <AlertCircle class="h-5 w-5 text-destructive" />
             <p class="text-sm text-destructive">
-                {{ stats.message ?? 'Unable to load analytics.' }}
+                {{ stats.message ?? $t('entrance.analytics.loadError') }}
             </p>
         </div>
 
@@ -75,7 +75,7 @@ const avgTimeFormatted = computed(() => {
                         class="flex flex-row items-center justify-between space-y-0 pb-2"
                     >
                         <CardTitle class="text-sm font-medium"
-                            >Total Scans</CardTitle
+                            >{{ $t('entrance.analytics.totalScans') }}</CardTitle
                         >
                         <BarChart3 class="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
@@ -91,7 +91,7 @@ const avgTimeFormatted = computed(() => {
                         class="flex flex-row items-center justify-between space-y-0 pb-2"
                     >
                         <CardTitle class="text-sm font-medium"
-                            >Checked In</CardTitle
+                            >{{ $t('entrance.analytics.checkedIn') }}</CardTitle
                         >
                         <CheckCircle2 class="h-4 w-4 text-green-500" />
                     </CardHeader>
@@ -107,7 +107,7 @@ const avgTimeFormatted = computed(() => {
                         class="flex flex-row items-center justify-between space-y-0 pb-2"
                     >
                         <CardTitle class="text-sm font-medium"
-                            >Denied</CardTitle
+                            >{{ $t('entrance.analytics.denied') }}</CardTitle
                         >
                         <XCircle class="h-4 w-4 text-destructive" />
                     </CardHeader>
@@ -121,7 +121,7 @@ const avgTimeFormatted = computed(() => {
                         class="flex flex-row items-center justify-between space-y-0 pb-2"
                     >
                         <CardTitle class="text-sm font-medium"
-                            >Overrides</CardTitle
+                            >{{ $t('entrance.analytics.overrides') }}</CardTitle
                         >
                         <Users class="h-4 w-4 text-orange-500" />
                     </CardHeader>
@@ -137,7 +137,7 @@ const avgTimeFormatted = computed(() => {
                         class="flex flex-row items-center justify-between space-y-0 pb-2"
                     >
                         <CardTitle class="text-sm font-medium"
-                            >Payments Collected</CardTitle
+                            >{{ $t('entrance.analytics.paymentsCollected') }}</CardTitle
                         >
                         <Banknote class="h-4 w-4 text-green-600" />
                     </CardHeader>
@@ -160,7 +160,7 @@ const avgTimeFormatted = computed(() => {
                         class="flex flex-row items-center justify-between space-y-0 pb-2"
                     >
                         <CardTitle class="text-sm font-medium"
-                            >Avg Check-in Time</CardTitle
+                            >{{ $t('entrance.analytics.avgCheckinTime') }}</CardTitle
                         >
                         <Clock class="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
@@ -176,7 +176,7 @@ const avgTimeFormatted = computed(() => {
             <Card v-if="stats.scans_per_hour?.length">
                 <CardHeader>
                     <CardTitle class="text-sm font-medium"
-                        >Scans per Hour</CardTitle
+                        >{{ $t('entrance.analytics.scansPerHour') }}</CardTitle
                     >
                 </CardHeader>
                 <CardContent>

@@ -17,15 +17,15 @@ defineOptions({
 </script>
 
 <template>
-    <Head title="Appearance settings" />
+    <Head :title="$t('settings.appearance.headTitle')" />
 
-    <h1 class="sr-only">Appearance settings</h1>
+    <h1 class="sr-only">{{ $t('settings.appearance.srHeading') }}</h1>
 
     <div class="space-y-6">
         <Heading
             variant="small"
-            title="Appearance settings"
-            description="Update your account's appearance settings"
+            :title="$t('settings.appearance.title')"
+            :description="$t('settings.appearance.description')"
         />
         <AppearanceTabs />
     </div>

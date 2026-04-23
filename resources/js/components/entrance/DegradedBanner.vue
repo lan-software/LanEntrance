@@ -10,7 +10,7 @@ import { AlertTriangle } from 'lucide-vue-next';
     >
         <AlertTriangle class="h-5 w-5 flex-shrink-0 animate-pulse" />
         <p class="text-sm font-medium">
-            Reduced connectivity — results may be delayed or unavailable
+            {{ $t('entrance.degraded.message') }}
         </p>
     </div>
 </template>

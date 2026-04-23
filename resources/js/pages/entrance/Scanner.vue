@@ -141,7 +141,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <Head title="Entrance Scanner" />
+    <Head :title="$t('entrance.scanner.headTitle')" />
 
     <DegradedBanner v-if="state.degraded" />
 
@@ -174,7 +174,7 @@ onUnmounted(() => {
                 class="flex w-full items-center justify-center gap-2 rounded-xl border bg-card px-4 py-3 text-sm font-medium transition-colors hover:bg-accent"
             >
                 <Search class="h-4 w-4" />
-                Manual Lookup
+                {{ $t('entrance.scanner.manualLookup') }}
             </Link>
         </div>
     </div>

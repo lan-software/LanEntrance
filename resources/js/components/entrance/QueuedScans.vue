@@ -22,7 +22,7 @@ function formatTime(timestamp: number): string {
     <div v-if="queue.length > 0" class="rounded-xl border bg-card p-4">
         <div class="mb-3 flex items-center justify-between">
             <h3 class="text-sm font-semibold text-muted-foreground">
-                Queued Scans ({{ queue.length }})
+                {{ $t('entrance.queuedScans.title', { count: queue.length }) }}
             </h3>
             <button
                 type="button"
@@ -30,7 +30,7 @@ function formatTime(timestamp: number): string {
                 @click="$emit('clear')"
             >
                 <Trash2 class="h-3 w-3" />
-                Clear
+                {{ $t('entrance.queuedScans.clear') }}
             </button>
         </div>
 
@@ -60,13 +60,13 @@ function formatTime(timestamp: number): string {
                     <p class="text-xs text-muted-foreground">
                         {{ formatTime(item.timestamp) }}
                         <span v-if="item.retryCount > 0">
-                            &middot; {{ item.retryCount }}x retried
+                            &middot; {{ $t('entrance.queuedScans.retriedCount', { count: item.retryCount }) }}
                         </span>
                         <span
                             v-if="item.status === 'failed'"
                             class="text-destructive"
                         >
-                            &middot; Failed
+                            &middot; {{ $t('entrance.queuedScans.failed') }}
                         </span>
                     </p>
                 </div>
@@ -74,7 +74,7 @@ function formatTime(timestamp: number): string {
         </ul>
 
         <p class="mt-2 text-center text-xs text-muted-foreground">
-            Pending scans will retry automatically when connectivity is restored
+            {{ $t('entrance.queuedScans.pendingMessage') }}
         </p>
     </div>
 </template>

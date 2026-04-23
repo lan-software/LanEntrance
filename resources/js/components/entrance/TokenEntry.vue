@@ -34,7 +34,7 @@ function handleSubmit() {
             @click="expanded = true"
         >
             <Keyboard class="h-4 w-4" />
-            Enter token manually
+            {{ $t('entrance.tokenEntry.enterManually') }}
         </button>
 
         <!-- Expanded: input + submit -->
@@ -42,12 +42,12 @@ function handleSubmit() {
             <Input
                 v-model="token"
                 type="text"
-                placeholder="Paste or type ticket token..."
+                :placeholder="$t('entrance.tokenEntry.placeholder')"
                 class="flex-1 font-mono text-sm"
                 autofocus
             />
             <Button type="submit" :disabled="token.trim().length === 0">
-                Validate
+                {{ $t('entrance.tokenEntry.validate') }}
             </Button>
         </form>
     </div>

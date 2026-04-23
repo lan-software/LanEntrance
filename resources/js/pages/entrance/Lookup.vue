@@ -84,7 +84,7 @@ async function onOverrideSubmit(reason: string) {
 </script>
 
 <template>
-    <Head title="Manual Lookup" />
+    <Head :title="$t('entrance.lookup.headTitle')" />
 
     <DegradedBanner v-if="state.degraded" />
 
@@ -106,7 +106,7 @@ async function onOverrideSubmit(reason: string) {
                 class="flex w-full items-center justify-center gap-2 rounded-xl border bg-card px-4 py-3 text-sm font-medium transition-colors hover:bg-accent"
             >
                 <Camera class="h-4 w-4" />
-                Back to Scanner
+                {{ $t('entrance.lookup.backToScanner') }}
             </Link>
         </div>
     </div>

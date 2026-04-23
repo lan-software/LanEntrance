@@ -55,7 +55,7 @@ function selectAttendee(token: string) {
             <Input
                 v-model="query"
                 type="search"
-                placeholder="Search attendees..."
+                :placeholder="$t('entrance.lookup.searchPlaceholder')"
                 class="pl-10"
                 @input="onInput"
             />
@@ -68,15 +68,13 @@ function selectAttendee(token: string) {
         >
             <Info class="mt-0.5 h-4 w-4 flex-shrink-0 text-muted-foreground" />
             <div class="text-sm text-muted-foreground">
-                <p class="font-medium text-foreground">You can search by:</p>
+                <p class="font-medium text-foreground">{{ $t('entrance.lookup.searchHintTitle') }}</p>
                 <ul class="mt-1 list-inside list-disc space-y-0.5">
-                    <li>Attendee name (e.g., "Max Mustermann")</li>
-                    <li>Email address (e.g., "max@example.com")</li>
+                    <li>{{ $t('entrance.lookup.searchHintName') }}</li>
+                    <li>{{ $t('entrance.lookup.searchHintEmail') }}</li>
                 </ul>
                 <p class="mt-1.5">
-                    Type at least 2 characters to start searching. You can also
-                    enter a validation token directly using the
-                    <strong>Enter token manually</strong> option below.
+                    {{ $t('entrance.lookup.searchHintMin', { link: $t('entrance.lookup.searchHintManualLink') }) }}
                 </p>
             </div>
         </div>
@@ -116,7 +114,7 @@ function selectAttendee(token: string) {
                             >···{{ attendee.validation_token_suffix }}</span
                         >
                         <span v-if="attendee.seat"
-                            >Seat {{ attendee.seat }}</span
+                            >{{ $t('entrance.lookup.seat', { seat: attendee.seat }) }}</span
                         >
                         <span
                             v-for="addon in attendee.addons ?? []"
@@ -141,7 +139,7 @@ function selectAttendee(token: string) {
             v-else-if="searched && query.length >= 2"
             class="py-8 text-center text-muted-foreground"
         >
-            No attendees found for "{{ query }}"
+            {{ $t('entrance.lookup.noResults', { query }) }}
         </p>
     </div>
 </template>

@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { AlertCircle, Flashlight } from 'lucide-vue-next';
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { QrcodeStream } from 'vue-qrcode-reader';
 import type { DetectedBarcode } from 'vue-qrcode-reader';
+
+const { t } = useI18n();
 
 const emit = defineEmits<{
     decoded: [token: string];
@@ -15,15 +18,13 @@ const torchSupported = ref(false);
 const cameraError = ref<{ name: string; message: string } | null>(null);
 
 const errorMessages: Record<string, string> = {
-    NotAllowedError:
-        'Camera permission was denied. Please allow camera access in your browser settings.',
-    NotFoundError: 'No camera found on this device.',
-    NotSupportedError: 'Secure connection (HTTPS) required for camera access.',
-    NotReadableError: 'Camera is in use by another application.',
-    OverconstrainedError: 'No suitable camera found.',
-    StreamApiNotSupportedError:
-        'Your browser does not support camera streaming.',
-    InsecureContextError: 'Camera requires a secure (HTTPS) connection.',
+    NotAllowedError: t('entrance.qrScanner.errors.NotAllowedError'),
+    NotFoundError: t('entrance.qrScanner.errors.NotFoundError'),
+    NotSupportedError: t('entrance.qrScanner.errors.NotSupportedError'),
+    NotReadableError: t('entrance.qrScanner.errors.NotReadableError'),
+    OverconstrainedError: t('entrance.qrScanner.errors.OverconstrainedError'),
+    StreamApiNotSupportedError: t('entrance.qrScanner.errors.StreamApiNotSupportedError'),
+    InsecureContextError: t('entrance.qrScanner.errors.InsecureContextError'),
 };
 
 function onDetect(detectedCodes: DetectedBarcode[]) {
@@ -46,7 +47,7 @@ function onCameraOff() {
 function onError(error: Error) {
     cameraError.value = {
         name: error.name,
-        message: errorMessages[error.name] ?? `Camera error: ${error.message}`,
+        message: errorMessages[error.name] ?? t('entrance.qrScanner.errors.generic', { message: error.message }),
     };
     emit('error', cameraError.value.message);
 }
@@ -89,7 +90,7 @@ defineExpose({ resume });
                 {{ cameraError.message }}
             </p>
             <p class="text-sm text-muted-foreground">
-                Use Manual Lookup instead
+                {{ $t('entrance.qrScanner.useManualLookup') }}
             </p>
         </div>
 

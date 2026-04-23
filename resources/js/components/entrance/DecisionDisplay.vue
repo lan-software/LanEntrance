@@ -12,7 +12,10 @@ import {
     ShieldX,
 } from 'lucide-vue-next';
 import { computed, ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 import type { Decision, DecisionResult } from '@/types';
+
+const { t } = useI18n();
 
 const props = defineProps<{
     result: DecisionResult;
@@ -36,53 +39,53 @@ const tierConfig = computed(() => {
         valid: {
             class: 'bg-green-600',
             icon: CircleCheck,
-            text: props.result.checkin_id ? 'Checked In' : 'Valid Ticket',
+            text: props.result.checkin_id ? t('entrance.decision.checkedIn') : t('entrance.decision.validTicket'),
         },
-        invalid: { class: 'bg-red-600', icon: CircleX, text: 'Entry Denied' },
+        invalid: { class: 'bg-red-600', icon: CircleX, text: t('entrance.decision.entryDenied') },
         denied_by_policy: {
             class: 'bg-red-600',
             icon: ShieldX,
-            text: 'Entry Denied',
+            text: t('entrance.decision.entryDenied'),
         },
         already_checked_in: {
             class: 'bg-orange-600',
             icon: AlertTriangle,
-            text: 'Already Checked In',
+            text: t('entrance.decision.alreadyCheckedIn'),
         },
         override_possible: {
             class: 'bg-orange-600',
             icon: AlertTriangle,
-            text: 'Override Available',
+            text: t('entrance.decision.overrideAvailable'),
         },
         verification_required: {
             class: 'bg-orange-600',
             icon: ClipboardCheck,
-            text: 'Verification Required',
+            text: t('entrance.decision.verificationRequired'),
         },
         payment_required: {
             class: 'bg-orange-600',
             icon: Banknote,
-            text: 'Payment Required',
+            text: t('entrance.decision.paymentRequired'),
         },
         invalid_signature: {
             class: 'bg-red-600',
             icon: ShieldX,
-            text: 'Invalid Signature',
+            text: t('entrance.decision.invalidSignature'),
         },
         unknown_kid: {
             class: 'bg-red-600',
             icon: ShieldX,
-            text: 'Unknown Signing Key',
+            text: t('entrance.decision.unknownSigningKey'),
         },
         expired: {
             class: 'bg-red-600',
             icon: CircleX,
-            text: 'Ticket Expired',
+            text: t('entrance.decision.ticketExpired'),
         },
         revoked: {
             class: 'bg-red-600',
             icon: ShieldX,
-            text: 'Ticket Revoked',
+            text: t('entrance.decision.ticketRevoked'),
         },
     };
 
@@ -143,7 +146,7 @@ const isActionRequired = computed(() =>
                 <h2
                     class="mb-2 text-sm font-semibold tracking-wider text-white/70 uppercase"
                 >
-                    Seating
+                    {{ $t('entrance.decision.seating') }}
                 </h2>
                 <p class="text-2xl font-bold">{{ result.seating.seat }}</p>
                 <p v-if="result.seating.area" class="text-lg text-white/90">
@@ -165,7 +168,7 @@ const isActionRequired = computed(() =>
                 <h2
                     class="mb-3 text-sm font-semibold tracking-wider text-white/70 uppercase"
                 >
-                    Ticket Addons
+                    {{ $t('entrance.decision.ticketAddons') }}
                 </h2>
                 <ul class="space-y-3">
                     <li
@@ -193,7 +196,7 @@ const isActionRequired = computed(() =>
             >
                 <p class="text-white/90">
                     <Mail class="mr-1 inline h-5 w-5" />
-                    Receipt sent to attendee's email
+                    {{ $t('entrance.decision.receiptSent') }}
                 </p>
             </div>
 
@@ -208,7 +211,7 @@ const isActionRequired = computed(() =>
                 <h2
                     class="mb-3 text-sm font-semibold tracking-wider text-white/70 uppercase"
                 >
-                    Please Verify
+                    {{ $t('entrance.decision.pleaseVerify') }}
                 </h2>
                 <ul class="space-y-4">
                     <li
@@ -242,7 +245,7 @@ const isActionRequired = computed(() =>
                     <h2
                         class="mb-2 text-sm font-semibold tracking-wider text-white/70 uppercase"
                     >
-                        Amount Due
+                        {{ $t('entrance.decision.amountDue') }}
                     </h2>
                     <p class="text-4xl font-bold">
                         {{ result.payment.amount }}
@@ -254,7 +257,7 @@ const isActionRequired = computed(() =>
                     <h2
                         class="mb-3 text-sm font-semibold tracking-wider text-white/70 uppercase"
                     >
-                        Items
+                        {{ $t('entrance.decision.items') }}
                     </h2>
                     <ul class="space-y-2">
                         <li
@@ -275,7 +278,7 @@ const isActionRequired = computed(() =>
                     <h2
                         class="mb-3 text-sm font-semibold tracking-wider text-white/70 uppercase"
                     >
-                        Payment Method
+                        {{ $t('entrance.decision.paymentMethod') }}
                     </h2>
                     <div class="flex gap-3">
                         <button
@@ -300,9 +303,9 @@ const isActionRequired = computed(() =>
                             />
                             {{
                                 method === 'cash'
-                                    ? 'Cash'
+                                    ? $t('entrance.decision.cash')
                                     : method === 'card'
-                                      ? 'Card'
+                                      ? $t('entrance.decision.card')
                                       : method
                             }}
                         </button>
@@ -320,8 +323,7 @@ const isActionRequired = computed(() =>
             >
                 <p>{{ result.group_policy.message }}</p>
                 <p class="mt-1 text-sm text-white/70">
-                    {{ result.group_policy.members_checked_in }} of
-                    {{ result.group_policy.members_total }} members checked in
+                    {{ $t('entrance.decision.membersCheckedIn', { checked: result.group_policy.members_checked_in, total: result.group_policy.members_total }) }}
                 </p>
             </div>
 
@@ -347,7 +349,7 @@ const isActionRequired = computed(() =>
                 class="w-full rounded-2xl bg-white py-4 text-lg font-bold text-green-700 shadow-lg transition-transform active:scale-[0.98]"
                 @click="$emit('checkin')"
             >
-                Check In
+                {{ $t('entrance.decision.checkIn') }}
             </button>
 
             <!-- Verification confirm -->
@@ -357,7 +359,7 @@ const isActionRequired = computed(() =>
                 class="w-full rounded-2xl bg-green-600 py-4 text-lg font-bold text-white shadow-lg transition-transform active:scale-[0.98]"
                 @click="$emit('verifyCheckin')"
             >
-                Confirm &amp; Check In
+                {{ $t('entrance.decision.confirmAndCheckIn') }}
             </button>
 
             <!-- Payment confirm -->
@@ -375,7 +377,7 @@ const isActionRequired = computed(() =>
                     selectedMethod && $emit('confirmPayment', selectedMethod)
                 "
             >
-                Confirm Payment &amp; Check In
+                {{ $t('entrance.decision.confirmPaymentAndCheckIn') }}
             </button>
 
             <!-- Override button -->
@@ -389,7 +391,7 @@ const isActionRequired = computed(() =>
                 class="w-full rounded-2xl bg-white py-4 text-lg font-bold text-orange-600 shadow-lg transition-transform active:scale-[0.98]"
                 @click="$emit('override')"
             >
-                Override
+                {{ $t('entrance.decision.override') }}
             </button>
 
             <!-- Next Scan (hidden for payment_required unless override_allowed) -->
@@ -407,7 +409,7 @@ const isActionRequired = computed(() =>
                 ]"
                 @click="$emit('dismiss')"
             >
-                Next Scan
+                {{ $t('entrance.decision.nextScan') }}
             </button>
         </div>
     </div>

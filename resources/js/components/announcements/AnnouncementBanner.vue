@@ -60,7 +60,7 @@ const dismiss = (announcement: SharedAnnouncement): void => {
                 class="shrink-0 rounded px-2 py-1 text-xs font-medium underline-offset-2 hover:underline"
                 @click="dismiss(announcement)"
             >
-                Dismiss
+                {{ $t('announcements.dismiss') }}
             </button>
         </div>
     </div>
