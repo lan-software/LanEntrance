@@ -39,9 +39,15 @@ const tierConfig = computed(() => {
         valid: {
             class: 'bg-green-600',
             icon: CircleCheck,
-            text: props.result.checkin_id ? t('entrance.decision.checkedIn') : t('entrance.decision.validTicket'),
+            text: props.result.checkin_id
+                ? t('entrance.decision.checkedIn')
+                : t('entrance.decision.validTicket'),
         },
-        invalid: { class: 'bg-red-600', icon: CircleX, text: t('entrance.decision.entryDenied') },
+        invalid: {
+            class: 'bg-red-600',
+            icon: CircleX,
+            text: t('entrance.decision.entryDenied'),
+        },
         denied_by_policy: {
             class: 'bg-red-600',
             icon: ShieldX,
@@ -323,7 +329,12 @@ const isActionRequired = computed(() =>
             >
                 <p>{{ result.group_policy.message }}</p>
                 <p class="mt-1 text-sm text-white/70">
-                    {{ $t('entrance.decision.membersCheckedIn', { checked: result.group_policy.members_checked_in, total: result.group_policy.members_total }) }}
+                    {{
+                        $t('entrance.decision.membersCheckedIn', {
+                            checked: result.group_policy.members_checked_in,
+                            total: result.group_policy.members_total,
+                        })
+                    }}
                 </p>
             </div>
 

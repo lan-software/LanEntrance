@@ -74,9 +74,9 @@ const avgTimeFormatted = computed(() => {
                     <CardHeader
                         class="flex flex-row items-center justify-between space-y-0 pb-2"
                     >
-                        <CardTitle class="text-sm font-medium"
-                            >{{ $t('entrance.analytics.totalScans') }}</CardTitle
-                        >
+                        <CardTitle class="text-sm font-medium">{{
+                            $t('entrance.analytics.totalScans')
+                        }}</CardTitle>
                         <BarChart3 class="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
@@ -90,9 +90,9 @@ const avgTimeFormatted = computed(() => {
                     <CardHeader
                         class="flex flex-row items-center justify-between space-y-0 pb-2"
                     >
-                        <CardTitle class="text-sm font-medium"
-                            >{{ $t('entrance.analytics.checkedIn') }}</CardTitle
-                        >
+                        <CardTitle class="text-sm font-medium">{{
+                            $t('entrance.analytics.checkedIn')
+                        }}</CardTitle>
                         <CheckCircle2 class="h-4 w-4 text-green-500" />
                     </CardHeader>
                     <CardContent>
@@ -106,9 +106,9 @@ const avgTimeFormatted = computed(() => {
                     <CardHeader
                         class="flex flex-row items-center justify-between space-y-0 pb-2"
                     >
-                        <CardTitle class="text-sm font-medium"
-                            >{{ $t('entrance.analytics.denied') }}</CardTitle
-                        >
+                        <CardTitle class="text-sm font-medium">{{
+                            $t('entrance.analytics.denied')
+                        }}</CardTitle>
                         <XCircle class="h-4 w-4 text-destructive" />
                     </CardHeader>
                     <CardContent>
@@ -120,9 +120,9 @@ const avgTimeFormatted = computed(() => {
                     <CardHeader
                         class="flex flex-row items-center justify-between space-y-0 pb-2"
                     >
-                        <CardTitle class="text-sm font-medium"
-                            >{{ $t('entrance.analytics.overrides') }}</CardTitle
-                        >
+                        <CardTitle class="text-sm font-medium">{{
+                            $t('entrance.analytics.overrides')
+                        }}</CardTitle>
                         <Users class="h-4 w-4 text-orange-500" />
                     </CardHeader>
                     <CardContent>
@@ -136,9 +136,9 @@ const avgTimeFormatted = computed(() => {
                     <CardHeader
                         class="flex flex-row items-center justify-between space-y-0 pb-2"
                     >
-                        <CardTitle class="text-sm font-medium"
-                            >{{ $t('entrance.analytics.paymentsCollected') }}</CardTitle
-                        >
+                        <CardTitle class="text-sm font-medium">{{
+                            $t('entrance.analytics.paymentsCollected')
+                        }}</CardTitle>
                         <Banknote class="h-4 w-4 text-green-600" />
                     </CardHeader>
                     <CardContent>
@@ -159,9 +159,9 @@ const avgTimeFormatted = computed(() => {
                     <CardHeader
                         class="flex flex-row items-center justify-between space-y-0 pb-2"
                     >
-                        <CardTitle class="text-sm font-medium"
-                            >{{ $t('entrance.analytics.avgCheckinTime') }}</CardTitle
-                        >
+                        <CardTitle class="text-sm font-medium">{{
+                            $t('entrance.analytics.avgCheckinTime')
+                        }}</CardTitle>
                         <Clock class="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
@@ -175,9 +175,9 @@ const avgTimeFormatted = computed(() => {
             <!-- Hourly throughput -->
             <Card v-if="stats.scans_per_hour?.length">
                 <CardHeader>
-                    <CardTitle class="text-sm font-medium"
-                        >{{ $t('entrance.analytics.scansPerHour') }}</CardTitle
-                    >
+                    <CardTitle class="text-sm font-medium">{{
+                        $t('entrance.analytics.scansPerHour')
+                    }}</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <div class="flex items-end gap-1" style="height: 120px">

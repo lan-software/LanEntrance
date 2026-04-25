@@ -32,15 +32,21 @@ const passwordInput = useTemplateRef('passwordInput');
             class="space-y-4 rounded-lg border border-red-100 bg-red-50 p-4 dark:border-red-200/10 dark:bg-red-700/10"
         >
             <div class="relative space-y-0.5 text-red-600 dark:text-red-100">
-                <p class="font-medium">{{ $t('settings.deleteAccount.warning') }}</p>
+                <p class="font-medium">
+                    {{ $t('settings.deleteAccount.warning') }}
+                </p>
                 <p class="text-sm">
                     {{ $t('settings.deleteAccount.warningMessage') }}
                 </p>
             </div>
             <Dialog>
                 <DialogTrigger as-child>
-                    <Button variant="destructive" data-test="delete-user-button"
-                        >{{ $t('settings.deleteAccount.triggerButton') }}</Button
+                    <Button
+                        variant="destructive"
+                        data-test="delete-user-button"
+                        >{{
+                            $t('settings.deleteAccount.triggerButton')
+                        }}</Button
                     >
                 </DialogTrigger>
                 <DialogContent>
@@ -55,23 +61,31 @@ const passwordInput = useTemplateRef('passwordInput');
                         v-slot="{ errors, processing, reset, clearErrors }"
                     >
                         <DialogHeader class="space-y-3">
-                            <DialogTitle
-                                >{{ $t('settings.deleteAccount.dialogTitle') }}</DialogTitle
-                            >
+                            <DialogTitle>{{
+                                $t('settings.deleteAccount.dialogTitle')
+                            }}</DialogTitle>
                             <DialogDescription>
-                                {{ $t('settings.deleteAccount.dialogDescription') }}
+                                {{
+                                    $t(
+                                        'settings.deleteAccount.dialogDescription',
+                                    )
+                                }}
                             </DialogDescription>
                         </DialogHeader>
 
                         <div class="grid gap-2">
-                            <Label for="password" class="sr-only"
-                                >{{ $t('settings.deleteAccount.passwordLabel') }}</Label
-                            >
+                            <Label for="password" class="sr-only">{{
+                                $t('settings.deleteAccount.passwordLabel')
+                            }}</Label>
                             <PasswordInput
                                 id="password"
                                 name="password"
                                 ref="passwordInput"
-                                :placeholder="$t('settings.deleteAccount.passwordPlaceholder')"
+                                :placeholder="
+                                    $t(
+                                        'settings.deleteAccount.passwordPlaceholder',
+                                    )
+                                "
                             />
                             <InputError :message="errors.password" />
                         </div>
@@ -87,7 +101,11 @@ const passwordInput = useTemplateRef('passwordInput');
                                         }
                                     "
                                 >
-                                    {{ $t('settings.deleteAccount.cancelButton') }}
+                                    {{
+                                        $t(
+                                            'settings.deleteAccount.cancelButton',
+                                        )
+                                    }}
                                 </Button>
                             </DialogClose>
 

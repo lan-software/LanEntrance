@@ -23,11 +23,4 @@ return [
     'event_name' => env('LANCORE_EVENT_NAME', ''),
     'event_logo' => env('LANCORE_EVENT_LOGO', ''),
     'primary_color' => env('LANCORE_PRIMARY_COLOR', ''),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Announcements Feed
-    |--------------------------------------------------------------------------
-    */
-    'announcements_feed_url' => env('LANCORE_ANNOUNCEMENTS_FEED_URL', rtrim((string) env('LANCORE_BASE_URL', 'http://lancore.lan'), '/').'/api/announcements/feed'),
 ];

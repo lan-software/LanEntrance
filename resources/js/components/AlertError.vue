@@ -15,7 +15,9 @@ const props = withDefaults(defineProps<Props>(), {
     title: undefined,
 });
 
-const resolvedTitle = computed(() => props.title ?? t('errors.somethingWentWrong'));
+const resolvedTitle = computed(
+    () => props.title ?? t('errors.somethingWentWrong'),
+);
 
 const uniqueErrors = computed(() => Array.from(new Set(props.errors)));
 </script>

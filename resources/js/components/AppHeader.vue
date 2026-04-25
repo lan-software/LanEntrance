@@ -95,9 +95,9 @@ const rightNavItems: NavItem[] = [
                             </Button>
                         </SheetTrigger>
                         <SheetContent side="left" class="w-[300px] p-6">
-                            <SheetTitle class="sr-only"
-                                >{{ $t('navigation_menu.navigationMenu') }}</SheetTitle
-                            >
+                            <SheetTitle class="sr-only">{{
+                                $t('navigation_menu.navigationMenu')
+                            }}</SheetTitle>
                             <SheetHeader class="flex justify-start text-left">
                                 <AppLogoIcon
                                     class="size-6 fill-current text-black dark:text-white"

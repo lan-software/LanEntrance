@@ -60,7 +60,12 @@ function formatTime(timestamp: number): string {
                     <p class="text-xs text-muted-foreground">
                         {{ formatTime(item.timestamp) }}
                         <span v-if="item.retryCount > 0">
-                            &middot; {{ $t('entrance.queuedScans.retriedCount', { count: item.retryCount }) }}
+                            &middot;
+                            {{
+                                $t('entrance.queuedScans.retriedCount', {
+                                    count: item.retryCount,
+                                })
+                            }}
                         </span>
                         <span
                             v-if="item.status === 'failed'"

@@ -49,7 +49,9 @@ const inputEmail = ref(props.email);
             </div>
 
             <div class="grid gap-2">
-                <Label for="password">{{ $t('auth.resetPassword.password') }}</Label>
+                <Label for="password">{{
+                    $t('auth.resetPassword.password')
+                }}</Label>
                 <PasswordInput
                     id="password"
                     name="password"
@@ -62,13 +64,17 @@ const inputEmail = ref(props.email);
             </div>
 
             <div class="grid gap-2">
-                <Label for="password_confirmation"> {{ $t('auth.resetPassword.confirmPassword') }} </Label>
+                <Label for="password_confirmation">
+                    {{ $t('auth.resetPassword.confirmPassword') }}
+                </Label>
                 <PasswordInput
                     id="password_confirmation"
                     name="password_confirmation"
                     autocomplete="new-password"
                     class="mt-1 block w-full"
-                    :placeholder="$t('auth.resetPassword.confirmPasswordPlaceholder')"
+                    :placeholder="
+                        $t('auth.resetPassword.confirmPasswordPlaceholder')
+                    "
                 />
                 <InputError :message="errors.password_confirmation" />
             </div>

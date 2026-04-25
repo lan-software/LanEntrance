@@ -68,13 +68,19 @@ function selectAttendee(token: string) {
         >
             <Info class="mt-0.5 h-4 w-4 flex-shrink-0 text-muted-foreground" />
             <div class="text-sm text-muted-foreground">
-                <p class="font-medium text-foreground">{{ $t('entrance.lookup.searchHintTitle') }}</p>
+                <p class="font-medium text-foreground">
+                    {{ $t('entrance.lookup.searchHintTitle') }}
+                </p>
                 <ul class="mt-1 list-inside list-disc space-y-0.5">
                     <li>{{ $t('entrance.lookup.searchHintName') }}</li>
                     <li>{{ $t('entrance.lookup.searchHintEmail') }}</li>
                 </ul>
                 <p class="mt-1.5">
-                    {{ $t('entrance.lookup.searchHintMin', { link: $t('entrance.lookup.searchHintManualLink') }) }}
+                    {{
+                        $t('entrance.lookup.searchHintMin', {
+                            link: $t('entrance.lookup.searchHintManualLink'),
+                        })
+                    }}
                 </p>
             </div>
         </div>
@@ -113,9 +119,9 @@ function selectAttendee(token: string) {
                             class="font-mono"
                             >···{{ attendee.validation_token_suffix }}</span
                         >
-                        <span v-if="attendee.seat"
-                            >{{ $t('entrance.lookup.seat', { seat: attendee.seat }) }}</span
-                        >
+                        <span v-if="attendee.seat">{{
+                            $t('entrance.lookup.seat', { seat: attendee.seat })
+                        }}</span>
                         <span
                             v-for="addon in attendee.addons ?? []"
                             :key="addon"

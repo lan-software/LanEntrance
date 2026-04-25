@@ -42,7 +42,9 @@ onMounted(async () => {
     <Card class="w-full">
         <CardHeader>
             <CardTitle class="flex gap-3">
-                <LockKeyhole class="size-4" />{{ $t('twoFactor.recoveryCodes.title') }}
+                <LockKeyhole class="size-4" />{{
+                    $t('twoFactor.recoveryCodes.title')
+                }}
             </CardTitle>
             <CardDescription>
                 {{ $t('twoFactor.recoveryCodes.description') }}
@@ -57,7 +59,11 @@ onMounted(async () => {
                         :is="isRecoveryCodesVisible ? EyeOff : Eye"
                         class="size-4"
                     />
-                    {{ isRecoveryCodesVisible ? $t('twoFactor.recoveryCodes.hideButton') : $t('twoFactor.recoveryCodes.viewButton') }}
+                    {{
+                        isRecoveryCodesVisible
+                            ? $t('twoFactor.recoveryCodes.hideButton')
+                            : $t('twoFactor.recoveryCodes.viewButton')
+                    }}
                 </Button>
 
                 <Form
@@ -73,7 +79,8 @@ onMounted(async () => {
                         type="submit"
                         :disabled="processing"
                     >
-                        <RefreshCw /> {{ $t('twoFactor.recoveryCodes.regenerateButton') }}
+                        <RefreshCw />
+                        {{ $t('twoFactor.recoveryCodes.regenerateButton') }}
                     </Button>
                 </Form>
             </div>
@@ -109,7 +116,13 @@ onMounted(async () => {
                         </div>
                     </div>
                     <p class="text-xs text-muted-foreground select-none">
-                        {{ $t('twoFactor.recoveryCodes.usageNote', { regenerateLink: $t('twoFactor.recoveryCodes.regenerateLink') }) }}
+                        {{
+                            $t('twoFactor.recoveryCodes.usageNote', {
+                                regenerateLink: $t(
+                                    'twoFactor.recoveryCodes.regenerateLink',
+                                ),
+                            })
+                        }}
                     </p>
                 </div>
             </div>

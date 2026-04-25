@@ -45,7 +45,13 @@ function handleCancel() {
             <DialogHeader>
                 <DialogTitle>{{ $t('entrance.override.title') }}</DialogTitle>
                 <DialogDescription>
-                    {{ $t('entrance.override.description', { attendee: context.attendee?.name ?? $t('entrance.override.fallbackAttendee') }) }}
+                    {{
+                        $t('entrance.override.description', {
+                            attendee:
+                                context.attendee?.name ??
+                                $t('entrance.override.fallbackAttendee'),
+                        })
+                    }}
                 </DialogDescription>
             </DialogHeader>
 
@@ -56,7 +62,13 @@ function handleCancel() {
                 >
                     <p>{{ context.group_policy.message }}</p>
                     <p class="mt-1 text-muted-foreground">
-                        {{ $t('entrance.decision.membersCheckedIn', { checked: context.group_policy.members_checked_in, total: context.group_policy.members_total }) }}
+                        {{
+                            $t('entrance.decision.membersCheckedIn', {
+                                checked:
+                                    context.group_policy.members_checked_in,
+                                total: context.group_policy.members_total,
+                            })
+                        }}
                     </p>
                 </div>
 
@@ -71,15 +83,21 @@ function handleCancel() {
                     v-if="reason.length > 0 && reason.length < 10"
                     class="text-xs text-destructive"
                 >
-                    {{ $t('entrance.override.charsNeeded', { count: 10 - reason.length }) }}
+                    {{
+                        $t('entrance.override.charsNeeded', {
+                            count: 10 - reason.length,
+                        })
+                    }}
                 </p>
             </div>
 
             <DialogFooter>
-                <Button variant="outline" @click="handleCancel">{{ $t('entrance.override.cancel') }}</Button>
-                <Button :disabled="!isValid" @click="handleSubmit"
-                    >{{ $t('entrance.override.confirm') }}</Button
-                >
+                <Button variant="outline" @click="handleCancel">{{
+                    $t('entrance.override.cancel')
+                }}</Button>
+                <Button :disabled="!isValid" @click="handleSubmit">{{
+                    $t('entrance.override.confirm')
+                }}</Button>
             </DialogFooter>
         </DialogContent>
     </Dialog>

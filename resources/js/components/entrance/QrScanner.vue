@@ -23,7 +23,9 @@ const errorMessages: Record<string, string> = {
     NotSupportedError: t('entrance.qrScanner.errors.NotSupportedError'),
     NotReadableError: t('entrance.qrScanner.errors.NotReadableError'),
     OverconstrainedError: t('entrance.qrScanner.errors.OverconstrainedError'),
-    StreamApiNotSupportedError: t('entrance.qrScanner.errors.StreamApiNotSupportedError'),
+    StreamApiNotSupportedError: t(
+        'entrance.qrScanner.errors.StreamApiNotSupportedError',
+    ),
     InsecureContextError: t('entrance.qrScanner.errors.InsecureContextError'),
 };
 
@@ -47,7 +49,9 @@ function onCameraOff() {
 function onError(error: Error) {
     cameraError.value = {
         name: error.name,
-        message: errorMessages[error.name] ?? t('entrance.qrScanner.errors.generic', { message: error.message }),
+        message:
+            errorMessages[error.name] ??
+            t('entrance.qrScanner.errors.generic', { message: error.message }),
     };
     emit('error', cameraError.value.message);
 }
