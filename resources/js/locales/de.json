@@ -93,6 +93,19 @@
         "forgotPassword": {
             "email": "E-Mail-Adresse",
             "emailPlaceholder": "email@beispiel.de"
+        },
+        "resetPassword": {
+            "layoutTitle": "Passwort zurücksetzen",
+            "headTitle": "Passwort zurücksetzen",
+            "email": "E-Mail",
+            "password": "Passwort",
+            "passwordPlaceholder": "Passwort",
+            "confirmPassword": "Passwort bestätigen",
+            "confirmPasswordPlaceholder": "Passwort bestätigen",
+            "button": "Passwort zurücksetzen"
+        },
+        "twoFactor": {
+            "headTitle": "Zwei-Faktor-Authentifizierung"
         }
     },
     "settings": {
@@ -104,7 +117,8 @@
             "name": "Name",
             "email": "E-Mail-Adresse",
             "updateButton": "Speichern",
-            "updated": "Gespeichert."
+            "updated": "Gespeichert.",
+            "verificationLinkSent": "Ein neuer Bestätigungslink wurde an deine E-Mail-Adresse gesendet."
         },
         "appearance": {
             "title": "Erscheinungsbild",
