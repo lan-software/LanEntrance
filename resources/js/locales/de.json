@@ -33,7 +33,7 @@
         "copied": "Kopiert",
         "optional": "optional",
         "required": "erforderlich",
-        "loadingMore": "Mehr wird geladen...",
+        "loadingMore": "Mehr wird geladen…",
         "noResults": "Keine Ergebnisse gefunden",
         "showMore": "Mehr anzeigen",
         "showLess": "Weniger anzeigen"
@@ -49,7 +49,11 @@
             "rememberMe": "Angemeldet bleiben",
             "forgotPassword": "Passwort vergessen?",
             "button": "Anmelden",
-            "signInWithLanCore": "Mit LanCore anmelden"
+            "signInWithLanCore": "Mit LanCore anmelden",
+            "layoutTitle": "Bei deinem Konto anmelden",
+            "layoutDescription": "Gib unten deine E-Mail-Adresse und dein Passwort ein, um dich anzumelden",
+            "noAccount": "Noch kein Konto?",
+            "signUp": "Registrieren"
         },
         "verifyEmail": {
             "title": "E-Mail-Adresse verifizieren",
@@ -70,6 +74,25 @@
             "description": "Wir schließen den LanCore-Anmeldevorgang ab.",
             "error": "Anmeldung fehlgeschlagen.",
             "retry": "Erneut versuchen"
+        },
+        "register": {
+            "layoutTitle": "Konto erstellen",
+            "headTitle": "Registrieren",
+            "name": "Name",
+            "namePlaceholder": "Vollständiger Name",
+            "email": "E-Mail-Adresse",
+            "emailPlaceholder": "email@beispiel.de",
+            "password": "Passwort",
+            "passwordPlaceholder": "Passwort",
+            "confirmPassword": "Passwort bestätigen",
+            "confirmPasswordPlaceholder": "Passwort bestätigen",
+            "button": "Konto erstellen",
+            "alreadyHaveAccount": "Bereits ein Konto?",
+            "logIn": "Anmelden"
+        },
+        "forgotPassword": {
+            "email": "E-Mail-Adresse",
+            "emailPlaceholder": "email@beispiel.de"
         }
     },
     "settings": {
@@ -106,7 +129,8 @@
         "events": "Veranstaltungen",
         "settings": "Einstellungen",
         "profile": "Profil",
-        "appearance": "Erscheinungsbild"
+        "appearance": "Erscheinungsbild",
+        "platform": "Plattform"
     },
     "landing": {
         "title": "Willkommen bei LanEntrance",
