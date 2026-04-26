@@ -67,7 +67,7 @@
             "description": "Dies ist ein geschützter Bereich der Anwendung. Bitte bestätige dein Passwort, bevor du fortfährst.",
             "password": "Passwort",
             "passwordPlaceholder": "Passwort",
-            "button": "Bestätigen"
+            "button": "Passwort bestätigen"
         },
         "ssoStatus": {
             "title": "Du wirst angemeldet...",
@@ -105,7 +105,18 @@
             "button": "Passwort zurücksetzen"
         },
         "twoFactor": {
-            "headTitle": "Zwei-Faktor-Authentifizierung"
+            "headTitle": "Zwei-Faktor-Authentifizierung",
+            "authCode": {
+                "title": "Authentifizierungscode",
+                "description": "Gib den Authentifizierungscode aus deiner Authenticator-App ein.",
+                "switchToRecovery": "mit Wiederherstellungscode anmelden"
+            },
+            "recoveryCode": {
+                "title": "Wiederherstellungscode",
+                "description": "Bitte bestätige den Zugriff auf dein Konto, indem du einen deiner Notfall-Wiederherstellungscodes eingibst.",
+                "switchToAuthCode": "mit Authentifizierungscode anmelden"
+            },
+            "continueButton": "Weiter"
         }
     },
     "settings": {
@@ -118,7 +129,16 @@
             "email": "E-Mail-Adresse",
             "updateButton": "Speichern",
             "updated": "Gespeichert.",
-            "verificationLinkSent": "Ein neuer Bestätigungslink wurde an deine E-Mail-Adresse gesendet."
+            "verificationLinkSent": "Ein neuer Bestätigungslink wurde an deine E-Mail-Adresse gesendet.",
+            "breadcrumb": "Profileinstellungen",
+            "headTitle": "Profileinstellungen",
+            "srHeading": "Profileinstellungen",
+            "infoTitle": "Profilinformationen",
+            "infoDescription": "Aktualisiere deinen Namen und deine E-Mail-Adresse",
+            "namePlaceholder": "Vollständiger Name",
+            "emailPlaceholder": "E-Mail-Adresse",
+            "unverifiedEmail": "Deine E-Mail-Adresse ist nicht verifiziert.",
+            "resendVerification": "Klicke hier, um die Bestätigungs-E-Mail erneut zu senden."
         },
         "appearance": {
             "title": "Erscheinungsbild",
@@ -126,11 +146,37 @@
             "theme": "Thema",
             "light": "Hell",
             "dark": "Dunkel",
-            "system": "System"
+            "system": "System",
+            "breadcrumb": "Erscheinungsbild-Einstellungen",
+            "headTitle": "Erscheinungsbild-Einstellungen",
+            "srHeading": "Erscheinungsbild-Einstellungen"
         },
         "language": {
             "current": "Anzeigesprache",
             "managedInLanCore": "Ändere deine Sprache im LanCore-Profil."
+        },
+        "security": {
+            "passwordTitle": "Passwort ändern",
+            "passwordDescription": "Stelle sicher, dass dein Konto ein langes, zufälliges Passwort verwendet, um sicher zu bleiben",
+            "currentPassword": "Aktuelles Passwort",
+            "currentPasswordPlaceholder": "Aktuelles Passwort",
+            "newPassword": "Neues Passwort",
+            "newPasswordPlaceholder": "Neues Passwort",
+            "confirmPassword": "Passwort bestätigen",
+            "confirmPasswordPlaceholder": "Passwort bestätigen",
+            "savePassword": "Passwort speichern",
+            "saved": "Gespeichert.",
+            "twoFactorTitle": "Zwei-Faktor-Authentifizierung"
+        },
+        "deleteAccount": {
+            "title": "Konto löschen",
+            "description": "Lösche dein Konto und alle zugehörigen Daten",
+            "triggerButton": "Konto löschen",
+            "dialogTitle": "Bist du sicher, dass du dein Konto löschen möchtest?",
+            "passwordLabel": "Passwort",
+            "passwordPlaceholder": "Passwort",
+            "cancelButton": "Abbrechen",
+            "confirmButton": "Konto löschen"
         }
     },
     "navigation": {
@@ -204,7 +250,8 @@
             "totalCheckIns": "Gesamte Einlässe",
             "attendanceRate": "Anwesenheitsrate",
             "checkInsOverTime": "Einlässe über Zeit",
-            "byTicketType": "Nach Tickettyp"
+            "byTicketType": "Nach Tickettyp",
+            "checkedIn": "Eingecheckt"
         },
         "events": {
             "title": "Event auswählen",
@@ -213,6 +260,15 @@
             "clear": "Auswahl löschen",
             "current": "Aktuelles Event",
             "empty": "Keine Events verfügbar"
+        },
+        "decision": {
+            "checkedIn": "Eingecheckt",
+            "seating": "Sitzplätze",
+            "ticketAddons": "Ticket-Erweiterungen",
+            "paymentMethod": "Zahlungsmethode"
+        },
+        "override": {
+            "cancel": "Abbrechen"
         }
     },
     "validation": {
@@ -222,5 +278,31 @@
         "maxLength": "Darf höchstens {max} Zeichen lang sein",
         "passwordMatch": "Passwörter müssen übereinstimmen",
         "invalid": "Ungültiger Wert"
+    },
+    "twoFactor": {
+        "recoveryCodes": {
+            "regenerateButton": "Codes neu generieren",
+            "regenerateLink": "Codes neu generieren"
+        },
+        "setup": {
+            "enabled": {
+                "buttonText": "Schließen"
+            },
+            "verify": {
+                "buttonText": "Weiter"
+            },
+            "initial": {
+                "buttonText": "Weiter"
+            },
+            "back": "Zurück",
+            "confirm": "Bestätigen"
+        }
+    },
+    "userMenu": {
+        "settings": "Einstellungen",
+        "logout": "Abmelden"
+    },
+    "navigation_menu": {
+        "navigationMenu": "Navigationsmenü"
     }
 }
