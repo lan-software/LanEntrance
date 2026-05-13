@@ -3,7 +3,7 @@ import { usePage } from '@inertiajs/vue3';
 import { computed, ref } from 'vue';
 
 type SharedAnnouncement = {
-    id: number;
+    id: string;
     audience: string | null;
     severity: string | null;
     title: string;

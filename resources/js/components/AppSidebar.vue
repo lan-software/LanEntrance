@@ -78,7 +78,7 @@ const footerNavItems: NavItem[] = [];
 
 // Event selector
 interface EventOption {
-    id: number;
+    id: string;
     name: string;
     start_date: string | null;
     end_date: string | null;
