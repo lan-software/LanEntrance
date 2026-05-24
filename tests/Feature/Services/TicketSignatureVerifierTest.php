@@ -18,11 +18,11 @@ function makeToken(array $overrides = [], ?string $secretKey = null, string $kid
     }
 
     $claims = array_merge([
-        'tid' => 1,
+        'tid' => '01HZ0CNTRACTTCKET000000001',
         'nonce' => 'abc',
         'iat' => time() - 60,
         'exp' => time() + 3600,
-        'evt' => 1,
+        'evt' => '01HZ0CNTRACTEVENT000000004',
     ], $overrides);
 
     $body = TicketSignatureVerifier::base64UrlEncode(json_encode($claims, JSON_THROW_ON_ERROR));
@@ -72,8 +72,8 @@ it('verifies a valid LCT1 token', function () {
     $result = $verifier->verify($token);
 
     expect($result->kid)->toBe($this->kid)
-        ->and($result->tid)->toBe(1)
-        ->and($result->evt)->toBe(1);
+        ->and($result->tid)->toBe('01HZ0CNTRACTTCKET000000001')
+        ->and($result->evt)->toBe('01HZ0CNTRACTEVENT000000004');
 });
 
 it('rejects a tampered body', function () {

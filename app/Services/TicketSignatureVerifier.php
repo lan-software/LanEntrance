@@ -76,11 +76,11 @@ class TicketSignatureVerifier
         }
 
         return new VerifiedToken(
-            tid: (int) $decoded['tid'],
+            tid: (string) $decoded['tid'],
             nonce: (string) $decoded['nonce'],
             iat: (int) $decoded['iat'],
             exp: $exp,
-            evt: (int) $decoded['evt'],
+            evt: (string) $decoded['evt'],
             kid: $kid,
         );
     }

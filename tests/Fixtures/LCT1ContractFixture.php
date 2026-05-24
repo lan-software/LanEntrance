@@ -15,11 +15,11 @@ use App\Services\TicketSignatureVerifier;
  * Seed (32 bytes, hex): 4c43543143544f4e545241435431323334353637383930313233343536373839
  * Kid: contract-1
  * Body claims:
- *   tid:   1
+ *   tid:   01HZ0CNTRACTTCKET000000001  (ULID — LanCore ticket primary key)
  *   nonce: AAECAwQFBgcICQoLDA0ODw  (base64url of 0x00..0x0f, 16 bytes)
  *   iat:   1700000000
  *   exp:   4102444800   (year 2100 — far future, never expires in tests)
- *   evt:   42
+ *   evt:   01HZ0CNTRACTEVENT000000004  (ULID — LanCore event primary key)
  *
  * The token, signing input, and signature are computed once at runtime from
  * the seed via libsodium so the fixture is self-verifying.
@@ -30,7 +30,7 @@ final class LCT1ContractFixture
 
     public const KID = 'contract-1';
 
-    public const TID = 1;
+    public const TID = '01HZ0CNTRACTTCKET000000001';
 
     public const NONCE = 'AAECAwQFBgcICQoLDA0ODw';
 
@@ -38,7 +38,7 @@ final class LCT1ContractFixture
 
     public const EXP = 4102444800;
 
-    public const EVT = 42;
+    public const EVT = '01HZ0CNTRACTEVENT000000004';
 
     /**
      * @return array{seed:string, publicKey:string, secretKey:string, kid:string, body:string, token:string, publicKeyB64Url:string}

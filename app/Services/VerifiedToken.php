@@ -9,7 +9,7 @@ readonly class VerifiedToken
         public string $nonce,
         public int $iat,
         public int $exp,
-        public int $evt,
+        public string $evt,
         public string $kid,
     ) {}
 }
