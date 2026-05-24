@@ -43,7 +43,7 @@
             "title": "Meld di bi LanEntrance an",
             "description": "Meld di mit dien LanCore-Konto an, üm wiedertomaken",
             "email": "E-Mail-Adress",
-            "emailPlaceholder": "epost@bispeel.de",
+            "emailPlaceholder": "epost{'@'}bispeel.de",
             "password": "Passwoort",
             "passwordPlaceholder": "Passwoort",
             "rememberMe": "Behöll mi in'n Kopp",

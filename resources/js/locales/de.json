@@ -43,7 +43,7 @@
             "title": "Bei LanEntrance anmelden",
             "description": "Melde dich mit deinem LanCore-Konto an, um fortzufahren",
             "email": "E-Mail-Adresse",
-            "emailPlaceholder": "email@beispiel.de",
+            "emailPlaceholder": "email{'@'}beispiel.de",
             "password": "Passwort",
             "passwordPlaceholder": "Passwort",
             "rememberMe": "Angemeldet bleiben",
@@ -81,7 +81,7 @@
             "name": "Name",
             "namePlaceholder": "Vollständiger Name",
             "email": "E-Mail-Adresse",
-            "emailPlaceholder": "email@beispiel.de",
+            "emailPlaceholder": "email{'@'}beispiel.de",
             "password": "Passwort",
             "passwordPlaceholder": "Passwort",
             "confirmPassword": "Passwort bestätigen",
@@ -92,7 +92,7 @@
         },
         "forgotPassword": {
             "email": "E-Mail-Adresse",
-            "emailPlaceholder": "email@beispiel.de"
+            "emailPlaceholder": "email{'@'}beispiel.de"
         },
         "resetPassword": {
             "layoutTitle": "Passwort zurücksetzen",

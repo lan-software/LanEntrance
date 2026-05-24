@@ -43,7 +43,7 @@
             "title": "Connectez-vous à LanEntrance",
             "description": "Connectez-vous avec votre compte LanCore pour continuer",
             "email": "Adresse e-mail",
-            "emailPlaceholder": "email@exemple.fr",
+            "emailPlaceholder": "email{'@'}exemple.fr",
             "password": "Mot de passe",
             "passwordPlaceholder": "Mot de passe",
             "rememberMe": "Se souvenir de moi",

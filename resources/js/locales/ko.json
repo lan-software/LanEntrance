@@ -43,7 +43,7 @@
             "title": "LanEntrance에 로그인",
             "description": "LanCore 계정으로 로그인하여 계속하세요",
             "email": "이메일 주소",
-            "emailPlaceholder": "email@example.com",
+            "emailPlaceholder": "email{'@'}example.com",
             "password": "비밀번호",
             "passwordPlaceholder": "비밀번호",
             "rememberMe": "로그인 유지",

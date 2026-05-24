@@ -43,7 +43,7 @@
             "title": "Inicia sesión en LanEntrance",
             "description": "Inicia sesión con tu cuenta de LanCore para continuar",
             "email": "Correo electrónico",
-            "emailPlaceholder": "email@ejemplo.es",
+            "emailPlaceholder": "email{'@'}ejemplo.es",
             "password": "Contraseña",
             "passwordPlaceholder": "Contraseña",
             "rememberMe": "Recuérdame",

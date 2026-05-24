@@ -43,7 +43,7 @@
             "title": "Meldde dich bei LanEntrance an",
             "description": "Meldde dich mit dein LanCore-Gondo an, um weidertzumachn",
             "email": "Mähl-Adrässe",
-            "emailPlaceholder": "mähl@beispiel.de",
+            "emailPlaceholder": "mähl{'@'}beispiel.de",
             "password": "Basswort",
             "passwordPlaceholder": "Basswort",
             "rememberMe": "Merg mich dir",

@@ -43,7 +43,7 @@
             "title": "Logga in på LanEntrance",
             "description": "Logga in med ditt LanCore-konto för att fortsätta",
             "email": "E-postadress",
-            "emailPlaceholder": "epost@exempel.se",
+            "emailPlaceholder": "epost{'@'}exempel.se",
             "password": "Lösenord",
             "passwordPlaceholder": "Lösenord",
             "rememberMe": "Kom ihåg mig",
